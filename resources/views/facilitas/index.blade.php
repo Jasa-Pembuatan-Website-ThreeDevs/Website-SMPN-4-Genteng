@@ -1,9 +1,11 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('layouts.app')
+
+@section('content')
+<x-slot>
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Fasilitas Sekolah') }}
         </h2>
-    </x-slot>
+</x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -37,7 +39,7 @@
                                         {{ $f->name }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="flex space-x-2">
+                                        <div cAchievementControllerlass="flex space-x-2">
                                             <a href="{{ route('facilities.edit',$f->id) }}" class="text-blue-600 hover:underline">Edit</a>
                                             <form action="{{ route('facilities.destroy',$f->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                 @csrf @method('DELETE')
@@ -54,4 +56,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
