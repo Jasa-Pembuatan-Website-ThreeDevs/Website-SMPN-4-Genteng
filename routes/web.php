@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\AchievementController;
@@ -35,6 +36,7 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/admin/ppdb', [PpdbController::class, 'index']);
     Route::resource('facilities', FacilityController::class);
     Route::resource('achievements', AchievementController::class);
+    Route::resource('posts', PostController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

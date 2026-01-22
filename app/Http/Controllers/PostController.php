@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -11,6 +14,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::latest()->get();
+        // Pastikan view mengarah ke folder yang benar, misalnya admin.posts.index
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -28,25 +32,21 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title'   => 'required',
-            'content' => 'required',
-            'type'    => 'required|in:news,announcement',
+            'title'        => 'required|string|max:255',
+            'content'      => 'required',
+            'anouncement'  => 'required|in:news,announcement', // Sesuai kolom migration
+            'thumbnail'    => 'nullable|url', // Jika input text URL
+            'published_at' => 'required|date',
+            'expired_at'   => 'required|date|after:published_at',
         ]);
 
-        $data['slug']    = Str::slug($data['title']);
-        $data['user_id'] = auth()->id();
+        $data['slug']      = Str::slug($data['title']);
+        $data['user_id']   = auth()->id();
+        $data['is_active'] = $request->has('is_active') ? true : true; // Default aktif jika tidak ada input toggle
 
         Post::create($data);
 
-        return redirect('/admin/posts')->with('success', 'Data berhasil ditambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('posts.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -63,13 +63,19 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->validate([
-            'title'   => 'required',
-            'content' => 'required',
+            'title'        => 'required|string|max:255',
+            'content'      => 'required',
+            'anouncement'  => 'required|in:news,announcement',
+            'thumbnail'    => 'nullable|url',
+            'published_at' => 'required|date',
+            'expired_at'   => 'required|date|after:published_at',
         ]);
+
+        $data['slug'] = Str::slug($data['title']);
 
         $post->update($data);
 
-        return redirect('/admin/posts')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('posts.index')->with('success', 'Data berhasil diperbarui');
     }
 
     /**
@@ -80,5 +86,4 @@ class PostController extends Controller
         $post->delete();
         return back()->with('success', 'Data berhasil dihapus');
     }
-
 }
