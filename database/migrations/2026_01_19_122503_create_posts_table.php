@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
-            $table->string('anouncement');
+            $table->string('announcement');
             $table->string('thumbnail')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->datetime('published_at');
