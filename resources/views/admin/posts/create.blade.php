@@ -18,10 +18,10 @@
 
             <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">Tipe (Anouncement)</label>
-                    <select name="anouncement" class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition">
-                        <option value="news" {{ old('anouncement') == 'news' ? 'selected' : '' }}>News</option>
-                        <option value="announcement" {{ old('anouncement') == 'announcement' ? 'selected' : '' }}>Announcement</option>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">Tipe (Announcement)</label>
+                    <select name="announcement" class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition">
+                        <option value="news" {{ old('announcement') == 'news' ? 'selected' : '' }}>News</option>
+                        <option value="announcement" {{ old('announcement') == 'announcement' ? 'selected' : '' }}>Announcement</option>
                     </select>
                 </div>
             </div>

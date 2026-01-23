@@ -34,7 +34,7 @@ class PostController extends Controller
         $data = $request->validate([
             'title'        => 'required|string|max:255',
             'content'      => 'required',
-            'anouncement'  => 'required|in:news,announcement', // Sesuai kolom migration
+            'announcement'  => 'required|in:news,announcement', // Sesuai kolom migration
             'thumbnail'    => 'nullable|url', // Jika input text URL
             'published_at' => 'required|date',
             'expired_at'   => 'required|date|after:published_at',
@@ -65,7 +65,7 @@ class PostController extends Controller
         $data = $request->validate([
             'title'        => 'required|string|max:255',
             'content'      => 'required',
-            'anouncement'  => 'required|in:news,announcement',
+            'announcement'  => 'required|in:news,announcement',
             'thumbnail'    => 'nullable|url',
             'published_at' => 'required|date',
             'expired_at'   => 'required|date|after:published_at',

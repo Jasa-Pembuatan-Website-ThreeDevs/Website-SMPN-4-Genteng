@@ -9,13 +9,11 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $table = 'posts';
-
     protected $fillable = [
         'title',
         'slug',
         'content',
-        'type',
+        'announcement',
         'thumbnail',
         'user_id',
         'published_at',
@@ -44,12 +42,12 @@ class Post extends Model
 
     public function scopeAnnouncement($query)
     {
-        return $query->where('type', 'announcement');
+        return $query->where('announcement', 'announcement');
     }
 
     public function scopeNews($query)
     {
-        return $query->where('type', 'news');
+        return $query->where('announcement', 'news');
     }
 
     public function scopeActive($query)
