@@ -1,0 +1,60 @@
+
+  GET|HEAD        / .............................................................................................. 
+  GET|HEAD        admin/achievements ............................ achievements.index › AchievementController@index
+  POST            admin/achievements ............................ achievements.store › AchievementController@store
+  GET|HEAD        admin/achievements/create ................... achievements.create › AchievementController@create
+  GET|HEAD        admin/achievements/{achievement} ................ achievements.show › AchievementController@show
+  PUT|PATCH       admin/achievements/{achievement} ............ achievements.update › AchievementController@update
+  DELETE          admin/achievements/{achievement} .......... achievements.destroy › AchievementController@destroy
+  GET|HEAD        admin/achievements/{achievement}/edit ........... achievements.edit › AchievementController@edit
+  GET|HEAD        admin/facilities ................................... facilities.index › FacilityController@index
+  POST            admin/facilities ................................... facilities.store › FacilityController@store
+  GET|HEAD        admin/facilities/create .......................... facilities.create › FacilityController@create
+  GET|HEAD        admin/facilities/{facility} .......................... facilities.show › FacilityController@show
+  PUT|PATCH       admin/facilities/{facility} ...................... facilities.update › FacilityController@update
+  DELETE          admin/facilities/{facility} .................... facilities.destroy › FacilityController@destroy
+  GET|HEAD        admin/facilities/{facility}/edit ..................... facilities.edit › FacilityController@edit
+  GET|HEAD        admin/posts ................................................. posts.index › PostController@index
+  POST            admin/posts ................................................. posts.store › PostController@store
+  GET|HEAD        admin/posts/create ........................................ posts.create › PostController@create
+  GET|HEAD        admin/posts/{post} ............................................ posts.show › PostController@show
+  PUT|PATCH       admin/posts/{post} ........................................ posts.update › PostController@update
+  DELETE          admin/posts/{post} ...................................... posts.destroy › PostController@destroy
+  GET|HEAD        admin/posts/{post}/edit ....................................... posts.edit › PostController@edit
+  GET|HEAD        admin/ppdb-batches ........................ ppdb-batches.index › admin\PpdbBatchController@index
+  POST            admin/ppdb-batches ........................ ppdb-batches.store › admin\PpdbBatchController@store
+  GET|HEAD        admin/ppdb-batches/create ............... ppdb-batches.create › admin\PpdbBatchController@create
+  GET|HEAD        admin/ppdb-batches/{ppdb_batch} ............. ppdb-batches.show › admin\PpdbBatchController@show
+  PUT|PATCH       admin/ppdb-batches/{ppdb_batch} ......... ppdb-batches.update › admin\PpdbBatchController@update
+  DELETE          admin/ppdb-batches/{ppdb_batch} ....... ppdb-batches.destroy › admin\PpdbBatchController@destroy
+  GET|HEAD        admin/ppdb-batches/{ppdb_batch}/edit ........ ppdb-batches.edit › admin\PpdbBatchController@edit
+  GET|HEAD        confirm-password .................... password.confirm › Auth\ConfirmablePasswordController@show
+  POST            confirm-password ...................................... Auth\ConfirmablePasswordController@store
+  GET|HEAD        dashboard ............................................................................ dashboard
+  GET|HEAD        dudika ......................................................................................... 
+  POST            email/verification-notification verification.send › Auth\EmailVerificationNotificationControlle…
+  GET|HEAD        fasilitas ....................................................... FacilityController@publicIndex
+  GET|HEAD        forgot-password ..................... password.request › Auth\PasswordResetLinkController@create
+  POST            forgot-password ........................ password.email › Auth\PasswordResetLinkController@store
+  GET|HEAD        kepala-sekolah ................................................................................. 
+  GET|HEAD        login ....................................... login › Auth\AuthenticatedSessionController@create
+  POST            login ................................................ Auth\AuthenticatedSessionController@store
+  POST            logout .................................... logout › Auth\AuthenticatedSessionController@destroy
+  PUT             password ...................................... password.update › Auth\PasswordController@update
+  GET|HEAD        ppdb ..................................................... ppdb.register › PpdbController@create
+  POST            ppdb ......................................................... ppdb.store › PpdbController@store
+  GET|HEAD        profile .................................................. profile.edit › ProfileController@edit
+  PATCH           profile .............................................. profile.update › ProfileController@update
+  DELETE          profile ............................................ profile.destroy › ProfileController@destroy
+  GET|HEAD        register ....................................... register › Auth\RegisteredUserController@create
+  POST            register ................................................... Auth\RegisteredUserController@store
+  POST            reset-password ............................... password.store › Auth\NewPasswordController@store
+  GET|HEAD        reset-password/{token} ...................... password.reset › Auth\NewPasswordController@create
+  GET|HEAD        storage/{path} ................................................................... storage.local
+  GET|HEAD        up ............................................................................................. 
+  GET|HEAD        verify-email ...................... verification.notice › Auth\EmailVerificationPromptController
+  GET|HEAD        verify-email/{id}/{hash} ...................... verification.verify › Auth\VerifyEmailController
+  GET|HEAD        visi-misi ...................................................................................... 
+
+                                                                                               Showing [56] routes
+

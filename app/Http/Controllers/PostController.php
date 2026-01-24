@@ -18,6 +18,21 @@ class PostController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
+    public function publicIndex()
+    {
+        $posts = Post::where('is_active', true)
+            ->where('published_at', '<=', now())
+            ->where('expired_at', '>=', now())
+            ->latest()
+            ->get();
+        return view('pages.berita', compact('posts'));
+    }
+
+    public function show(Post $post)
+    {
+        return view('pages.berita-show', compact('post'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -46,7 +61,7 @@ class PostController extends Controller
 
         Post::create($data);
 
-        return redirect()->route('posts.index')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('admin.posts.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -75,7 +90,7 @@ class PostController extends Controller
 
         $post->update($data);
 
-        return redirect()->route('posts.index')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('admin.posts.index')->with('success', 'Data berhasil diperbarui');
     }
 
     /**

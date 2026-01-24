@@ -15,6 +15,12 @@ class FacilityController extends Controller
         return view('facilitas.index', compact('facilities'));
     }
 
+    public function publicIndex()
+    {
+        $facilities = Facility::all();
+        return view('pages.fasilitas', compact('facilities'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
