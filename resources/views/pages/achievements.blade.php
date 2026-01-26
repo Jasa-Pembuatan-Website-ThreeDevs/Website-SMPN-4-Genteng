@@ -5,42 +5,25 @@
                 <p>Bukti nyata dedikasi dan kerja keras siswa-siswi SMPN 4 Genteng dalam berbagai kompetisi</p>
             </div>
             
-            <div class="achievement-grid">
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
+            @if($achievements->isNotEmpty())
+                <div class="achievement-grid">
+                    @foreach($achievements as $achievement)
+                    <div class="achievement-card animate-on-scroll">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>{{ $achievement->title }}</h3>
+                        <p>{{ $achievement->description }}</p>
+                        <span class="achievement-year">{{ $achievement->year }}</span>
                     </div>
-                    <h3>Juara 1 OSN Matematika</h3>
-                    <p>Kompetisi Olimpiade Sains Nasional tingkat Kabupaten Banyuwangi tahun 2023.</p>
-                    <span class="achievement-year">2023</span>
+                    @endforeach
                 </div>
-                
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <h3>Juara 2 Debat Bahasa Inggris</h3>
-                    <p>Lomba debat bahasa Inggris tingkat Provinsi Jawa Timur tahun 2023.</p>
-                    <span class="achievement-year">2023</span>
+            @else
+                <div class="flex flex-col items-center justify-center p-10 bg-gray-50 rounded-lg shadow-inner mt-10">
+                    <i class="fas fa-trophy text-4xl text-gray-400 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-700">Belum Ada Prestasi</h3>
+                    <p class="text-gray-500 mt-2 text-center">Data prestasi akan segera kami perbarui. <br>Silakan periksa kembali nanti.</p>
                 </div>
-                
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Juara 3 Lomba Robotika</h3>
-                    <p>Kompetisi Robotik Nasional yang diadakan di Surabaya tahun 2023.</p>
-                    <span class="achievement-year">2023</span>
-                </div>
-                
-                <div class="achievement-card animate-on-scroll">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3>Sekolah Adiwiyata</h3>
-                    <p>Penghargaan sekolah berwawasan lingkungan tingkat Kabupaten tahun 2022.</p>
-                    <span class="achievement-year">2022</span>
-                </div>
-            </div>
+            @endif
         </div>
     </section>

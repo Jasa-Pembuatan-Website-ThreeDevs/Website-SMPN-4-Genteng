@@ -70,7 +70,7 @@
                             <div class="flex items-center">
                                 <a href="{{ route('admin.ppdb-batches.edit', $batch) }}" class="text-indigo-600 hover:text-indigo-900 mr-4">
                                     Edit
-                                a>
+</a>
                                 <form action="{{ route('admin.ppdb-batches.destroy', $batch) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus gelombang ini?');">
                                     @csrf
                                     @method('DELETE')

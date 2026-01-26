@@ -2,7 +2,7 @@
         <div class="floating-element floating-1"></div>
         <div class="floating-element floating-2"></div>
         
-        <div class="container hero-container">
+        <div class="container hero-container flex flex-col md:flex-row items-center justify-between gap-10">
             <div class="hero-content animate-on-scroll">
                 <div class="hero-badge">
                     <i class="fas fa-star"></i>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="hero-image-container animate-on-scroll">
-            <img class="hero-image" src="https://imgs.search.brave.com/KQUNUZAgxQcT_VxFMJUCDo5iIkGelJmGhxANpMtwQHo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90by1ncmF0aXMv/cnVhbmcta2VsYXMt/c2Vrb2xhaC1kYWxh/bS1nYXlhLWFuaW1l/XzIzLTIxNTExMjUx/NDcuanBnP3NlbXQ9/YWlzX2h5YnJpZCZ3/PTc0MCZxPTgw" alt="">
+            <img class="hero-image" src="https://i.pinimg.com/1200x/12/cc/93/12cc93e5bd10f66ab337ca29d028bc2b.jpg" alt="">
             </div>
         </div>
     </section>
