@@ -14,7 +14,7 @@
         <div class="form-container">
         <div class="form-card">
             <form action="#" method="POST" enctype="multipart/form-data">
-                
+                @csrf
                 <div class="form-section-title">
                     <i class="fas fa-user-graduate"></i> Data Calon Siswa
                 </div>
@@ -142,5 +142,3 @@
     </div>
 </div>
 </section>
-
-@include('components.footer')

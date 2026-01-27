@@ -13,7 +13,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-between items-center mb-6">
                         <h1 class="text-2xl font-bold">Fasilitas Sekolah</h1>
-                        <a href="{{ route('facilities.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="{{ route('admin.facilities.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             + Tambah
                         </a>
                     </div>
@@ -40,8 +40,8 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div cAchievementControllerlass="flex space-x-2">
-                                            <a href="{{ route('facilities.edit',$f->id) }}" class="text-blue-600 hover:underline">Edit</a>
-                                            <form action="{{ route('facilities.destroy',$f->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                            <a href="{{ route('admin.facilities.edit',$f->id) }}" class="text-blue-600 hover:underline">Edit</a>
+                                            <form action="{{ route('admin.facilities.destroy',$f->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                 @csrf @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:underline">Hapus</button>
                                             </form>

@@ -18,20 +18,26 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('facilities.index')" :active="request()->routeIs('facilities.*')">
+                    <x-nav-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">
                         {{ __('Fasilitas') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('achievements.index')" :active="request()->routeIs('achievements.*')">
+                    <x-nav-link :href="route('admin.achievements.index')" :active="request()->routeIs('admin.achievements.*')">
                         {{ __('Achievement') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.*')">
+                    <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">
                         {{ __('Pengumuman') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.ppdb-batches.index')" :active="request()->routeIs('admin.ppdb-batches.*')">
+                        {{ __('PPDB') }}
                     </x-nav-link>
                 </div>
                 
@@ -88,6 +94,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">
+                {{ __('Fasilitas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.achievements.index')" :active="request()->routeIs('admin.achievements.*')">
+                {{ __('Achievement') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">
+                {{ __('Pengumuman') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.ppdb-batches.index')" :active="request()->routeIs('admin.ppdb-batches.*')">
+                {{ __('PPDB') }}
             </x-responsive-nav-link>
         </div>
 
