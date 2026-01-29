@@ -13,6 +13,7 @@
 
         <!-- CSS -->
          <link rel="stylesheet" href="css/style.css">
+         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
