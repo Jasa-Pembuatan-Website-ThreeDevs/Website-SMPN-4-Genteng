@@ -13,9 +13,17 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-between items-center mb-6">
                         <h1 class="text-2xl font-bold">Fasilitas Sekolah</h1>
+                        @if(auth()->user()->role == 'administrator')
                         <a href="{{ route('admin.facilities.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             + Tambah
                         </a>
+                        @endif
+
+                        @if(auth()->user()->role == 'teacher')
+                        <a href="{{ route('teacher.facilities.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            + Tambah
+                        </a>
+                        @endif
                     </div>
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -32,19 +40,29 @@
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4">
                                         @if($f->image)
-                                            <img src="{{ asset('storage/'.$f->image) }}" width="100" class="rounded-md">
+                                            <img src="{{ Storage::url($f->image) }}" width="100" class="rounded-md" alt="Gambar {{ $f->name }}">
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                         {{ $f->name }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div cAchievementControllerlass="flex space-x-2">
+                                        <div class="flex space-x-2">
+                                            @if(auth()->user()->role == 'administrator')
                                             <a href="{{ route('admin.facilities.edit',$f->id) }}" class="text-blue-600 hover:underline">Edit</a>
                                             <form action="{{ route('admin.facilities.destroy',$f->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                                 @csrf @method('DELETE')
                                                 <button type="submit" class="text-red-600 hover:underline">Hapus</button>
                                             </form>
+                                            @endif
+
+                                            @if(auth()->user()->role == 'teacher')
+                                            <a href="{{ route('teacher.facilities.edit',$f->id) }}" class="text-blue-600 hover:underline">Edit</a>
+                                            <form action="{{ route('teacher.facilities.destroy',$f->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                                @csrf @method('DELETE')
+                                                <button type="submit" class="text-red-600 hover:underline">Hapus</button>
+                                            </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

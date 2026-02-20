@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -25,12 +26,20 @@ class PostController extends Controller
             ->where('expired_at', '>=', now())
             ->latest()
             ->get();
-        return view('pages.berita', compact('posts'));
+        return view('pages.berita', compact('posts'))->with([
+            'seo_title' => 'Berita Terbaru - SMPN 4 Genteng',
+            'seo_description' => 'Baca berita dan informasi terbaru dari SMPN 4 Genteng.',
+            'seo_keywords' => 'berita smpn 4 genteng, update smpn 4 genteng, informasi sekolah',
+        ]);
     }
 
     public function show(Post $post)
     {
-        return view('pages.berita-show', compact('post'));
+        return view('pages.berita-show', compact('post'))->with([
+            'seo_title' => $post->title . ' - SMPN 4 Genteng',
+            'seo_description' => Str::limit(strip_tags($post->content), 150),
+            'seo_keywords' => Str::slug($post->title, ',') . ', smpn 4 genteng',
+        ]);
     }
 
     /**
@@ -49,15 +58,21 @@ class PostController extends Controller
         $data = $request->validate([
             'title'        => 'required|string|max:255',
             'content'      => 'required',
-            'announcement'  => 'required|in:news,announcement', // Sesuai kolom migration
-            'thumbnail'    => 'nullable|url', // Jika input text URL
-            'published_at' => 'required|date',
-            'expired_at'   => 'required|date|after:published_at',
+            'announcement' => 'required|in:news,announcement',
+            'thumbnail'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'published_at' => 'required|date_format:Y-m-d\TH:i',
+            'expired_at'   => 'required|date_format:Y-m-d\TH:i|after:published_at',
         ]);
+
+        $thumbnailPath = null;
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('posts', 'public');
+            $data['thumbnail'] = $thumbnailPath;
+        }
 
         $data['slug']      = Str::slug($data['title']);
         $data['user_id']   = auth()->id();
-        $data['is_active'] = $request->has('is_active') ? true : true; // Default aktif jika tidak ada input toggle
+        $data['is_active'] = $request->has('is_active') ? true : false;
 
         Post::create($data);
 
@@ -80,13 +95,21 @@ class PostController extends Controller
         $data = $request->validate([
             'title'        => 'required|string|max:255',
             'content'      => 'required',
-            'announcement'  => 'required|in:news,announcement',
-            'thumbnail'    => 'nullable|url',
-            'published_at' => 'required|date',
-            'expired_at'   => 'required|date|after:published_at',
+            'announcement' => 'required|in:news,announcement',
+            'thumbnail'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'published_at' => 'required|date_format:Y-m-d\TH:i',
+            'expired_at'   => 'required|date_format:Y-m-d\TH:i|after:published_at',
         ]);
 
+        if ($request->hasFile('thumbnail')) {
+            if ($post->thumbnail && !filter_var($post->thumbnail, FILTER_VALIDATE_URL) && Storage::disk('public')->exists($post->thumbnail)) {
+                Storage::disk('public')->delete($post->thumbnail);
+            }
+            $data['thumbnail'] = $request->file('thumbnail')->store('posts', 'public');
+        }
+
         $data['slug'] = Str::slug($data['title']);
+        $data['is_active'] = $request->has('is_active') ? true : false;
 
         $post->update($data);
 
@@ -98,6 +121,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->thumbnail && !filter_var($post->thumbnail, FILTER_VALIDATE_URL) && Storage::disk('public')->exists($post->thumbnail)) {
+            Storage::disk('public')->delete($post->thumbnail);
+        }
         $post->delete();
         return back()->with('success', 'Data berhasil dihapus');
     }

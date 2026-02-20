@@ -1,4 +1,4 @@
- <section class="section main-content-section" id="news">
+<section class="section main-content-section" id="news">
         <div class="container">
             <div class="section-title animate-on-scroll">
                 <h2>Berita & Kegiatan</h2>
@@ -10,7 +10,17 @@
                     @foreach($posts as $post)
                     <div class="card animate-on-scroll">
                         <div class="card-img">
-                            <img src="{{ $post->thumbnail }}" alt="{{ $post->title }}">
+                            @if($post->thumbnail)
+                                @if(filter_var($post->thumbnail, FILTER_VALIDATE_URL))
+                                    <img src="{{ $post->thumbnail }}" alt="{{ $post->title }}" loading="lazy">
+                                @else
+                                    <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" loading="lazy">
+                                @endif
+                            @else
+                                <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem;">
+                                    <i class="fas fa-image" style="font-size: 2rem;"></i>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-content">
                             <span class="card-category">{{ $post->announcement == 'news' ? 'Berita' : 'Pengumuman' }}</span>

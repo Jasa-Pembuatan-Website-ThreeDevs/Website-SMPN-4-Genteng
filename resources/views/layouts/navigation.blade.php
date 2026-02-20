@@ -6,11 +6,12 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img class="logo" src="Logo.jpg" alt="" style="width: 40px; height: 40px;">
+                        <img class="logo" src="/Logo.jpg" alt="Logo SMPN 4 Genteng" style="width: 44px; height: 44px; border-radius: 12px; box-shadow: 0 2px 8px #2563eb22; background: #fff; object-fit: cover; border: 2px solid #2563eb;">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
+                @if(auth()->user()->role == 'administrator')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
@@ -40,8 +41,58 @@
                         {{ __('PPDB') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('admin.ekstrakurikulers.index')" :active="request()->routeIs('admin.ekstrakurikulers.*')">
+                        {{ __('Ekstrakurikuler') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('ppdb_registrations.index')" :active="request()->routeIs('ppdb_registrations.*')">
+                        <i class="fas fa-file-alt"></i> PPDB Registrasi
+                    </x-nav-link>
+                </div>
+                @endif
+                @if(auth()->user()->role == 'teacher')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('teacher.facilities.index')" :active="request()->routeIs('teacher.facilities.*')">
+                        {{ __('Fasilitas') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('teacher.achievements.index')" :active="request()->routeIs('teacher.achievements.*')">
+                        {{ __('Achievement') }}
+                    </x-nav-link>
+                </div>
+                @endif
+
+                @if(auth()->user()->role == 'officer')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
                 
-            </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('officer.posts.index')" :active="request()->routeIs('officer.posts.*')">
+                        {{ __('Pengumuman') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('officer.ppdb-batches.index')" :active="request()->routeIs('officer.ppdb-batches.*')">
+                        {{ __('PPDB') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                
+                 
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

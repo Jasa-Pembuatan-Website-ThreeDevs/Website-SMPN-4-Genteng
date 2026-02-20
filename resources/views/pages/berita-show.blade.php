@@ -8,7 +8,11 @@
             <i class="far fa-calendar"></i> Dipublikasikan pada {{ $post->published_at->format('d F Y') }}
         </div>
         @if($post->thumbnail)
-            <img src="{{ $post->thumbnail }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-lg mb-6">
+            @if(filter_var($post->thumbnail, FILTER_VALIDATE_URL))
+                <img src="{{ $post->thumbnail }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-lg mb-6" loading="lazy">
+            @else
+                <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}" class="w-full h-auto object-cover rounded-lg mb-6" loading="lazy">
+            @endif
         @endif
         <div class="prose max-w-full">
             {!! $post->content !!}

@@ -10,7 +10,9 @@
                     @foreach($facilities as $facility)
                     <div class="card animate-on-scroll">
                         <div class="card-img">
-                            <img src="{{ asset('storage/' . $facility->image) }}" alt="{{ $facility->name }}">
+                            @if($facility->image)
+                                <img src="{{ Storage::url($facility->image) }}" alt="{{ $facility->name }}">
+                            @endif
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">{{ $facility->name }}</h3>

@@ -4,9 +4,17 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold text-gray-700">Gelombang PPDB</h1>
+        @if(auth()->user()->role == 'administrator')
         <a href="{{ route('admin.ppdb-batches.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
             Tambah Gelombang
         </a>
+        @endif
+
+        @if(auth()->user()->role == 'officer')
+        <a href="{{ route('officer.ppdb-batches.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+            Tambah Gelombang
+        </a>
+        @endif
     </div>
 
     @if(session('success'))

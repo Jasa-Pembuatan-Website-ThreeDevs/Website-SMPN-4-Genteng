@@ -47,7 +47,8 @@ class FacilityController extends Controller
 
         Facility::create($data);
 
-        return redirect()->route('facilities.index')->with('success', 'Fasilitas berhasil ditambahkan');
+        return redirect()->route('admin.facilities.index')->with('success', 'Fasilitas berhasil ditambahkan');
+
     }
 
     /**
@@ -85,6 +86,7 @@ class FacilityController extends Controller
         $facility->update($data);
         // dd($data);
         return redirect()->route('facilities.index')->with('success', 'Data Berhasil Disimpan');
+
     }
 
     /**

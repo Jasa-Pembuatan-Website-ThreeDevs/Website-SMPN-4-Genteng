@@ -9,9 +9,15 @@
                 <div class="achievement-grid">
                     @foreach($achievements as $achievement)
                     <div class="achievement-card animate-on-scroll">
-                        <div class="achievement-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
+                        @if($achievement->image)
+                            <div class="achievement-image !rounded-lg !overflow-hidden !mb-0">
+                                <img src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}" class="w-full rounded-lg !object-cover !block">
+                            </div>
+                        @else
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                        @endif
                         <h3>{{ $achievement->title }}</h3>
                         <p>{{ $achievement->description }}</p>
                         <span class="achievement-year">{{ $achievement->year }}</span>

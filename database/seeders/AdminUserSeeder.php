@@ -18,7 +18,7 @@ class AdminUserSeeder extends Seeder
             'name' => 'Super Admin SMPN 4 Genteng',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('smp12345'),
-            'role' => 'admin'
+            'role' => 'administrator'
         ]);
     }
 }

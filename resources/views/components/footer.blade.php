@@ -3,9 +3,12 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <div class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
+                           <img src="{{ asset('Logo.jpg') }}" alt="" style="border-radius: 15%; box-shadow: 
+    0 1px 1px rgba(255, 255, 255, 0.07),
+    0 2px 2px rgba(255, 255, 255, 0.07),
+    0 4px 4px rgba(255, 255, 255, 0.07),
+    0 8px 8px rgba(255, 255, 255, 0.07),
+    0 16px 16px rgba(255, 255, 255, 0.07);">
                         <div class="logo-text">
                             <h1>SMPN 4 GENTENG</h1>
                             <p>Sekolah Berprestasi & Berkarakter di Kabupaten Banyuwangi</p>
@@ -40,7 +43,7 @@
                     </ul>
                 </div>
                 
-                <div class="footer-column">
+                <div class="footer-column" id="contact">
                     <h3 class="footer-title">Kontak Kami</h3>
                     <div class="contact-info">
                         <div class="contact-item">
@@ -78,6 +81,7 @@
                 <p>&copy; 2026 SMP Negeri 4 Genteng. Hak Cipta Dilindungi.</p>
             </div>
         </div>
-
+        <div class="footer-text" style="display: flex; justify-content: center; margin-top: 15px;">
         <p class="footer-end">Created By RPL SMKS Muhammadiyah 1 Genteng &copy;</p>
+        </div>     
     </footer>

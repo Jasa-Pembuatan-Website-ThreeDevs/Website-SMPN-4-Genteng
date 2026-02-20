@@ -810,62 +810,14 @@
 </head>
 <body>
     <!-- Header & Navigation -->
-    <header class="header">
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div class="logo-text">
-                    <h1>SMPN 4 GENTENG</h1>
-                    <p>Sekolah Berprestasi & Berkarakter</p>
-                </div>
-            </a>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <nav class="nav" id="mainNav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Beranda</a>
-                    </li>
-                    <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link active">
-                            Tentang <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown">
-                            <li><a href="/kepala-sekolah" class="dropdown-item active">Kepala Sekolah</a></li>
-                            <li><a href="/visi-misi" class="dropdown-item">Visi & Misi</a></li>
-                            <li><a href="#facilities" class="dropdown-item">Fasilitas</a></li>
-                            <li><a href="/dudika" class="dropdown-item">DUDIKA</a></li>
-                            <li><a href="#contact" class="dropdown-item">Kontak Kami</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="news.html" class="nav-link">Berita</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="extracurricular.html" class="nav-link">Ekstrakurikuler</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="achievements.html" class="nav-link">Prestasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="ppdb.html" class="nav-link">PPDB</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    @include('components.navbar')
 
     <!-- Page Header -->
     <main class="main-content">
         <section class="page-header" id="pageHeader">
             <div class="container">
                 <h1 id="pageTitle">Kepala Sekolah</h1>
-                <p id="pageDescription">Profil dan kepemimpinan Dr. Suryadi, M.Pd. sebagai Kepala SMPN 4 Genteng</p>
+                <p id="pageDescription">Profil dan kepemimpinan Dr. Sukaryanto, S.Pd. sebagai Kepala SMPN 4 Genteng</p>
                 
                 <div class="breadcrumb">
                     <a href="index.html">Beranda</a>
@@ -887,7 +839,7 @@
                             <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Kepala Sekolah SMPN 4 Genteng">
                         </div>
                         
-                        <h2 class="headmaster-name">Sukaryanto, S.Pd.</h2>
+                        <h2 class="headmaster-name">Dr. Sukaryanto, S.Pd.</h2>
                         <p class="headmaster-position">Kepala Sekolah SMPN 4 Genteng</p>
                         
                         <p style="color: var(--gray); margin-bottom: 20px;">Memimpin SMPN 4 Genteng sejak tahun 2018 dengan dedikasi tinggi untuk memajukan pendidikan di Kabupaten Banyuwangi.</p>
@@ -939,7 +891,7 @@
                     <div class="headmaster-bio animate-on-scroll">
                         <h2>Biografi & Kepemimpinan</h2>
                         
-                        <p>Dr. Suryadi, M.Pd. adalah seorang pendidik yang telah mendedikasikan hidupnya untuk dunia pendidikan selama lebih dari 25 tahun. Beliau memulai karir sebagai guru Matematika di SMPN 1 Genteng sebelum akhirnya dipercaya untuk memimpin SMPN 4 Genteng sejak tahun 2018.</p>
+                        <p>Dr. Sukaryanto, M.Pd. adalah seorang pendidik yang telah mendedikasikan hidupnya untuk dunia pendidikan selama lebih dari 25 tahun. Beliau memulai karir sebagai guru Matematika di SMPN 1 Genteng sebelum akhirnya dipercaya untuk memimpin SMPN 4 Genteng sejak tahun 2018.</p>
                         
                         <p>Dengan latar belakang pendidikan S3 dari Universitas Negeri Malang, Dr. Suryadi membawa pendekatan inovatif dalam memimpin SMPN 4 Genteng. Visinya untuk mengintegrasikan teknologi dalam pembelajaran telah membawa transformasi signifikan dalam proses belajar mengajar di sekolah.</p>
                         
@@ -997,89 +949,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer main-footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-logo">
-                    <div class="logo">
-                        <div class="logo-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="logo-text">
-                            <h1>SMPN 4 GENTENG</h1>
-                            <p>Sekolah Berprestasi & Berkarakter di Kabupaten Banyuwangi</p>
-                        </div>
-                    </div>
-                    <p style="margin-top: 20px; color: var(--gray-light);">SMP Negeri 4 Genteng berkomitmen untuk memberikan pendidikan terbaik yang mengintegrasikan keunggulan akademik, pengembangan karakter, dan teknologi modern.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3 class="footer-title">Menu Cepat</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html" class="footer-link">Beranda</a></li>
-                        <li><a href="/visi-misi" class="footer-link">Visi & Misi</a></li>
-                        <li><a href="/kepala-sekolah" class="footer-link active">Kepala Sekolah</a></li>
-                        <li><a href="/dudika" class="footer-link">DUDIKA</a></li>
-                        <li><a href="news.html" class="footer-link">Berita & Kegiatan</a></li>
-                        <li><a href="ppdb.html" class="footer-link">PPDB 2024</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3 class="footer-title">Kontak Kami</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Alamat</h4>
-                                <p>Jl. Raya Genteng No. 123, Genteng, Banyuwangi, Jawa Timur</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4>Telepon</h4>
-                                <p>(0333) 123456 / 081234567890</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>kepsek@smpn4genteng.sch.id</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2023 SMP Negeri 4 Genteng. Hak Cipta Dilindungi.</p>
-                <p style="margin-top: 10px;">Dikembangkan dengan <i class="fas fa-heart" style="color: #ef4444;"></i> untuk dunia pendidikan Indonesia</p>
-            </div>
-        </div>
-    </footer>
-
+    @include('components.footer')
     <script>
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
