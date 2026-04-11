@@ -38,8 +38,8 @@
         <!-- Achievements Section -->
         @include('pages.achievements')
 
-        <!-- PPDB Section -->
-        @include('pages.ppdb')
+        <!-- Highlights Section -->
+        @include('pages.highlights')
     </main>
 
     <!-- Footer -->

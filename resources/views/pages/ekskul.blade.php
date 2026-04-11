@@ -11,7 +11,11 @@
                 @forelse($ekstrakurikuler as $ekskul)
                 <div class="extracurricular-card animate-on-scroll" style="background: #fff; border-radius: 1.25rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 2rem; display: flex; flex-direction: column; align-items: center;">
                     <div class="extracurricular-icon" style="width: 100px; height: 100px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; border-radius: 1.2rem; background: linear-gradient(135deg, #e0e7ef 60%, #dbeafe 100%); box-shadow: 0 4px 24px 0 rgba(37,99,235,0.10); overflow: hidden; position: relative; transition: box-shadow 0.3s;">
-                        <img src="{{ asset('storage/' . $ekskul->image) }}" alt="Logo {{ $ekskul->name }}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 1rem; box-shadow: 0 2px 12px 0 rgba(37,99,235,0.13); border: 3px solid #fff; transition: transform 0.3s; background: #fff;">
+                        @if(filter_var($ekskul->image, FILTER_VALIDATE_URL))
+                            <img src="{{ $ekskul->image }}" alt="Logo {{ $ekskul->name }}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 1rem; box-shadow: 0 2px 12px 0 rgba(37,99,235,0.13); border: 3px solid #fff; transition: transform 0.3s; background: #fff;">
+                        @else
+                            <img src="{{ asset('storage/' . $ekskul->image) }}" alt="Logo {{ $ekskul->name }}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 1rem; box-shadow: 0 2px 12px 0 rgba(37,99,235,0.13); border: 3px solid #fff; transition: transform 0.3s; background: #fff;">
+                        @endif
                     </div>
                     <h3 style="font-size: 1.25rem; font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">{{ $ekskul->name }}</h3>
                     <p style="color: #334155; text-align: center; min-height: 48px;">{{ $ekskul->description }}</p>

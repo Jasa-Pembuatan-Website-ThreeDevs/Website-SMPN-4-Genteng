@@ -76,7 +76,8 @@ class PostController extends Controller
 
         Post::create($data);
 
-        return redirect()->route('admin.posts.index')->with('success', 'Data berhasil ditambahkan');
+        $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        return redirect()->route($prefix . '.posts.index')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -113,7 +114,8 @@ class PostController extends Controller
 
         $post->update($data);
 
-        return redirect()->route('admin.posts.index')->with('success', 'Data berhasil diperbarui');
+        $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        return redirect()->route($prefix . '.posts.index')->with('success', 'Data berhasil diperbarui');
     }
 
     /**

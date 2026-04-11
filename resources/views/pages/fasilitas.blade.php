@@ -11,7 +11,11 @@
                     <div class="card animate-on-scroll">
                         <div class="card-img">
                             @if($facility->image)
-                                <img src="{{ Storage::url($facility->image) }}" alt="{{ $facility->name }}">
+                                @if(filter_var($facility->image, FILTER_VALIDATE_URL))
+                                    <img src="{{ $facility->image }}" alt="{{ $facility->name }}">
+                                @else
+                                    <img src="{{ Storage::url($facility->image) }}" alt="{{ $facility->name }}">
+                                @endif
                             @endif
                         </div>
                         <div class="card-content">

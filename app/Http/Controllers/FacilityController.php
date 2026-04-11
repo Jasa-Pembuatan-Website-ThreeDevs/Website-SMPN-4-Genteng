@@ -47,7 +47,8 @@ class FacilityController extends Controller
 
         Facility::create($data);
 
-        return redirect()->route('admin.facilities.index')->with('success', 'Fasilitas berhasil ditambahkan');
+        $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        return redirect()->route($prefix . '.facilities.index')->with('success', 'Fasilitas berhasil ditambahkan');
 
     }
 
@@ -84,8 +85,9 @@ class FacilityController extends Controller
         }
 
         $facility->update($data);
-        // dd($data);
-        return redirect()->route('facilities.index')->with('success', 'Data Berhasil Disimpan');
+        
+        $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        return redirect()->route($prefix . '.facilities.index')->with('success', 'Data Berhasil Disimpan');
 
     }
 

@@ -45,36 +45,53 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <a href="{{ route('ppdb.register') }}" class="block bg-gradient-to-br from-blue-600 to-blue-400 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
+                @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'officer')
+                <a href="{{ route('ppdb_registrations.index') }}" class="block bg-gradient-to-br from-blue-600 to-blue-400 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
                     <i class="fas fa-user-plus text-3xl mb-3"></i>
                     <div class="font-bold text-lg">PPDB</div>
                     <div class="text-sm mt-1">Pendaftaran Peserta Didik Baru</div>
                 </a>
-                <a href="{{ route('admin.facilities.index') }}" class="block bg-gradient-to-br from-green-600 to-green-400 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
+                @endif
+
+                @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'teacher')
+                <a href="{{ route(Auth::user()->role === 'administrator' ? 'admin.facilities.index' : 'teacher.facilities.index') }}" class="block bg-gradient-to-br from-green-600 to-green-400 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
                     <i class="fas fa-school text-3xl mb-3"></i>
                     <div class="font-bold text-lg">Fasilitas</div>
                     <div class="text-sm mt-1">Kelola data fasilitas sekolah</div>
                 </a>
+                @endif
+
+                @if(Auth::user()->role === 'administrator')
                 <a href="{{ route('admin.ekstrakurikulers.index') }}" class="block bg-gradient-to-br from-indigo-600 to-blue-400 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
                     <i class="fas fa-users text-3xl mb-3"></i>
                     <div class="font-bold text-lg">Ekstrakurikuler</div>
                     <div class="text-sm mt-1">Kelola kegiatan ekstrakurikuler</div>
                 </a>
-                <a href="{{ route('admin.achievements.index') }}" class="block bg-gradient-to-br from-yellow-500 to-yellow-300 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
+                @endif
+
+                @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'teacher')
+                <a href="{{ route(Auth::user()->role === 'administrator' ? 'admin.achievements.index' : 'teacher.achievements.index') }}" class="block bg-gradient-to-br from-yellow-500 to-yellow-300 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
                     <i class="fas fa-trophy text-3xl mb-3"></i>
                     <div class="font-bold text-lg">Prestasi</div>
                     <div class="text-sm mt-1">Kelola prestasi siswa</div>
                 </a>
-                <a href="{{ route('admin.posts.index') }}" class="block bg-gradient-to-br from-pink-500 to-pink-300 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
+                @endif
+
+                @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'officer')
+                <a href="{{ route(Auth::user()->role === 'administrator' ? 'admin.posts.index' : 'officer.posts.index') }}" class="block bg-gradient-to-br from-pink-500 to-pink-300 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
                     <i class="fas fa-bullhorn text-3xl mb-3"></i>
                     <div class="font-bold text-lg">Pengumuman</div>
                     <div class="text-sm mt-1">Kelola berita & pengumuman</div>
                 </a>
-                <a href="{{ route('admin.ppdb-batches.index') }}" class="block bg-gradient-to-br from-teal-600 to-teal-400 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
+                @endif
+
+                @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'officer')
+                <a href="{{ route(Auth::user()->role === 'administrator' ? 'admin.ppdb-batches.index' : 'officer.ppdb-batches.index') }}" class="block bg-gradient-to-br from-teal-600 to-teal-400 text-white rounded-2xl shadow-lg p-8 text-center hover:scale-105 transition-transform">
                     <i class="fas fa-calendar-alt text-3xl mb-3"></i>
                     <div class="font-bold text-lg">Gelombang PPDB</div>
                     <div class="text-sm mt-1">Kelola gelombang pendaftaran</div>
                 </a>
+                @endif
             </div>
         </div>
     </div>

@@ -4,17 +4,12 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold text-gray-700">Gelombang PPDB</h1>
-        @if(auth()->user()->role == 'administrator')
-        <a href="{{ route('admin.ppdb-batches.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        @php
+            $routePrefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        @endphp
+        <a href="{{ route($routePrefix . '.ppdb-batches.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
             Tambah Gelombang
         </a>
-        @endif
-
-        @if(auth()->user()->role == 'officer')
-        <a href="{{ route('officer.ppdb-batches.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            Tambah Gelombang
-        </a>
-        @endif
     </div>
 
     @if(session('success'))
@@ -76,10 +71,10 @@
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="flex items-center">
-                                <a href="{{ route('admin.ppdb-batches.edit', $batch) }}" class="text-indigo-600 hover:text-indigo-900 mr-4">
+                                <a href="{{ route($routePrefix . '.ppdb-batches.edit', $batch) }}" class="text-indigo-600 hover:text-indigo-900 mr-4">
                                     Edit
-</a>
-                                <form action="{{ route('admin.ppdb-batches.destroy', $batch) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus gelombang ini?');">
+                                </a>
+                                <form action="{{ route($routePrefix . '.ppdb-batches.destroy', $batch) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus gelombang ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-900">

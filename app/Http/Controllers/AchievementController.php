@@ -60,8 +60,9 @@ class AchievementController extends Controller
 
     Achievement::create($data);
 
+    $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
     return redirect()
-      ->route("achievements.index")
+      ->route($prefix . ".achievements.index")
       ->with("success", "Prestasi berhasil ditambahkan");
   }
 
@@ -103,8 +104,9 @@ class AchievementController extends Controller
 
     $achievement->update($data);
 
+    $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
     return redirect()
-      ->route("achievements.index")
+      ->route($prefix . ".achievements.index")
       ->with("success", "Prestasi berhasil diperbarui");
   }
 

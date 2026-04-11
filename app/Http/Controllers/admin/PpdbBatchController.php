@@ -54,7 +54,8 @@ class PpdbBatchController extends Controller
             'is_active'   => $isActive,
         ]);
 
-        return redirect()->route('admin.ppdb-batches.index')
+        $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        return redirect()->route($prefix . '.ppdb-batches.index')
             ->with('success', 'Gelombang pendaftaran berhasil dibuat!');
     }
 
@@ -94,7 +95,8 @@ class PpdbBatchController extends Controller
             'is_active'   => $isActive,
         ]);
 
-        return redirect()->route('admin.ppdb-batches.index')
+        $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        return redirect()->route($prefix . '.ppdb-batches.index')
             ->with('success', 'Gelombang pendaftaran berhasil diperbarui!');
     }
 
@@ -110,7 +112,8 @@ class PpdbBatchController extends Controller
 
         $ppdbBatch->delete();
 
-        return redirect()->route('admin.ppdb-batches.index')
+        $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        return redirect()->route($prefix . '.ppdb-batches.index')
             ->with('success', 'Gelombang pendaftaran berhasil dihapus.');
     }
 }

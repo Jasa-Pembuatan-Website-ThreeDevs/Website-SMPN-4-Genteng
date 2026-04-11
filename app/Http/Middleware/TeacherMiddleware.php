@@ -15,8 +15,8 @@ class TeacherMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->role !== 'teacher') {
-            abort(403, 'Anda Bukan Admin');
+        if(!in_array(auth()->user()->role, ['administrator', 'teacher'])) {
+            abort(403, 'Anda Bukan Guru atau Administrator');
         }
         return $next($request);
     }

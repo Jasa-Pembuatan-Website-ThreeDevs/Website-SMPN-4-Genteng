@@ -15,8 +15,8 @@ class OfficerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->role !== 'officer') {
-            abort(403);
+        if(!in_array(auth()->user()->role, ['administrator', 'officer'])) {
+            abort(403, 'Anda Bukan Officer atau Administrator');
         }
         return $next($request);
     }

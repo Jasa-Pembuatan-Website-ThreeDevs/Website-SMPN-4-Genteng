@@ -91,7 +91,7 @@
                     </x-nav-link>
                 </div>
                 @endif
-                
+            </div>
                  
 
             <!-- Settings Dropdown -->
@@ -146,18 +146,44 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">
-                {{ __('Fasilitas') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.achievements.index')" :active="request()->routeIs('admin.achievements.*')">
-                {{ __('Achievement') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">
-                {{ __('Pengumuman') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.ppdb-batches.index')" :active="request()->routeIs('admin.ppdb-batches.*')">
-                {{ __('PPDB') }}
-            </x-responsive-nav-link>
+
+            @if(auth()->user()->role == 'administrator')
+                <x-responsive-nav-link :href="route('admin.facilities.index')" :active="request()->routeIs('admin.facilities.*')">
+                    {{ __('Fasilitas') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.achievements.index')" :active="request()->routeIs('admin.achievements.*')">
+                    {{ __('Achievement') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">
+                    {{ __('Pengumuman') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.ppdb-batches.index')" :active="request()->routeIs('admin.ppdb-batches.*')">
+                    {{ __('PPDB Gelombang') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.ekstrakurikulers.index')" :active="request()->routeIs('admin.ekstrakurikulers.*')">
+                    {{ __('Ekstrakurikuler') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('ppdb_registrations.index')" :active="request()->routeIs('ppdb_registrations.*')">
+                    {{ __('PPDB Registrasi') }}
+                </x-responsive-nav-link>
+            @elseif(auth()->user()->role == 'teacher')
+                <x-responsive-nav-link :href="route('teacher.facilities.index')" :active="request()->routeIs('teacher.facilities.*')">
+                    {{ __('Fasilitas') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('teacher.achievements.index')" :active="request()->routeIs('teacher.achievements.*')">
+                    {{ __('Achievement') }}
+                </x-responsive-nav-link>
+            @elseif(auth()->user()->role == 'officer')
+                <x-responsive-nav-link :href="route('officer.posts.index')" :active="request()->routeIs('officer.posts.*')">
+                    {{ __('Pengumuman') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('officer.ppdb-batches.index')" :active="request()->routeIs('officer.ppdb-batches.*')">
+                    {{ __('PPDB Gelombang') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('ppdb_registrations.index')" :active="request()->routeIs('ppdb_registrations.*')">
+                    {{ __('PPDB Registrasi') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

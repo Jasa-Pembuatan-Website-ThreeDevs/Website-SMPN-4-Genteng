@@ -16,19 +16,13 @@ use App\Models\PpdbBatch;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $today = \Carbon\Carbon::today();
-    $activeBatch = PpdbBatch::where('is_active', true)
-        ->whereDate('start_date', '<=', $today)
-        ->whereDate('end_date', '>=', $today)
-        ->first();
-    
     $posts = Post::latest()->take(3)->get();
     $facilities = Facility::all();
     $achievements = Achievement::latest()->take(4)->get();
     $announcements = \App\Models\Announcement::where('status', 'publish')->latest()->take(5)->get();
 
     $ekstrakurikuler = \App\Models\Ekstrakurikuler::all();
-    return view('welcome', compact('activeBatch', 'posts', 'facilities', 'achievements', 'ekstrakurikuler', 'announcements'));
+    return view('welcome', compact('posts', 'facilities', 'achievements', 'ekstrakurikuler', 'announcements'));
 });
 
 Route::get('/visi-misi', function() {
@@ -51,9 +45,11 @@ Route::get('/dudika', function() {
     return view('pages.dudika');
 });
 // PPDB Registration dashboard and export
-Route::get('/dashboard/ppdb-registrations', [App\Http\Controllers\PpdbRegistrationController::class, 'index'])->name('ppdb_registrations.index');
-Route::get('/dashboard/ppdb-registrations/export', [App\Http\Controllers\PpdbRegistrationController::class, 'export'])->name('ppdb_registrations.export');
-Route::get('/dashboard/ppdb-registrations/export-word', [App\Http\Controllers\PpdbRegistrationController::class, 'exportWord'])->name('ppdb_registrations.export_word');
+Route::middleware(['auth', 'officer'])->group(function () {
+    Route::get('/dashboard/ppdb-registrations', [App\Http\Controllers\PpdbRegistrationController::class, 'index'])->name('ppdb_registrations.index');
+    Route::get('/dashboard/ppdb-registrations/export', [App\Http\Controllers\PpdbRegistrationController::class, 'export'])->name('ppdb_registrations.export');
+    Route::get('/dashboard/ppdb-registrations/export-word', [App\Http\Controllers\PpdbRegistrationController::class, 'exportWord'])->name('ppdb_registrations.export_word');
+});
 
 Route::get('/ppdb', [PpdbController::class, 'create'])->name('ppdb.register');
 Route::post('/ppdb', [PpdbController::class, 'store'])->name('ppdb.store');

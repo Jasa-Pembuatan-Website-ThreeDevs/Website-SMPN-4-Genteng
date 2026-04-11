@@ -50,7 +50,7 @@ class AnnouncementController extends Controller
             'published_at' => $validated['published_at'],
         ]);
 
-        return redirect()->route('announcements.index')->with('success', 'Pengumuman berhasil ditambahkan');
+        return redirect()->route('admin.announcements.index')->with('success', 'Pengumuman berhasil ditambahkan');
     }
 
     /**
@@ -98,7 +98,7 @@ class AnnouncementController extends Controller
             'published_at' => $validated['published_at'],
         ]);
 
-        return redirect()->route('announcements.index')->with('success', 'Pengumuman berhasil diperbarui');
+        return redirect()->route('admin.announcements.index')->with('success', 'Pengumuman berhasil diperbarui');
     }
 
     /**
@@ -110,6 +110,6 @@ class AnnouncementController extends Controller
             Storage::disk('public')->delete($announcement->image);
         }
         $announcement->delete();
-        return redirect()->route('announcements.index')->with('success', 'Pengumuman berhasil dihapus');
+        return redirect()->route('admin.announcements.index')->with('success', 'Pengumuman berhasil dihapus');
     }
 }

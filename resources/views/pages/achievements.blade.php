@@ -11,7 +11,11 @@
                     <div class="achievement-card animate-on-scroll">
                         @if($achievement->image)
                             <div class="achievement-image !rounded-lg !overflow-hidden !mb-0">
-                                <img src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}" class="w-full rounded-lg !object-cover !block">
+                                @if(filter_var($achievement->image, FILTER_VALIDATE_URL))
+                                    <img src="{{ $achievement->image }}" alt="{{ $achievement->title }}" class="w-full rounded-lg !object-cover !block">
+                                @else
+                                    <img src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}" class="w-full rounded-lg !object-cover !block">
+                                @endif
                             </div>
                         @else
                             <div class="achievement-icon">

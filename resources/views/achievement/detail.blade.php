@@ -211,7 +211,11 @@
 
     <div class="image-section">
       @if($achievement->image)
-        <img src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}" class="achievement-image">
+        @if(filter_var($achievement->image, FILTER_VALIDATE_URL))
+          <img src="{{ $achievement->image }}" alt="{{ $achievement->title }}" class="achievement-image">
+        @else
+          <img src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}" class="achievement-image">
+        @endif
       @else
         <div class="achievement-image" style="background: var(--gray-light); height: 300px; display: flex; align-items: center; justify-content: center; color: var(--gray);">
           <i class="fas fa-image fa-4x"></i>
