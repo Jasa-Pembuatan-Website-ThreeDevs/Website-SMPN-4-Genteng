@@ -46,9 +46,6 @@ Route::get('/bk', function () {
     return view('pages.bk', compact('teamMembers'));
 });
 
-Route::get('/dudika', function() {
-    return view('pages.dudika');
-});
 // PPDB Registration dashboard and export
 Route::middleware(['auth', 'staff'])->group(function () {
     Route::get('/dashboard/ppdb-registrations', [App\Http\Controllers\PpdbRegistrationController::class, 'index'])->name('ppdb_registrations.index');
