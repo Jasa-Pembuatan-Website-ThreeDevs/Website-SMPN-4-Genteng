@@ -28,6 +28,9 @@
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
   --gradient-accent: linear-gradient(135deg, var(--accent), var(--secondary));
   --gradient-dark: linear-gradient(135deg, var(--dark), #1e293b);
+
+  /* Tinggi area navbar fixed (.header + .header-container padding) — dipakai halaman inner (UKS, BK, dll.) */
+  --header-offset: 104px;
 }
 
 * {
@@ -76,6 +79,11 @@ img {
   max-width: 1280px;
   padding: 0 24px;
   margin: 0 auto;
+}
+
+/* Konten halaman di bawah navbar fixed (jangan dipakai di welcome/hero — sudah punya padding sendiri) */
+.main-content--below-header {
+  padding-top: var(--header-offset);
 }
 
 .section {
@@ -424,7 +432,7 @@ img {
 }
 
 .stat-number {
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 700;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -433,7 +441,7 @@ img {
 }
 
 .stat-label {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--gray);
 }
 
@@ -610,46 +618,109 @@ img {
 .achievement-card {
   background: var(--white);
   border-radius: var(--radius-lg);
-  padding: 40px 30px;
-  text-align: center;
+  overflow: hidden;
   box-shadow: var(--shadow-md);
-  transition: var(--transition);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--gray-light);
+}
+
+.achievement-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary);
+}
+
+.achievement-img-container {
   position: relative;
+  height: 220px;
   overflow: hidden;
 }
 
-.achievement-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+.achievement-img-container img {
   width: 100%;
-  height: 5px;
-  background: var(--gradient-primary);
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.achievement-icon {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  background: rgba(37, 99, 235, 0.1);
+.achievement-card:hover .achievement-img-container img {
+  transform: scale(1.1);
+}
+
+.achievement-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--light);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary);
-  font-size: 1.8rem;
+  font-size: 3rem;
 }
 
-.achievement-year {
-  display: inline-block;
-  padding: 6px 16px;
+.achievement-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
   background: var(--gradient-primary);
   color: var(--white);
+  padding: 6px 14px;
   border-radius: 50px;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+.achievement-body {
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.achievement-meta {
+  margin-bottom: 12px;
+}
+
+.achievement-tag {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.achievement-title {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  color: var(--dark);
+  line-height: 1.4;
+  transition: color 0.3s ease;
+}
+
+.achievement-card:hover .achievement-title {
+  color: var(--primary);
+}
+
+.achievement-text {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Modern PPDB Section */
@@ -714,6 +785,17 @@ img {
   padding: 80px 0 30px;
 }
 
+.footer-logo-img {
+  border-radius: 15%;
+}
+
+.footer-description {
+  margin-top: 16px;
+  color: var(--gray-light);
+  max-width: 60ch;
+  line-height: 1.75;
+}
+
 .footer-top {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -727,7 +809,8 @@ img {
 
 .footer-logo .logo-text p {
   color: var(--gray-light);
-  margin-top: 16px;
+  margin-top: 6px;
+  line-height: 1.6;
 }
 
 .footer-title {
@@ -821,6 +904,19 @@ img {
   font-size: 0.9rem;
 }
 
+.footer-credits {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0 0;
+}
+
+.footer-credit-text {
+  font-size: 0.9rem;
+  color: rgba(226, 232, 240, 0.85);
+  font-style: italic;
+  text-align: center;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .mobile-menu-btn {
@@ -880,6 +976,11 @@ img {
   .about-container {
     gap: 50px;
   }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -889,6 +990,7 @@ img {
 
   .hero-container {
     text-align: center;
+    flex-direction: column;
   }
 
   .hero-content {
@@ -907,61 +1009,85 @@ img {
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
 
   .section-title h2 {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
   }
 
   .section {
-    padding: 100px 0;
+    padding: 60px 0;
   }
 
   .ppdb-steps::before {
     display: none;
   }
+
+  .hero-stats {
+    gap: 20px;
+  }
 }
 
 @media (max-width: 576px) {
+  :root {
+    --header-offset: 84px;
+  }
+
   .header {
     padding-block: 10px;
     padding-inline: 0;
   }
-  
+
   .hero {
-    padding: 180px 0 120px;
+    padding: 140px 0 80px;
   }
 
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 2rem;
   }
 
   .hero-actions {
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
   }
 
   .hero-stats {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-    gap: 40px;
-    text-align: left;
+    gap: 20px;
+    text-align: center;
   }
 
   .section-title h2 {
-    font-size: 2.8rem;
+    font-size: 1.8rem;
   }
 
   .section {
-    padding: 100px 0;
+    padding: 50px 0;
   }
 
   .container {
-    padding: 0 24px;
+    padding: 0 16px;
   }
 
   .about-img-secondary {
     right: 0 !important;
+    bottom: -20px;
+  }
+
+  .logo-text h1 {
+    font-size: 1.2rem;
+  }
+  
+  .logo img {
+    width: 45px;
+    height: 45px;
   }
 }
 
@@ -1226,9 +1352,10 @@ img {
   transition: var(--transition-slow);
 }
 
+/* Backwards compatibility (in case footer-end used elsewhere) */
 .footer-end {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 0;
   font-style: italic;
 }
 

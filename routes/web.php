@@ -22,7 +22,10 @@ Route::get('/', function () {
     $announcements = \App\Models\Announcement::where('status', 'publish')->latest()->take(5)->get();
 
     $ekstrakurikuler = \App\Models\Ekstrakurikuler::all();
-    return view('welcome', compact('posts', 'facilities', 'achievements', 'ekstrakurikuler', 'announcements'));
+    $totalAchievements = Achievement::count();
+    $ekskulCount = $ekstrakurikuler->count();
+    
+    return view('welcome', compact('posts', 'facilities', 'achievements', 'ekstrakurikuler', 'announcements', 'totalAchievements', 'ekskulCount'));
 });
 
 Route::get('/visi-misi', function() {
@@ -34,18 +37,20 @@ Route::get('/kepala-sekolah', function() {
 });
 
 Route::get('/uks', function () {
-    return view('pages.uks');
+    $teamMembers = \App\Models\TeamMember::where('category', 'UKS')->orderBy('order')->get();
+    return view('pages.uks', compact('teamMembers'));
 });
 
 Route::get('/bk', function () {
-    return view('pages.bk');
+    $teamMembers = \App\Models\TeamMember::where('category', 'BK')->orderBy('order')->get();
+    return view('pages.bk', compact('teamMembers'));
 });
 
 Route::get('/dudika', function() {
     return view('pages.dudika');
 });
 // PPDB Registration dashboard and export
-Route::middleware(['auth', 'officer'])->group(function () {
+Route::middleware(['auth', 'staff'])->group(function () {
     Route::get('/dashboard/ppdb-registrations', [App\Http\Controllers\PpdbRegistrationController::class, 'index'])->name('ppdb_registrations.index');
     Route::get('/dashboard/ppdb-registrations/export', [App\Http\Controllers\PpdbRegistrationController::class, 'export'])->name('ppdb_registrations.export');
     Route::get('/dashboard/ppdb-registrations/export-word', [App\Http\Controllers\PpdbRegistrationController::class, 'exportWord'])->name('ppdb_registrations.export_word');
@@ -75,7 +80,7 @@ Route::middleware(['auth', 'administrator'])
         Route::resource('/ppdb-batches', PpdbBatchController::class);
         Route::resource('/ekstrakurikulers', EkstrakurikulerController::class);
         Route::resource('/announcements', AnnouncementController::class);
-
+        Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
     });
 
 Route::middleware(['auth', 'teacher'])
@@ -84,6 +89,7 @@ Route::middleware(['auth', 'teacher'])
     ->group(function () {
         Route::resource('/facilities', FacilityController::class);
         Route::resource('/achievements', AchievementController::class);
+        Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
     });
 
 Route::middleware(['auth', 'officer'])

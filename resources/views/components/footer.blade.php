@@ -3,18 +3,16 @@
             <div class="footer-top">
                 <div class="footer-logo">
                     <div class="logo">
-                           <img src="{{ asset('Logo.jpg') }}" alt="" style="border-radius: 15%; box-shadow: 
-    0 1px 1px rgba(255, 255, 255, 0.07),
-    0 2px 2px rgba(255, 255, 255, 0.07),
-    0 4px 4px rgba(255, 255, 255, 0.07),
-    0 8px 8px rgba(255, 255, 255, 0.07),
-    0 16px 16px rgba(255, 255, 255, 0.07);">
+                           <img src="{{ asset('Logo-removebg-preview.png') }}" alt="Logo SMPN 4 Genteng" class="footer-logo-img">
                         <div class="logo-text">
                             <h1>SMPN 4 GENTENG</h1>
                             <p>Sekolah Berprestasi & Berkarakter di Kabupaten Banyuwangi</p>
                         </div>
                     </div>
-                    <p style="margin-top: 20px; color: var(--gray-light);">SMP Negeri 4 Genteng berkomitmen untuk memberikan pendidikan terbaik yang mengintegrasikan keunggulan akademik, pengembangan karakter, dan teknologi modern.</p>
+                    <p class="footer-description">
+                        SMP Negeri 4 Genteng berkomitmen untuk memberikan pendidikan terbaik yang mengintegrasikan
+                        keunggulan akademik, pengembangan karakter, dan teknologi modern.
+                    </p>
                     <div class="social-links">
                         <a href="#" class="social-link">
                             <i class="fab fa-facebook-f"></i>
@@ -80,8 +78,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 SMP Negeri 4 Genteng. Hak Cipta Dilindungi.</p>
             </div>
+
+            <div class="footer-credits">
+                <p class="footer-credit-text">Created by RPL SMKS Muhammadiyah 1 Genteng</p>
+            </div>
         </div>
-        <div class="footer-text" style="display: flex; justify-content: center; margin-top: 15px;">
-        <p class="footer-end">Created By RPL SMKS Muhammadiyah 1 Genteng &copy;</p>
-        </div>     
     </footer>

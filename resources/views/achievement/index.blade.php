@@ -4,11 +4,13 @@
     <!-- Header Section -->
     <div class="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-10 mb-8 text-white shadow-lg">
       <div class="mb-8">
+        @auth
         <a href="{{ auth()->user()->role == 'administrator' ? route('admin.achievements.create') : route('teacher.achievements.create') }}"
           class="inline-flex items-center gap-2 px-5 py-3 font-semibold text-white bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-md hover:-translate-y-0.5 hover:shadow-lg transition-transform mb-4">
           <i class="fas fa-plus"></i>
           <span>Tambah Prestasi</span>
         </a>
+        @endauth
         <h1 class="text-4xl font-bold mb-2 flex items-center gap-4">
           <span class="text-3xl bg-white bg-opacity-20 w-16 h-16 rounded-full flex items-center justify-center">
             <i class="fas fa-trophy"></i>
@@ -192,63 +194,65 @@
 
                   <td class="px-6 py-5 align-middle">
                     <div class="flex items-center justify-center gap-2">
-                      @if(auth()->user()->role == 'administrator')
-                        <a href="{{ route('admin.achievements.edit', $achievement->id) }}"
-                          class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition-transform hover:-translate-y-0.5"
-                          title="Edit Prestasi">
-                          <i class="fas fa-edit"></i>
-                        </a>
-                      @endif
+                      @auth
+                        @if(auth()->user()->role == 'administrator')
+                          <a href="{{ route('admin.achievements.edit', $achievement->id) }}"
+                            class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition-transform hover:-translate-y-0.5"
+                            title="Edit Prestasi">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                        @endif
 
-                      @if(auth()->user()->role == 'teacher')
-                        <a href="{{ route('teacher.achievements.edit', $achievement->id) }}"
-                          class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition-transform hover:-translate-y-0.5"
-                          title="Edit Prestasi">
-                          <i class="fas fa-edit"></i>
-                        </a>
-                      @endif
+                        @if(auth()->user()->role == 'teacher')
+                          <a href="{{ route('teacher.achievements.edit', $achievement->id) }}"
+                            class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition-transform hover:-translate-y-0.5"
+                            title="Edit Prestasi">
+                            <i class="fas fa-edit"></i>
+                          </a>
+                        @endif
 
-                      @if(auth()->user()->role == 'administrator')
-                        <a href="{{ route('admin.achievements.show', $achievement->id) }}"
-                          class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-green-500 hover:bg-green-600 transition-transform hover:-translate-y-0.5"
-                          title="Detail Prestasi">
-                          <i class="fas fa-eye"></i>
-                        </a>
-                      @endif
+                        @if(auth()->user()->role == 'administrator')
+                          <a href="{{ route('admin.achievements.show', $achievement->id) }}"
+                            class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-green-500 hover:bg-green-600 transition-transform hover:-translate-y-0.5"
+                            title="Detail Prestasi">
+                            <i class="fas fa-eye"></i>
+                          </a>
+                        @endif
 
-                      @if(auth()->user()->role == 'teacher')
-                        <a href="{{ route('teacher.achievements.show', $achievement->id) }}"
-                          class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-green-500 hover:bg-green-600 transition-transform hover:-translate-y-0.5"
-                          title="Detail Prestasi">
-                          <i class="fas fa-eye"></i>
-                        </a>
-                      @endif
+                        @if(auth()->user()->role == 'teacher')
+                          <a href="{{ route('teacher.achievements.show', $achievement->id) }}"
+                            class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-green-500 hover:bg-green-600 transition-transform hover:-translate-y-0.5"
+                            title="Detail Prestasi">
+                            <i class="fas fa-eye"></i>
+                          </a>
+                        @endif
 
-                      @if(auth()->user()->role == 'administrator')
-                        <form action="{{ route('admin.achievements.destroy', $achievement->id) }}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="button"
-                            onclick="openDeleteModal('{{ route('admin.achievements.destroy', $achievement->id) }}')"
-                            class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-red-500 hover:bg-red-600 transition-transform hover:-translate-y-0.5"
-                            title="Hapus Prestasi">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </form>
-                      @endif
+                        @if(auth()->user()->role == 'administrator')
+                          <form action="{{ route('admin.achievements.destroy', $achievement->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button"
+                              onclick="openDeleteModal('{{ route('admin.achievements.destroy', $achievement->id) }}')"
+                              class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-red-500 hover:bg-red-600 transition-transform hover:-translate-y-0.5"
+                              title="Hapus Prestasi">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </form>
+                        @endif
 
-                      @if(auth()->user()->role == 'teacher')
-                        <form action="{{ route('teacher.achievements.destroy', $achievement->id) }}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="button"
-                            onclick="openDeleteModal('{{ route('teacher.achievements.destroy', $achievement->id) }}')"
-                            class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-red-500 hover:bg-red-600 transition-transform hover:-translate-y-0.5"
-                            title="Hapus Prestasi">
-                            <i class="fas fa-trash"></i>
-                          </button>
-                        </form>
-                      @endif
+                        @if(auth()->user()->role == 'teacher')
+                          <form action="{{ route('teacher.achievements.destroy', $achievement->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button"
+                              onclick="openDeleteModal('{{ route('teacher.achievements.destroy', $achievement->id) }}')"
+                              class="w-9 h-9 flex items-center justify-center rounded-lg text-white bg-red-500 hover:bg-red-600 transition-transform hover:-translate-y-0.5"
+                              title="Hapus Prestasi">
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </form>
+                        @endif
+                      @endauth
                     </div>
                   </td>
                 </tr>

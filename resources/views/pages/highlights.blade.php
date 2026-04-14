@@ -8,7 +8,7 @@
         <div class="stats-grid">
             <div class="stat-card animate-on-scroll">
                 <div class="stat-icon">
-                    <i class="fas fa-user-graduates"></i>
+                    <i class="fa-solid fa-user-graduate"></i>
                 </div>
                 <div class="stat-number" data-target="15000">15.000+</div>
                 <div class="stat-label">Alumni Sukses</div>
@@ -61,19 +61,26 @@
 <style>
     .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 30px;
         margin-bottom: 80px;
     }
 
     .stat-card {
         background: var(--white);
-        padding: 40px 30px;
+        padding: 40px 20px;
         border-radius: var(--radius-lg);
         text-align: center;
         box-shadow: var(--shadow-md);
         transition: var(--transition);
         border-bottom: 5px solid var(--primary);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .stat-card:hover {
@@ -85,20 +92,28 @@
         font-size: 2.5rem;
         color: var(--primary);
         margin-bottom: 20px;
+        flex-shrink: 0;
     }
 
     .stat-number {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         font-weight: 800;
         color: var(--dark);
         margin-bottom: 10px;
         font-family: 'Poppins', sans-serif;
+        line-height: 1.2;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .stat-label {
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: var(--gray);
         font-weight: 600;
+        width: 100%;
+        line-height: 1.4;
     }
 
     .highlights-info {
@@ -157,6 +172,48 @@
         
         .info-image {
             order: -1;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-card {
+            padding: 30px 15px;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-card {
+            padding: 20px 10px;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
         }
     }
 </style>

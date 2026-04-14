@@ -13,7 +13,7 @@
 
     <div class="py-10 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-[80vh]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div class="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
                     <div class="bg-blue-100 text-blue-600 rounded-full p-3 text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
@@ -26,7 +26,7 @@
                 <div class="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
                     <div class="bg-green-100 text-green-600 rounded-full p-3 text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
   <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-  <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"/>
+  <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1-1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"/>
 </svg></div>
                     <div>
                         <div class="text-lg font-bold">Guru</div>
@@ -42,7 +42,72 @@
                         <div class="text-2xl font-extrabold">{{ \App\Models\Achievement::count() }}</div>
                     </div>
                 </div>
+                <div class="bg-white rounded-2xl shadow p-6 flex items-center gap-4 border-l-4 border-blue-600">
+                    <div class="bg-purple-100 text-purple-600 rounded-full p-3 text-2xl">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold">Calon Siswa</div>
+                        <div class="text-2xl font-extrabold">{{ \App\Models\PpdbRegistration::count() }}</div>
+                    </div>
+                </div>
             </div>
+
+            @php
+                $recentRegistrations = \App\Models\PpdbRegistration::latest()->paginate(5);
+            @endphp
+
+            @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'teacher' || Auth::user()->role === 'officer')
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-10">
+                <div class="px-6 py-4 bg-blue-600 flex justify-between items-center">
+                    <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                        <i class="fas fa-list-ul"></i>
+                        Pendaftar PPDB
+                    </h3>
+                    @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'officer')
+                    <a href="{{ route('ppdb_registrations.index') }}" class="text-xs bg-white text-blue-600 px-3 py-1 rounded-full font-bold hover:bg-blue-50 transition shadow">
+                        Halaman Detail
+                    </a>
+                    @endif
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-blue-50 text-blue-800 text-xs uppercase font-bold tracking-wider">
+                                <th class="px-6 py-3">Nama</th>
+                                <th class="px-6 py-3">NISN</th>
+                                <th class="px-6 py-3">Asal Sekolah</th>
+                                <th class="px-6 py-3">Waktu Daftar</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            @forelse($recentRegistrations as $reg)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xs font-bold">
+                                            {{ substr($reg->name, 0, 1) }}
+                                        </div>
+                                        <span class="font-medium text-gray-800">{{ $reg->name }}</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">{{ $reg->nisn }}</td>
+                                <td class="px-6 py-4 text-gray-600 text-sm">{{ $reg->origin_school }}</td>
+                                <td class="px-6 py-4 text-gray-400 text-xs">{{ $reg->created_at->diffForHumans() }}</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="px-6 py-10 text-center text-gray-500 italic">Belum ada data pendaftar.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 border-t">
+                    {{ $recentRegistrations->links() }}
+                </div>
+            </div>
+            @endif
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @if(Auth::user()->role === 'administrator' || Auth::user()->role === 'officer')

@@ -29,7 +29,7 @@
                         <span class="stat-label">Kelulusan</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">150+</span>
+                        <span class="stat-number">{{ $totalAchievements }}+</span>
                         <span class="stat-label">Prestasi</span>
                     </div>
                     <div class="stat-item">
@@ -37,7 +37,7 @@
                         <span class="stat-label">Guru Berprestasi</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">12</span>
+                        <span class="stat-number">{{ $ekskulCount }}</span>
                         <span class="stat-label">Ekskul Aktif</span>
                     </div>
                 </div>

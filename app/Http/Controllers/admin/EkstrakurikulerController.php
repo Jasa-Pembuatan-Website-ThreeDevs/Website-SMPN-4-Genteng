@@ -34,10 +34,11 @@ class EkstrakurikulerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'         => 'required|string|max:255',
-            'description'  => 'nullable|string',
-            'teacher_id'   => 'nullable|exists:users,id',
-            'image'        => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name'          => 'required|string|max:255',
+            'description'   => 'nullable|string',
+            'student_count' => 'nullable|integer|min:0',
+            'teacher_id'    => 'nullable|exists:users,id',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imagePath = null;
@@ -46,10 +47,11 @@ class EkstrakurikulerController extends Controller
         }
 
         Ekstrakurikuler::create([
-            'name'         => $request->name,
-            'description'  => $request->description,
-            'teacher_id'   => $request->teacher_id,
-            'image'        => $imagePath,
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'student_count' => $request->student_count ?? 0,
+            'teacher_id'    => $request->teacher_id,
+            'image'         => $imagePath,
         ]);
 
         return redirect()->route('admin.ekstrakurikulers.index')
@@ -71,10 +73,11 @@ class EkstrakurikulerController extends Controller
     public function update(Request $request, Ekstrakurikuler $ekstrakurikuler)
     {
         $request->validate([
-            'name'         => 'required|string|max:255',
-            'description'  => 'nullable|string',
-            'teacher_id'   => 'nullable|exists:users,id',
-            'image'        => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name'          => 'required|string|max:255',
+            'description'   => 'nullable|string',
+            'student_count' => 'nullable|integer|min:0',
+            'teacher_id'    => 'nullable|exists:users,id',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $imagePath = $ekstrakurikuler->image;
@@ -93,10 +96,11 @@ class EkstrakurikulerController extends Controller
         }
 
         $ekstrakurikuler->update([
-            'name'         => $request->name,
-            'description'  => $request->description,
-            'teacher_id'   => $request->teacher_id,
-            'image'        => $imagePath,
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'student_count' => $request->student_count ?? 0,
+            'teacher_id'    => $request->teacher_id,
+            'image'         => $imagePath,
         ]);
 
         return redirect()->route('admin.ekstrakurikulers.index')

@@ -9,22 +9,29 @@
                 <div class="achievement-grid">
                     @foreach($achievements as $achievement)
                     <div class="achievement-card animate-on-scroll">
-                        @if($achievement->image)
-                            <div class="achievement-image !rounded-lg !overflow-hidden !mb-0">
+                        <div class="achievement-img-container">
+                            @if($achievement->image)
                                 @if(filter_var($achievement->image, FILTER_VALIDATE_URL))
-                                    <img src="{{ $achievement->image }}" alt="{{ $achievement->title }}" class="w-full rounded-lg !object-cover !block">
+                                    <img src="{{ $achievement->image }}" alt="{{ $achievement->title }}">
                                 @else
-                                    <img src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}" class="w-full rounded-lg !object-cover !block">
+                                    <img src="{{ asset('storage/' . $achievement->image) }}" alt="{{ $achievement->title }}">
                                 @endif
+                            @else
+                                <div class="achievement-placeholder">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                            @endif
+                            <div class="achievement-badge">{{ $achievement->level }}</div>
+                        </div>
+                        <div class="achievement-body">
+                            <div class="achievement-meta">
+                                <span class="achievement-tag">
+                                    <i class="fas fa-calendar-alt"></i> {{ $achievement->year }}
+                                </span>
                             </div>
-                        @else
-                            <div class="achievement-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                        @endif
-                        <h3>{{ $achievement->title }}</h3>
-                        <p>{{ $achievement->description }}</p>
-                        <span class="achievement-year">{{ $achievement->year }}</span>
+                            <h3 class="achievement-title">{{ $achievement->title }}</h3>
+                            <p class="achievement-text">{{ \Illuminate\Support\Str::limit($achievement->description, 100) }}</p>
+                        </div>
                     </div>
                     @endforeach
                 </div>

@@ -1,7 +1,7 @@
 <header class="header main-header">
   <div class="container header-container">
     <a href="#" class="logo">
-      <img src="{{ asset('Logo.jpg') }}" alt="SMPN 4 Genteng Logo" width="60" style="border-radius: 35%">
+      <img src="{{ asset('Logo-removebg-preview.png') }}" alt="SMPN 4 Genteng Logo" width="60" style="border-radius: 35%">
       <div class="logo-text">
         <h1>SMPN 4 GENTENG</h1>
         <p>

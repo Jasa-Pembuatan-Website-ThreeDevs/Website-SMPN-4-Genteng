@@ -32,7 +32,7 @@
                     </div>
                     @endif
                     <div style="margin-top: 20px;">
-                        <span style="background: rgba(37, 99, 235, 0.1); color: #2563eb; padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">40 Siswa</span>
+                        <span style="background: rgba(37, 99, 235, 0.1); color: #2563eb; padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">{{ $ekskul->student_count }} Siswa</span>
                     </div>
                 </div>
                 @empty

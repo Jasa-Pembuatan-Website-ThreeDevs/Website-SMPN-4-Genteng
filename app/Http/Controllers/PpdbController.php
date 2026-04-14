@@ -26,18 +26,21 @@ public function store(Request $request)
     $validated = $request->validate([
         'batch_id' => 'nullable|exists:ppdb_batches,id',
         'name' => 'required|string|max:255',
-        'nisn' => 'required|numeric',
+        'nisn' => 'required|digits:10',
         'birth_place' => 'required|string|max:255',
         'birth_date' => 'required|date',
         'gender' => 'required|in:L,P',
         'origin_school' => 'required|string|max:255',
         'address' => 'required|string',
         'parent_name' => 'required|string|max:255',
-        'whatsapp' => 'required|string|max:20',
+        'whatsapp' => 'required|string|min:10|max:15',
         'photo' => 'nullable|image|max:2048',
         'kk' => 'nullable|mimes:pdf,jpeg,png,jpg|max:2048',
+    ], [
+        'nisn.digits' => 'NISN harus berjumlah 10 digit.',
+        'whatsapp.min' => 'Nomor WhatsApp minimal 10 digit.',
+        'whatsapp.max' => 'Nomor WhatsApp maksimal 15 digit.',
     ]);
-
     $photoPath = null;
     $kkPath = null;
 

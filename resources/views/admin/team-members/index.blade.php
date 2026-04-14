@@ -3,13 +3,14 @@
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-700">Manajemen Ekstrakurikuler</h1>
-        @if(auth()->user()->role == 'administrator')
-        <a href="{{ route('admin.ekstrakurikulers.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center gap-2 shadow">
+        <h1 class="text-2xl font-semibold text-gray-700">Manajemen Tim UKS & BK</h1>
+        @php
+            $routePrefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        @endphp
+        <a href="{{ route($routePrefix . '.team-members.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center gap-2 shadow">
             <i class="fas fa-plus-circle"></i>
-            Tambah Ekstrakurikuler
+            Tambah Anggota Tim
         </a>
-        @endif
     </div>
 
     @if(session('success'))
@@ -24,16 +25,16 @@
             <thead>
                 <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Nama Ekstrakurikuler
+                        Nama
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Deskripsi
+                        Peran / Jabatan
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Pembina
+                        Kategori
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Jumlah Siswa
+                        Urutan
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                         Gambar
@@ -44,34 +45,36 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($ekstrakurikuler as $ekskul)
+                @forelse ($teamMembers as $member)
                     <tr>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">{{ $ekskul->name }}</p>
+                            <p class="text-gray-900 whitespace-no-wrap">{{ $member->name }}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 line-clamp-2">{{ $ekskul->description }}</p>
+                            <p class="text-gray-900 whitespace-no-wrap">{{ $member->role }}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">{{ $ekskul->teacher ? $ekskul->teacher->name : 'N/A' }}</p>
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $member->category == 'UKS' ? 'bg-green-100 text-green-800' : 'bg-indigo-100 text-indigo-800' }}">
+                                {{ $member->category }}
+                            </span>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">{{ $ekskul->student_count }} Siswa</p>
+                            <p class="text-gray-900 whitespace-no-wrap">{{ $member->order }}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @if ($ekskul->image)
-                                <img src="{{ Storage::url($ekskul->image) }}" alt="{{ $ekskul->name }}" class="h-10 w-10 object-cover rounded">
+                            @if ($member->image)
+                                <img src="{{ Storage::url($member->image) }}" alt="{{ $member->name }}" class="h-10 w-10 object-cover rounded-full">
                             @else
                                 <span class="text-gray-400">Tidak ada gambar</span>
                             @endif
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <div class="flex items-center">
-                                <a href="{{ route('admin.ekstrakurikulers.edit', $ekskul) }}" class="text-indigo-600 hover:text-indigo-900 mr-4 flex items-center gap-1">
+                                <a href="{{ route($routePrefix . '.team-members.edit', $member) }}" class="text-indigo-600 hover:text-indigo-900 mr-4 flex items-center gap-1">
                                     <i class="fas fa-edit"></i>
                                     Edit
                                 </a>
-                                <form action="{{ route('admin.ekstrakurikulers.destroy', $ekskul) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus ekstrakurikuler ini?');">
+                                <form action="{{ route($routePrefix . '.team-members.destroy', $member) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus anggota tim ini?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-900 flex items-center gap-1">
@@ -85,7 +88,7 @@
                 @empty
                     <tr>
                         <td colspan="6" class="text-center py-10">
-                            <p class="text-gray-500">Belum ada data ekstrakurikuler.</p>
+                            <p class="text-gray-500">Belum ada data anggota tim.</p>
                         </td>
                     </tr>
                 @endforelse

@@ -200,7 +200,7 @@
                         <i class="fas fa-home mr-2"></i>
                         Kembali ke Beranda
                     </a>
-                    <a href="https://wa.me/62{{ substr($registration->whatsapp, 1) }}" target="_blank"
+                    <a href="https://wa.me/{{ preg_replace('/^0/', '62', preg_replace('/[^0-9]/', '', $registration->whatsapp)) }}" target="_blank"
                         class="inline-flex items-center justify-center bg-green-600 text-white px-8 py-3 rounded-full font-bold hover:bg-green-700 transition transform hover:-translate-y-1 shadow-lg">
                         <i class="fab fa-whatsapp mr-2"></i>
                         Hubungi Admin

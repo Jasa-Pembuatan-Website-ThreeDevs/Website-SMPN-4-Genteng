@@ -232,12 +232,26 @@
       </div>
 
       <div class="detail-actions">
+        @if(auth()->user()->role == 'administrator')
         <a href="{{ route('admin.achievements.index') }}" class="btn btn-back">
           <i class="fas fa-arrow-left"></i> Kembali ke Daftar
         </a>
+        @endif
+        @if(auth()->user()->role == 'teacher')
+        <a href="{{ route('teacher.achievements.index') }}" class="btn btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali ke Daftar
+        </a>
+        @endif
+        @if(auth()->user()->role == 'administrator')
         <a href="{{ route('admin.achievements.edit', $achievement->id) }}" class="btn btn-edit">
           <i class="fas fa-edit"></i> Edit Prestasi
         </a>
+        @endif
+        @if(auth()->user()->role == 'teacher')
+        <a href="{{ route('teacher.achievements.edit', $achievement->id) }}" class="btn btn-edit">
+          <i class="fas fa-edit"></i> Edit Prestasi
+        </a>
+        @endif
       </div>
     </div>
   </div>

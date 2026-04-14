@@ -26,6 +26,14 @@
             </div>
 
             <div class="mb-4">
+                <label for="student_count" class="block text-gray-700 text-sm font-bold mb-2">Jumlah Siswa (Estimasi):</label>
+                <input type="number" name="student_count" id="student_count" min="0" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('student_count', $ekstrakurikuler->student_count) }}">
+                @error('student_count')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4">
                 <label for="teacher_id" class="block text-gray-700 text-sm font-bold mb-2">Pembina (Opsional):</label>
                 <select name="teacher_id" id="teacher_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     <option value="">-- Pilih Pembina --</option>

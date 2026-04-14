@@ -501,6 +501,7 @@
       </p>
     </div>
 
+    @if(auth()->user()->role == 'administrator')
     <form method="POST"
       action="{{ isset($achievement) ? route('admin.achievements.update', $achievement->id) : route('admin.achievements.store') }}"
       enctype="multipart/form-data"
@@ -630,6 +631,138 @@
         </a>
       </div>
     </form>
+    @endif
+    @if(auth()->user()->role == 'teacher')
+       <form method="POST"
+      action="{{ isset($achievement) ? route('teacher.achievements.update', $achievement->id) : route('teacher.achievements.store') }}"
+      enctype="multipart/form-data"
+      class="achievement-form"
+      id="achievementForm">
+
+      @csrf
+      @if(isset($achievement))
+      @method('PUT')
+      @endif
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="title" class="form-label required">Judul Prestasi</label>
+          <input type="text"
+          name="title"
+          id="title"
+          class="form-control"
+          placeholder="Contoh: Juara 1 Olimpiade Matematika"
+          value="{{ old('title', $achievement->title ?? '') }}"
+          required>
+          <span class="validation-message" id="titleValidation"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="level" class="form-label required">Tingkat Prestasi</label>
+          <select name="level" id="level" class="form-control" required>
+            @php
+            $currentLevel = old('level', $achievement->level ?? '');
+            @endphp
+            <option value="" disabled {{ !$currentLevel ? 'selected' : '' }}>Pilih Tingkat Prestasi</option>
+            <option value="Kecamatan" {{ $currentLevel == 'Kecamatan' ? 'selected' : '' }}>Kecamatan</option>
+            <option value="Kabupaten" {{ $currentLevel == 'Kabupaten' ? 'selected' : '' }}>Kabupaten</option>
+            <option value="Provinsi" {{ $currentLevel == 'Provinsi' ? 'selected' : '' }}>Provinsi</option>
+            <option value="Nasional" {{ $currentLevel == 'Nasional' ? 'selected' : '' }}>Nasional</option>
+          </select>
+          <span class="validation-message" id="levelValidation"></span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="year" class="form-label required">Tahun Prestasi</label>
+          <input type="number"
+          name="year"
+          id="year"
+          class="form-control"
+          placeholder="Contoh: 2023"
+          min="2000"
+          max="{{ date('Y') + 1 }}"
+          value="{{ old('year', $achievement->year ?? '') }}"
+          required>
+          <span class="validation-message" id="yearValidation"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="image" class="form-label {{ !isset($achievement) ? 'required' : '' }}">Gambar Prestasi</label>
+          <div class="file-upload-container">
+            <label for="image" class="file-upload-label">
+              <div class="file-upload-content">
+                <div class="file-upload-icon">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="file-upload-text">
+                  <h4>{{ isset($achievement) ? 'Ganti Gambar' : 'Unggah Gambar' }}</h4>
+                  <p>
+                    Klik untuk memilih file atau tarik dan lepas di sini
+                  </p>
+                  <p style="font-size: 0.85rem; margin-top: 5px;">
+                    Format: JPG, PNG, GIF (Maks. 5MB)
+                  </p>
+                </div>
+              </div>
+            </label>
+            <input type="file"
+            name="image"
+            id="image"
+            class="file-upload-input"
+            accept="image/*"
+            {{ !isset($achievement) ? 'required' : '' }}>
+          </div>
+
+          <div class="file-preview" id="filePreview" style="{{ isset($achievement) && $achievement->image ? 'display: block;' : '' }}">
+            <div class="file-preview-item">
+              <div class="file-preview-icon">
+                <i class="fas fa-image"></i>
+              </div>
+              <div class="file-preview-info">
+                <div class="file-preview-name" id="fileName">
+                  {{ isset($achievement) ? $achievement->image : 'Nama file akan muncul di sini' }}
+                </div>
+                <div class="file-preview-size" id="fileSize">
+                  {{ isset($achievement) ? 'File tersimpan' : 'Ukuran file akan muncul di sini' }}
+                </div>
+              </div>
+              <button type="button" class="btn btn-secondary" id="removeFile" style="padding: 8px 16px; font-size: 0.9rem;">
+                <i class="fas fa-times"></i> Hapus
+              </button>
+            </div>
+          </div>
+
+          <span class="validation-message" id="imageValidation"></span>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label for="description" class="form-label required">Deskripsi Prestasi</label>
+        <textarea name="description"
+          id="description"
+          class="form-control"
+          placeholder="Deskripsikan prestasi yang diraih..."
+          rows="6"
+          required>{{ old('description', $achievement->description ?? '') }}</textarea>
+        <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+          <span class="validation-message" id="descriptionValidation"></span>
+          <span id="charCount" style="font-size: 0.9rem; color: var(--gray);">0/1000 karakter</span>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save"></i> {{ isset($achievement) ? 'Update Prestasi' : 'Simpan Prestasi' }}
+        </button>
+        <a href="{{ route('achievements.index') }}" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> Batal
+        </a>
+      </div>
+    </form>
+    @endif
   </div>
 
 
