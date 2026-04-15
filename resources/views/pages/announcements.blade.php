@@ -1,140 +1,81 @@
-<section id="announcements" class="section section-light">
+<section id="announcements" class="section bg-white">
     <div class="container">
-        <div class="section-title">
-            <h2><i class="fas fa-bell" style="margin-right: 10px; color: #ff6b6b;"></i> Pengumuman Terbaru</h2>
-            <p>Informasi penting dari SMPN 4 Genteng</p>
+        <div class="flex flex-col md:flex-row items-end justify-between mb-12 animate-on-scroll">
+            <div class="section-title text-left mb-0">
+                <span class="text-red-500 font-bold tracking-wider uppercase text-sm mb-2 block">Pusat Informasi</span>
+                <h2 class="text-4xl font-bold mb-0">Pengumuman <span class="text-red-500">Terbaru</span></h2>
+                <div class="w-20 h-1 bg-red-500 mt-4 rounded-full"></div>
+            </div>
+            <a href="{{ route('announcements.public.index') }}" class="text-red-500 font-bold flex items-center gap-2 hover:gap-3 transition-all mt-4 md:mt-0">
+                Lihat Semua <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
 
         @if($announcements->count() > 0)
-        <div class="announcements-container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($announcements as $announcement)
-            <div class="announcement-card">
-                @if($announcement->image)
-                <div class="announcement-image">
-                    <img src="{{ asset('storage/' . $announcement->image) }}" alt="{{ $announcement->title }}" loading="lazy">
-                    <div class="announcement-overlay"></div>
-                </div>
-                @endif
+            <div class="group bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:border-red-200 hover:bg-white hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300 flex flex-col h-full animate-on-scroll">
+                <a href="{{ route('announcements.public.show', $announcement) }}" class="block relative h-48 overflow-hidden">
+                    @if($announcement->image)
+                    <img src="{{ asset('storage/' . $announcement->image) }}" alt="{{ $announcement->title }}" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    @else
+                    <div class="h-full bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center text-white">
+                        <i class="fas fa-bullhorn text-5xl opacity-30 group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    @endif
+                </a>
                 
-                <div class="announcement-content">
-                    <h3 class="announcement-title">{{ $announcement->title }}</h3>
-                    <p class="announcement-text">{{ Str::limit(strip_tags($announcement->content), 120) }}</p>
-                    <p class="announcement-date">
-                        <i class="fas fa-calendar-alt"></i>
-                        {{ $announcement->created_at->format('d F Y') }}
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">
+                            PENTING
+                        </span>
+                        <span class="text-slate-400 text-xs flex items-center gap-1">
+                            <i class="far fa-calendar-alt"></i>
+                            {{ $announcement->created_at->format('d M Y') }}
+                        </span>
+                    </div>
+                    
+                    <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-red-500 transition-colors line-clamp-2">
+                        <a href="{{ route('announcements.public.show', $announcement) }}">{{ $announcement->title }}</a>
+                    </h3>
+                    
+                    <p class="text-slate-500 text-sm mb-6 line-clamp-3 leading-relaxed flex-grow">
+                        {{ Str::limit(strip_tags($announcement->content), 120) }}
                     </p>
+                    
+                    <div class="pt-4 border-t border-slate-200/60 mt-auto">
+                        <a href="{{ route('announcements.public.show', $announcement) }}" class="flex items-center text-slate-800 font-bold text-sm group/btn">
+                            Baca Selengkapnya
+                            <div class="ml-2 w-8 h-8 rounded-full bg-slate-200 group-hover/btn:bg-red-500 group-hover/btn:text-white flex items-center justify-center transition-all duration-300">
+                                <i class="fas fa-chevron-right text-[10px]"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             @endforeach
         </div>
         @else
-        <div style="text-align: center; padding: 40px 20px; color: #999;">
-            <p><i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i> Belum ada pengumuman</p>
+        <div class="flex flex-col items-center justify-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200 animate-on-scroll">
+            <div class="w-20 h-20 bg-white rounded-full shadow-sm flex items-center justify-center mb-6">
+                <i class="fas fa-bullhorn text-3xl text-slate-300"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-700">Belum Ada Pengumuman</h3>
+            <p class="text-slate-400 mt-2 text-center max-w-md">Saat ini belum ada pengumuman terbaru yang dipublikasikan. Tetap pantau halaman ini untuk update mendatang.</p>
         </div>
         @endif
     </div>
 </section>
 
 <style>
-.announcements-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.announcement-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.announcement-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.announcement-image {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    background: #f0f0f0;
-}
-
-.announcement-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.announcement-card:hover .announcement-image img {
-    transform: scale(1.05);
-}
-
-.announcement-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.2));
-    pointer-events: none;
-}
-
-.announcement-content {
-    padding: 25px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.announcement-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0 0 12px 0;
-    line-height: 1.4;
-}
-
-.announcement-text {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0 0 15px 0;
-    flex: 1;
-}
-
-.announcement-date {
-    color: #999;
-    font-size: 0.85rem;
-    margin: 0;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-}
-
-.announcement-date i {
-    margin-right: 6px;
-    color: #ff6b6b;
-}
-
-@media (max-width: 768px) {
-    .announcements-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .announcement-image {
-        height: 180px;
-    }
-
-    .announcement-title {
-        font-size: 1.1rem;
-    }
+/* Any additional custom styles can go here if Tailwind isn't enough */
+#announcements .section-title h2 {
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: #1e293b;
 }
 </style>

@@ -21,12 +21,12 @@ class PostController extends Controller
 
     public function publicIndex()
     {
+        // Menyederhanakan filter agar berita lebih mudah muncul
         $posts = Post::where('is_active', true)
-            ->where('published_at', '<=', now())
-            ->where('expired_at', '>=', now())
             ->latest()
-            ->get();
-        return view('pages.berita', compact('posts'))->with([
+            ->paginate(9);
+
+        return view('pages.berita-index', compact('posts'))->with([
             'seo_title' => 'Berita Terbaru - SMPN 4 Genteng',
             'seo_description' => 'Baca berita dan informasi terbaru dari SMPN 4 Genteng.',
             'seo_keywords' => 'berita smpn 4 genteng, update smpn 4 genteng, informasi sekolah',
@@ -35,7 +35,13 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('pages.berita-show', compact('post'))->with([
+        $recentPosts = Post::where('is_active', true)
+            ->where('id', '!=', $post->id)
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('pages.berita-show', compact('post', 'recentPosts'))->with([
             'seo_title' => $post->title . ' - SMPN 4 Genteng',
             'seo_description' => Str::limit(strip_tags($post->content), 150),
             'seo_keywords' => Str::slug($post->title, ',') . ', smpn 4 genteng',

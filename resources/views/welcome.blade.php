@@ -26,6 +26,9 @@
         <!-- About Section -->
         @include('pages.about')
 
+        <!-- Announcements Section -->
+        @include('pages.announcements')
+
         <!-- Facilities Section -->
         @include('pages.fasilitas')
 

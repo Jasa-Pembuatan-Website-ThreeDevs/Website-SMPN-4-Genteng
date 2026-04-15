@@ -16,7 +16,7 @@ use App\Models\PpdbBatch;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $posts = Post::latest()->take(3)->get();
+    $posts = Post::where('is_active', true)->latest()->take(3)->get();
     $facilities = Facility::all();
     $achievements = Achievement::latest()->take(4)->get();
     $announcements = \App\Models\Announcement::where('status', 'publish')->latest()->take(5)->get();
@@ -102,6 +102,10 @@ Route::resource('achievements', AchievementController::class);
 
 Route::get('/ekstrakurikuler/view', [EkstrakurikulerController::class, 'view'])->name('ekskul.view');
 Route::get('/fasilitas', [FacilityController::class, 'publicIndex'])->name('facilities.view');
+
+Route::get('/pengumuman', [AnnouncementController::class, 'publicIndex'])->name('announcements.public.index');
+Route::get('/pengumuman/{announcement}', [AnnouncementController::class, 'publicShow'])->name('announcements.public.show');
+
 Route::get('/berita', [PostController::class, 'publicIndex'])->name('posts.public.index');
 Route::get('/berita/{post:slug}', [PostController::class, 'show'])->name('posts.public.show');
 

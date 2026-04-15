@@ -112,4 +112,31 @@ class AnnouncementController extends Controller
         $announcement->delete();
         return redirect()->route('admin.announcements.index')->with('success', 'Pengumuman berhasil dihapus');
     }
+
+    /**
+     * Display a listing of the resource for public.
+     */
+    public function publicIndex()
+    {
+        $announcements = Announcement::where('status', 'publish')->latest()->paginate(9);
+        return view('pages.announcements-index', compact('announcements'));
+    }
+
+    /**
+     * Display the specified resource for public.
+     */
+    public function publicShow(Announcement $announcement)
+    {
+        if ($announcement->status !== 'publish') {
+            abort(404);
+        }
+
+        $recentAnnouncements = Announcement::where('status', 'publish')
+            ->where('id', '!=', $announcement->id)
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('pages.announcements-show', compact('announcement', 'recentAnnouncements'));
+    }
 }
