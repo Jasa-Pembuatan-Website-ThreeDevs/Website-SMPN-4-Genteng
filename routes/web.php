@@ -95,6 +95,7 @@ Route::middleware(['auth', 'officer'])
     ->group(function () {
         Route::resource('/posts', PostController::class);
         Route::resource('/ppdb-batches', PpdbBatchController::class);
+        Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
     });
 
 Route::resource('achievements', AchievementController::class);

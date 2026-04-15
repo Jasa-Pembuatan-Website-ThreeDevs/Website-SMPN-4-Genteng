@@ -12,7 +12,7 @@
     </x-slot>
 
     <div class="py-10 bg-gradient-to-br from-blue-50 via-white to-blue-100 min-h-[80vh]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div class="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
                     <div class="bg-blue-100 text-blue-600 rounded-full p-3 text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
