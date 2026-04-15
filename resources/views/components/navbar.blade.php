@@ -10,8 +10,8 @@
       </div>
     </a>
 
-    <button class="mobile-menu-btn" id="mobileMenuBtn">
-      <i class="fas fa-bars"></i>
+    <button class="mobile-menu-btn relative z-50" id="mobileMenuBtn">
+      <i class="fas fa-bars pointer-events-none"></i>
     </button>
 
     <nav class="nav" id="mainNav">

@@ -24,7 +24,7 @@ Route::get('/', function () {
     $ekstrakurikuler = \App\Models\Ekstrakurikuler::all();
     $totalAchievements = Achievement::count();
     $ekskulCount = $ekstrakurikuler->count();
-    
+
     return view('welcome', compact('posts', 'facilities', 'achievements', 'ekstrakurikuler', 'announcements', 'totalAchievements', 'ekskulCount'));
 });
 
