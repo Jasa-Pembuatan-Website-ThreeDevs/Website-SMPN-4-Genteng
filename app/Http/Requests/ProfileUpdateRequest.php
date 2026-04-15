@@ -15,16 +15,25 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $user = $this->user();
+
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
+        ];
+
+        // Administrator only can change password (so we don't include email here if they are admin)
+        // Teacher and Officer can change email
+        if ($user->role !== 'administrator') {
+            $rules['email'] = [
                 'required',
                 'string',
                 'lowercase',
                 'email',
                 'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
-        ];
+                Rule::unique(User::class)->ignore($user->id),
+            ];
+        }
+
+        return $rules;
     }
 }

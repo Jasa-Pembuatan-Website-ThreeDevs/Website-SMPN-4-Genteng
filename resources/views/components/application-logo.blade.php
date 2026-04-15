@@ -1,1 +1,1 @@
-<img src="Logo.jpg" alt="">
+<img src="Logo-removebg-preview.png" alt="">
