@@ -9,7 +9,7 @@
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -19,21 +19,9 @@
     
     <body class="font-sans antialiased bg-slate-50" x-data="{ sidebarOpen: false }">
         
-        <div x-show="sidebarOpen" 
-             @click="sidebarOpen = false" 
-             class="fixed inset-0 z-30 bg-slate-900/60 backdrop-blur-sm lg:hidden"
-             x-transition.opacity
-             style="display: none;">
-        </div>
+        @include('layouts.sidebar')
 
-        <aside 
-            class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 transform transition-transform duration-300 ease-in-out lg:translate-x-0"
-            :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
-        >
-            @include('layouts.sidebar')
-        </aside>
-
-        <div class="flex-1 flex flex-col min-h-screen transition-all duration-300 lg:ml-64">
+        <div class="flex-1 flex flex-col min-h-screen transition-all duration-300 lg:ml-72">
             
             @include('layouts.navigation')
 
