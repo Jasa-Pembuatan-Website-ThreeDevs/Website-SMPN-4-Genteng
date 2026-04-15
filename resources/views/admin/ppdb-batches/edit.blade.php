@@ -5,7 +5,10 @@
     <h1 class="text-2xl font-semibold text-gray-700 mb-6">Edit Gelombang PPDB</h1>
 
     <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
-        <form action="{{ route('admin.ppdb-batches.update', $ppdbBatch) }}" method="POST">
+        @php
+            $routePrefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
+        @endphp
+        <form action="{{ route($routePrefix . '.ppdb-batches.update', $ppdbBatch) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -56,7 +59,7 @@
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Update
                 </button>
-                <a href="{{ route('admin.ppdb-batches.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                <a href="{{ route($routePrefix . '.ppdb-batches.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                     Batal
                 </a>
             </div>
