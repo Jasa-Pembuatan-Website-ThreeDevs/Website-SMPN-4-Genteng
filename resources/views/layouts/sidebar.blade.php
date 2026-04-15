@@ -1,7 +1,7 @@
-<aside id="sidebar" 
+<aside id="sidebar"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full sm:translate-x-0'"
     class="fixed sm:sticky top-0 left-0 z-40 w-72 h-screen transition-transform duration-300 ease-in-out bg-slate-900 text-slate-300 shadow-2xl border-r border-slate-800 shrink-0">
-    
+
     <div class="flex flex-col h-full bg-slate-900">
         <!-- Brand Header -->
         <div class="p-6 bg-slate-900">
@@ -78,7 +78,7 @@
                 <div>
                     <p class="px-4 text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-4">Akademik & PPDB</p>
                     <ul class="space-y-1.5">
-                        @if(auth()->user()->role == 'administrator' || auth()->user()->role == 'officer')
+                        @if(auth()->user()->role == 'admin' || auth()->user()->role == 'officer')
                             <x-sidebar-link :href="route(auth()->user()->role.'.ppdb-batches.index')" :active="request()->routeIs('*.ppdb-batches.*')">
                                 <i class="fas fa-calendar-check w-5 text-center text-teal-400"></i>
                                 <span class="ms-3">Gelombang PPDB</span>
@@ -109,7 +109,7 @@
                         <span class="text-[10px] text-slate-500 truncate capitalize">{{ Auth::user()->role }}</span>
                     </div>
                 </a>
-                
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="w-full flex items-center gap-3 px-4 py-2.5 text-xs font-bold text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl transition-all duration-200">

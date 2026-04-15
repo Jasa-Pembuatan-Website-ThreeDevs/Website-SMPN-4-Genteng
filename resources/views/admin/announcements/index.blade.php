@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold text-slate-900">
             <i class="fas fa-bell mr-3 text-blue-600"></i> Data Pengumuman
         </h1>
-        <a href="{{ route('announcements.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold transition shadow-lg shadow-blue-100">
+        <a href="{{ route('admin.announcements.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold transition shadow-lg shadow-blue-100">
             <i class="fas fa-plus mr-2"></i> Buat Pengumuman Baru
         </a>
     </div>
@@ -62,10 +62,10 @@
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex justify-end gap-3">
-                                <a href="{{ route('announcements.edit', $announcement) }}" class="text-blue-600 hover:text-blue-700 font-medium text-sm transition">
+                                <a href="{{ route('admin.announcements.edit', $announcement) }}" class="text-blue-600 hover:text-blue-700 font-medium text-sm transition">
                                     <i class="fas fa-edit mr-1"></i> Edit
                                 </a>
-                                <form action="{{ route('announcements.destroy', $announcement) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengumuman ini?')">
+                                <form action="{{ route('admin.announcements.destroy', $announcement) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengumuman ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:text-red-700 font-medium text-sm transition">
@@ -89,7 +89,7 @@
         @else
         <div class="text-center py-12">
             <i class="fas fa-bell text-4xl text-slate-300 mb-4 block"></i>
-            <p class="text-slate-500 font-medium">Belum ada pengumuman. <a href="{{ route('announcements.create') }}" class="text-blue-600 hover:underline">Buat yang pertama</a></p>
+            <p class="text-slate-500 font-medium">Belum ada pengumuman. <a href="{{ route('admin.announcements.create') }}" class="text-blue-600 hover:underline">Buat yang pertama</a></p>
         </div>
         @endif
     </div>

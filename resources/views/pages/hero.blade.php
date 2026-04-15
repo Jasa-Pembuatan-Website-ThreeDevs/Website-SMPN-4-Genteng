@@ -1,7 +1,7 @@
 <section class="hero main-content-section" id="home">
         <div class="floating-element floating-1"></div>
         <div class="floating-element floating-2"></div>
-        
+
         <div class="container hero-container flex flex-col md:flex-row items-center justify-between gap-10">
             <div class="hero-content animate-on-scroll">
                 <div class="hero-badge">
@@ -15,14 +15,14 @@
                     SMPN 4 Genteng merupakan sekolah berstandar <br> nasional yang   berkomitmen memberikan pendidikan terbaik melalui<br> pendekatan  modern, kurikulum inovatif, dan pengembangan karakter siswa secara holistik.
                 </p>
                 <div class="hero-actions">
-                    <a href="#ppdb" class="btn btn-primary btn-lg">
+                    <a href="/ppdb" class="btn btn-primary btn-lg">
                         <i class="fas fa-user-plus"></i> Daftar PPDB 2024
                     </a>
                     <a href="#about" class="btn btn-secondary btn-lg">
                         <i class="fas fa-play-circle"></i> Jelajahi Sekolah
                     </a>
                 </div>
-                
+
                 <div class="hero-stats">
                     <div class="stat-item">
                         <span class="stat-number">98%</span>

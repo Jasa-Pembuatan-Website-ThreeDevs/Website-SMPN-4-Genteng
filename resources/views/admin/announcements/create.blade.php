@@ -7,14 +7,14 @@
             <i class="fas fa-bell mr-2 text-blue-600"></i> Buat Pengumuman Baru
         </h2>
 
-        <form action="{{ route('announcements.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form action="{{ route('admin.announcements.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             <!-- Title -->
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-2">Judul Pengumuman</label>
-                <input type="text" name="title" value="{{ old('title') }}" 
-                    class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('title') border-red-500 @enderror" 
+                <input type="text" name="title" value="{{ old('title') }}"
+                    class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('title') border-red-500 @enderror"
                     placeholder="Contoh: Pengumuman Libur Akhir Tahun 2026"
                     required>
                 @error('title')
@@ -86,7 +86,7 @@
 
             <!-- Action Buttons -->
             <div class="flex gap-5 justify-end items-center pt-6 border-t border-slate-200">
-                <a href="{{ route('announcements.index') }}" class="text-slate-500 font-medium hover:text-slate-700">Batal</a>
+                <a href="{{ route('admin.announcements.index') }}" class="text-slate-500 font-medium hover:text-slate-700">Batal</a>
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold transition shadow-lg shadow-blue-100">
                     <i class="fas fa-save mr-2"></i> Simpan Pengumuman
                 </button>

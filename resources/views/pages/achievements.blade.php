@@ -4,11 +4,11 @@
                 <h2>Prestasi Terbaru</h2>
                 <p>Bukti nyata dedikasi dan kerja keras siswa-siswi SMPN 4 Genteng dalam berbagai kompetisi</p>
             </div>
-            
+
             @if($achievements->isNotEmpty())
                 <div class="achievement-grid">
                     @foreach($achievements as $achievement)
-                    <div class="achievement-card animate-on-scroll">
+                    <div class="achievement-card animate-on-scroll flex flex-col h-full overflow-hidden">
                         <div class="achievement-img-container">
                             @if($achievement->image)
                                 @if(filter_var($achievement->image, FILTER_VALIDATE_URL))
@@ -30,7 +30,7 @@
                                 </span>
                             </div>
                             <h3 class="achievement-title">{{ $achievement->title }}</h3>
-                            <p class="achievement-text">{{ \Illuminate\Support\Str::limit($achievement->description, 100) }}</p>
+                            <p class="achievement-text mt-auto">{{ \Illuminate\Support\Str::limit($achievement->description, 100) }}</p>
                         </div>
                     </div>
                     @endforeach
