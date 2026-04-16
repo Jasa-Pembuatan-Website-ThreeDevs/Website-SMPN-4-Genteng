@@ -16,17 +16,17 @@
         
         <!-- Statistik Utama -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            <!-- Total Siswa (User role student) -->
+            <!-- Total Berita -->
             <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-blue-50 text-blue-600 rounded-2xl p-3">
-                        <i class="fas fa-user-graduate text-xl"></i>
+                        <i class="fas fa-newspaper text-xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-lg uppercase">Total Siswa</span>
+                    <span class="text-xs font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded-lg uppercase">Total Berita</span>
                 </div>
                 <div>
-                    <div class="text-3xl font-black text-slate-800">{{ \App\Models\User::where('role','student')->count() }}</div>
-                    <div class="text-xs text-slate-400 mt-1 font-medium">Siswa terdaftar di sistem</div>
+                    <div class="text-3xl font-black text-slate-800">{{ \App\Models\Post::count() }}</div>
+                    <div class="text-xs text-slate-400 mt-1 font-medium">Berita & informasi dipublikasikan</div>
                 </div>
             </div>
 
