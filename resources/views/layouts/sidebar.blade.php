@@ -77,14 +77,14 @@
                     @php
                         $rolePrefix = auth()->user()->role == 'administrator' ? 'admin' : auth()->user()->role;
                     @endphp
-                    <x-sidebar-link :href="route($rolePrefix.'.ppdb-batches.index')" :active="request()->routeIs('*.ppdb-batches.*')">
+<x-sidebar-link :href="route($rolePrefix.'.spmb-batches.index')" :active="request()->routeIs('*.spmb-batches.*')">
                         <i class="fas fa-calendar-alt w-5 text-teal-400/80"></i>
-                        <span class="ms-3">Gelombang PPDB</span>
+                        <span class="ms-3">Gelombang SPMB</span>
                     </x-sidebar-link>
                 @endif
-                <x-sidebar-link :href="route('ppdb_registrations.index')" :active="request()->routeIs('ppdb_registrations.*')">
+<x-sidebar-link :href="route('spmb_registrations.index')" :active="request()->routeIs('spmb_registrations.*')">
                     <i class="fas fa-user-graduate w-5 text-indigo-400/80"></i>
-                    <span class="ms-3">Pendaftar PPDB</span>
+                    <span class="ms-3">Pendaftar SPMB</span>
                 </x-sidebar-link>
                 <x-sidebar-link :href="route((auth()->user()->role == 'administrator' ? 'admin' : (auth()->user()->role == 'teacher' ? 'teacher' : 'officer')).'.team-members.index')" :active="request()->routeIs('*.team-members.*')">
                     <i class="fas fa-users-cog w-5 text-violet-400/80"></i>

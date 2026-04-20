@@ -5,10 +5,10 @@
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold text-blue-700">Data Pendaftaran PPDB</h1>
         <div class="flex gap-3">
-            <a href="{{ route('ppdb_registrations.export') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center gap-2 shadow">
+            <a href="{{ route('spmb_registrations.export') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 flex items-center gap-2 shadow">
                 <i class="fas fa-file-csv"></i> Export CSV
             </a>
-            <a href="{{ route('ppdb_registrations.export_word') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center gap-2 shadow">
+            <a href="{{ route('spmb_registrations.export_word') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center gap-2 shadow">
                 <i class="fas fa-file-word"></i> Export Word
             </a>
         </div>

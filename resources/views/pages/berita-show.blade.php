@@ -130,7 +130,7 @@
                                 </div>
                                 <h3 class="text-2xl font-bold mb-4">PPDB SMPN 4 Genteng</h3>
                                 <p class="text-blue-100 text-sm mb-8 leading-relaxed">Bergabunglah bersama kami dan wujudkan masa depan yang cemerlang. Pendaftaran peserta didik baru telah dibuka.</p>
-                                <a href="/ppdb" class="inline-flex items-center justify-center gap-2 w-full py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-colors shadow-lg">
+                                <a href="/spmb" class="inline-flex items-center justify-center gap-2 w-full py-4 bg-white text-blue-600 font-bold rounded-xl hover:bg-blue-50 transition-colors shadow-lg">
                                     Daftar Sekarang <i class="fas fa-arrow-right"></i>
                                 </a>
                             </div>

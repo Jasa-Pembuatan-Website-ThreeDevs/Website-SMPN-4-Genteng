@@ -40,7 +40,7 @@
           <a href="/#achievements" class="nav-link">Prestasi</a>
         </li>
         <li class="nav-item">
-          <a href="/ppdb" class="nav-link">PPDB</a>
+          <a href="/spmb" class="nav-link">SPMB</a>
         </li>
         <li class="nav-item">
           <a href="/uks" class="nav-link">UKS</a>
