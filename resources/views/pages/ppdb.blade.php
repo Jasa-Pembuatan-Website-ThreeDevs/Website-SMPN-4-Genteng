@@ -38,7 +38,7 @@
                         </span>
 
                         <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">
-                            PPDB Online <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-teal-200">SMPN
+                            SPMB Online <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-teal-200">SMPN
                                 4 Genteng</span>
                         </h1>
 
@@ -147,7 +147,7 @@
                                     class="block w-full bg-gray-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-800 transition shadow-lg transform hover:-translate-y-1">
                                     Kembali ke Beranda
                                 </a>
-                                <a href="#"
+                                <a href="{{ route('announcements.public.index') }}"
                                     class="block w-full bg-white text-gray-700 border-2 border-gray-200 px-8 py-3 rounded-xl font-bold hover:bg-gray-50 transition">
                                     Lihat Pengumuman Lain
                                 </a>

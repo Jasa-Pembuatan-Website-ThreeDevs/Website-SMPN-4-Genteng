@@ -62,15 +62,15 @@ class PpdbBatchController extends Controller
     /**
      * Menampilkan form edit.
      */
-    public function edit(PpdbBatch $ppdbBatch)
+    public function edit(PpdbBatch $spmbBatch)
     {
-        return view('admin.ppdb-batches.edit', compact('ppdbBatch'));
+        return view('admin.ppdb-batches.edit', compact('spmbBatch'));
     }
 
     /**
      * Mengupdate data gelombang.
      */
-    public function update(Request $request, PpdbBatch $ppdbBatch)
+    public function update(Request $request, PpdbBatch $spmbBatch)
     {
         $request->validate([
             'name'       => 'required|string|max:255',
@@ -84,10 +84,10 @@ class PpdbBatchController extends Controller
 
         // Jika user mencentang 'Aktif', matikan gelombang lain selain yg sedang diedit
         if ($isActive) {
-            PpdbBatch::where('id', '!=', $ppdbBatch->id)->update(['is_active' => false]);
+            PpdbBatch::where('id', '!=', $spmbBatch->id)->update(['is_active' => false]);
         }
 
-        $ppdbBatch->update([
+        $spmbBatch->update([
             'name'        => $request->name,
             'start_date'  => $request->start_date,
             'end_date'    => $request->end_date,
@@ -103,14 +103,14 @@ class PpdbBatchController extends Controller
     /**
      * Menghapus gelombang.
      */
-    public function destroy(PpdbBatch $ppdbBatch)
+    public function destroy(PpdbBatch $spmbBatch)
     {
         // Opsional: Cek apakah sudah ada siswa yang mendaftar di gelombang ini sebelum hapus
-        // if ($ppdbBatch->students()->exists()) {
+        // if ($spmbBatch->students()->exists()) {
         //     return back()->with('error', 'Tidak bisa menghapus gelombang yang sudah ada pendaftarnya.');
         // }
 
-        $ppdbBatch->delete();
+        $spmbBatch->delete();
 
         $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
         return redirect()->route($prefix . '.spmb-batches.index')

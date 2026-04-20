@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('ppdb.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('spmb.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="batch_id" value="{{ $batch->id ?? '' }}">
             <div class="form-section-title">

@@ -13,14 +13,19 @@ class PpdbController extends Controller
 public function create()
 {
     $today = Carbon::today();
-    $activeBatch = PpdbBatch::where('is_active', true)
-        ->whereDate('start_date', '<=', $today)
-        ->whereDate('end_date', '>=', $today)
-        ->first();
+
+    // Prioritas 1: Yang ditandai is_active = true secara manual
+    $activeBatch = PpdbBatch::where('is_active', true)->first();
+
+    // Prioritas 2: Jika tidak ada yang is_active, cari berdasarkan rentang tanggal
+    if (!$activeBatch) {
+        $activeBatch = PpdbBatch::whereDate('start_date', '<=', $today)
+            ->whereDate('end_date', '>=', $today)
+            ->first();
+    }
 
     return view('pages.ppdb', compact('activeBatch'));
 }
-
 public function store(Request $request)
 {
     $validated = $request->validate([
@@ -67,7 +72,7 @@ public function store(Request $request)
         'kk_path' => $kkPath,
     ]);
 
-    return redirect()->route('ppdb.success', $registration->id);
+    return redirect()->route('spmb.success', $registration->id);
 }
 
 public function success($id)
