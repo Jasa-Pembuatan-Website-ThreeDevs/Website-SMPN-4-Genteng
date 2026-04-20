@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <h1 class="text-2xl font-semibold text-gray-700 mb-6">Tambah Gelombang PPDB Baru</h1>
+    <h1 class="text-2xl font-semibold text-gray-700 mb-6">Tambah Gelombang SPMB Baru</h1>
 
     <div class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
         @if(auth()->user()->role == 'administrator')
-        <form action="{{ route('admin.ppdb-batches.store') }}" method="POST">
+        <form action="{{ route('admin.spmb-batches.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nama Gelombang:</label>
@@ -55,7 +55,7 @@
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Simpan
                 </button>
-                <a href="{{ route('admin.ppdb-batches.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                <a href="{{ route('admin.spmb-batches.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                     Batal
                 </a>
             </div>
@@ -63,7 +63,7 @@
         @endif
 
         @if(auth()->user()->role == 'officer')
-        <form action="{{ route('officer.ppdb-batches.store') }}" method="POST">
+        <form action="{{ route('officer.spmb-batches.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nama Gelombang:</label>
@@ -112,7 +112,7 @@
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Simpan
                 </button>
-                <a href="{{ route('officer.ppdb-batches.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                <a href="{{ route('officer.spmb-batches.index') }}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                     Batal
                 </a>
             </div>

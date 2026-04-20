@@ -20,7 +20,7 @@
     @include('components.navbar')
 
     <main class="main-content pt-40" style="padding-top:  100px;">
-        <div id="ppdb" class="bg-gray-50 pb-20">
+        <div id="spmb" class="bg-gray-50 pb-20">
             @if($activeBatch)
                 <div class="relative bg-white overflow-hidden shadow-sm">
                     <div class="absolute inset-0 z-0">
@@ -38,7 +38,7 @@
                         </span>
 
                         <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2 tracking-tight">
-                            PPDB Online <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-teal-200">SMPN
+                            SPMB Online <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-teal-200">SMPN
                                 4 Genteng</span>
                         </h1>
 
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="p-2 md:p-8">
-                                @include('components.form-ppdb', ['batch' => $activeBatch])
+                                @include('components.form-spmb', ['batch' => $activeBatch])
                             </div>
                         </div>
 

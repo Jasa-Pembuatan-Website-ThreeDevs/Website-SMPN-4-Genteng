@@ -46,16 +46,16 @@ Route::get('/bk', function () {
     return view('pages.bk', compact('teamMembers'));
 });
 
-// PPDB Registration dashboard and export
+// SPMB Registration dashboard and export
 Route::middleware(['auth', 'staff'])->group(function () {
-    Route::get('/dashboard/ppdb-registrations', [App\Http\Controllers\PpdbRegistrationController::class, 'index'])->name('ppdb_registrations.index');
-    Route::get('/dashboard/ppdb-registrations/export', [App\Http\Controllers\PpdbRegistrationController::class, 'export'])->name('ppdb_registrations.export');
-    Route::get('/dashboard/ppdb-registrations/export-word', [App\Http\Controllers\PpdbRegistrationController::class, 'exportWord'])->name('ppdb_registrations.export_word');
+    Route::get('/dashboard/spmb-registrations', [App\Http\Controllers\PpdbRegistrationController::class, 'index'])->name('spmb_registrations.index');
+    Route::get('/dashboard/spmb-registrations/export', [App\Http\Controllers\PpdbRegistrationController::class, 'export'])->name('spmb_registrations.export');
+    Route::get('/dashboard/spmb-registrations/export-word', [App\Http\Controllers\PpdbRegistrationController::class, 'exportWord'])->name('spmb_registrations.export_word');
 });
 
-Route::get('/ppdb', [PpdbController::class, 'create'])->name('ppdb.register');
-Route::post('/ppdb', [PpdbController::class, 'store'])->name('ppdb.store');
-Route::get('/ppdb/success/{id}', [PpdbController::class, 'success'])->name('ppdb.success');
+Route::get('/spmb', [PpdbController::class, 'create'])->name('spmb.register');
+Route::post('/spmb', [PpdbController::class, 'store'])->name('spmb.store');
+Route::get('/spmb/success/{id}', [PpdbController::class, 'success'])->name('spmb.success');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -74,7 +74,7 @@ Route::middleware(['auth', 'administrator'])
         Route::resource('/posts', PostController::class);
         Route::resource('/facilities', FacilityController::class);
         Route::resource('/achievements', AchievementController::class);
-        Route::resource('/ppdb-batches', PpdbBatchController::class);
+        Route::resource('/spmb-batches', PpdbBatchController::class);
         Route::resource('/ekstrakurikulers', EkstrakurikulerController::class);
         Route::resource('/announcements', AnnouncementController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
@@ -94,7 +94,7 @@ Route::middleware(['auth', 'officer'])
     ->prefix('officer')
     ->group(function () {
         Route::resource('/posts', PostController::class);
-        Route::resource('/ppdb-batches', PpdbBatchController::class);
+        Route::resource('/spmb-batches', PpdbBatchController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
     });
 
@@ -110,3 +110,4 @@ Route::get('/berita', [PostController::class, 'publicIndex'])->name('posts.publi
 Route::get('/berita/{post:slug}', [PostController::class, 'show'])->name('posts.public.show');
 
 require __DIR__.'/auth.php';
+

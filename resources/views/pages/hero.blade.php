@@ -26,9 +26,9 @@
                 </p>
                 
                 <div class="flex flex-wrap gap-4 mb-12">
-                    <a href="/ppdb" class="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/25 flex items-center gap-3 group pulse-animation">
+<a href="/spmb" class="px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/25 flex items-center gap-3 group pulse-animation">
                         <i class="fas fa-user-plus"></i>
-                        Daftar PPDB 2024
+                        Daftar SPMB 2024
                         <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                     </a>
                     <a href="#about" class="px-8 py-4 bg-white text-slate-700 font-bold rounded-2xl hover:bg-slate-50 transition-all border border-slate-200 flex items-center gap-3">

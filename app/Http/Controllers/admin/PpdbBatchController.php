@@ -55,7 +55,7 @@ class PpdbBatchController extends Controller
         ]);
 
         $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
-        return redirect()->route($prefix . '.ppdb-batches.index')
+        return redirect()->route($prefix . '.spmb-batches.index')
             ->with('success', 'Gelombang pendaftaran berhasil dibuat!');
     }
 
@@ -96,7 +96,7 @@ class PpdbBatchController extends Controller
         ]);
 
         $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
-        return redirect()->route($prefix . '.ppdb-batches.index')
+        return redirect()->route($prefix . '.spmb-batches.index')
             ->with('success', 'Gelombang pendaftaran berhasil diperbarui!');
     }
 
@@ -113,7 +113,7 @@ class PpdbBatchController extends Controller
         $ppdbBatch->delete();
 
         $prefix = auth()->user()->role === 'administrator' ? 'admin' : auth()->user()->role;
-        return redirect()->route($prefix . '.ppdb-batches.index')
+        return redirect()->route($prefix . '.spmb-batches.index')
             ->with('success', 'Gelombang pendaftaran berhasil dihapus.');
     }
 }

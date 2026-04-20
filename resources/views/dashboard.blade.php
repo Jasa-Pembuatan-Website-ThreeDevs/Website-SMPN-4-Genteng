@@ -58,17 +58,17 @@
                 </div>
             </div>
 
-            <!-- Pendaftar PPDB -->
+            <!-- Pendaftar SPMB -->
             <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between mb-4">
                     <div class="bg-indigo-50 text-indigo-600 rounded-2xl p-3">
                         <i class="fas fa-user-plus text-xl"></i>
                     </div>
-                    <span class="text-xs font-bold text-indigo-500 bg-indigo-50 px-2 py-1 rounded-lg uppercase">Calon Siswa</span>
+<span class="text-xs font-bold text-indigo-500 bg-indigo-50 px-2 py-1 rounded-lg uppercase">Calon Siswa</span>
                 </div>
                 <div>
                     <div class="text-3xl font-black text-slate-800">{{ \App\Models\PpdbRegistration::count() }}</div>
-                    <div class="text-xs text-slate-400 mt-1 font-medium">Pendaftar PPDB tahun ini</div>
+                    <div class="text-xs text-slate-400 mt-1 font-medium">Pendaftar SPMB tahun ini</div>
                 </div>
             </div>
         </div>
@@ -77,16 +77,16 @@
             <!-- Kolom Kiri: Aktivitas Terkini -->
             <div class="lg:col-span-2 space-y-8">
                 
-                <!-- Tabel Pendaftar PPDB Terbaru -->
+                <!-- Tabel Pendaftar SPMB Terbaru -->
                 <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
                     <div class="p-6 border-b border-slate-50 flex justify-between items-center">
                         <div>
                             <h3 class="font-bold text-slate-800 flex items-center gap-2">
                                 <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
-                                Pendaftar PPDB Terbaru
+                                Pendaftar SPMB Terbaru
                             </h3>
                         </div>
-                        <a href="{{ route('ppdb_registrations.index') }}" class="text-xs font-bold text-blue-600 hover:text-blue-700">
+                        <a href="{{ route('spmb_registrations.index') }}" class="text-xs font-bold text-blue-600 hover:text-blue-700">
                             Lihat Semua <i class="fas fa-arrow-right ms-1"></i>
                         </a>
                     </div>
@@ -193,11 +193,11 @@
             <!-- Kolom Kanan: Status Sistem & Kontrol Cepat -->
             <div class="space-y-8">
                 
-                <!-- Card Status PPDB -->
+                <!-- Card Status SPMB -->
                 <div class="bg-slate-900 rounded-3xl shadow-xl p-6 text-white relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-600 rounded-full opacity-20 blur-2xl"></div>
                     <h3 class="font-bold text-sm text-slate-400 mb-6 flex items-center gap-2 uppercase tracking-widest">
-                        Status PPDB Saat Ini
+                        Status SPMB Saat Ini
                     </h3>
                     @php $activeBatch = \App\Models\PpdbBatch::where('is_active', true)->first(); @endphp
                     @if($activeBatch)
@@ -237,7 +237,7 @@
                                 <i class="fas fa-power-off text-2xl"></i>
                             </div>
                             <p class="text-slate-500 text-sm font-bold">Tidak ada gelombang aktif</p>
-                            <a href="{{ route(auth()->user()->role === 'administrator' ? 'admin.ppdb-batches.index' : 'officer.ppdb-batches.index') }}" class="inline-block mt-4 text-xs font-bold text-blue-500 hover:underline italic">Aktifkan Sekarang</a>
+                            <a href="{{ route(auth()->user()->role === 'administrator' ? 'admin.spmb-batches.index' : 'officer.spmb-batches.index') }}" class="inline-block mt-4 text-xs font-bold text-blue-500 hover:underline italic">Aktifkan Sekarang</a>
                         </div>
                     @endif
                 </div>
@@ -264,11 +264,11 @@
                             <span class="text-[10px] font-bold text-slate-600 uppercase">Pengumuman</span>
                         </a>
                         @endif
-                        <a href="{{ route('ppdb_registrations.index') }}" class="p-4 bg-slate-50 rounded-2xl hover:bg-indigo-50 transition group flex flex-col items-center text-center">
+                        <a href="{{ route('spmb_registrations.index') }}" class="p-4 bg-slate-50 rounded-2xl hover:bg-indigo-50 transition group flex flex-col items-center text-center">
                             <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-600 group-hover:text-indigo-600 transition mb-2">
                                 <i class="fas fa-address-book"></i>
                             </div>
-                            <span class="text-[10px] font-bold text-slate-600 uppercase">Data PPDB</span>
+                            <span class="text-[10px] font-bold text-slate-600 uppercase">Data SPMB</span>
                         </a>
                         <a href="/" target="_blank" class="p-4 bg-slate-50 rounded-2xl hover:bg-amber-50 transition group flex flex-col items-center text-center">
                             <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-600 group-hover:text-amber-600 transition mb-2">
