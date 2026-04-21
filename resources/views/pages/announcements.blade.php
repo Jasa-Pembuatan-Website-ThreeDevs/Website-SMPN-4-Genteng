@@ -2,11 +2,11 @@
     <div class="container">
         <div class="flex flex-col md:flex-row items-end justify-between mb-12 animate-on-scroll">
             <div class="section-title text-left mb-0">
-                <span class="text-red-500 font-bold tracking-wider uppercase text-sm mb-2 block">Pusat Informasi</span>
-                <h2 class="text-4xl font-bold mb-0">Pengumuman <span class="text-red-500">Terbaru</span></h2>
-                <div class="w-20 h-1 bg-red-500 mt-4 rounded-full"></div>
+                <span class="text-blue-500 font-bold tracking-wider uppercase text-sm mb-2 block">Pusat Informasi</span>
+                <h2 class="text-4xl font-bold mb-0">Pengumuman <span class="text-blue-500">Terbaru</span></h2>
+                <div class="w-20 h-1 bg-blue-500 mb-10 rounded-full"></div>
             </div>
-            <a href="{{ route('announcements.public.index') }}" class="text-red-500 font-bold flex items-center gap-2 hover:gap-3 transition-all mt-4 md:mt-0">
+            <a href="{{ route('announcements.public.index') }}" class="text-blue-500 font-bold flex items-center gap-2 hover:gap-3 transition-all mt-4 md:mt-0">
                 Lihat Semua <i class="fas fa-arrow-right"></i>
             </a>
         </div>
@@ -14,14 +14,14 @@
         @if($announcements->count() > 0)
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($announcements as $announcement)
-            <div class="group bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:border-red-200 hover:bg-white hover:shadow-2xl hover:shadow-red-500/10 transition-all duration-300 flex flex-col h-full animate-on-scroll">
+            <div class="group bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 hover:border-blue-200 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col h-full animate-on-scroll">
                 <a href="{{ route('announcements.public.show', $announcement) }}" class="block relative h-48 overflow-hidden">
                     @if($announcement->image)
                     <img src="{{ asset('storage/' . $announcement->image) }}" alt="{{ $announcement->title }}" 
                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     @else
-                    <div class="h-full bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center text-white">
+                    <div class="h-full bg-gradient-to-br from-blue-500 to-rose-600 flex items-center justify-center text-white">
                         <i class="fas fa-bullhorn text-5xl opacity-30 group-hover:scale-110 transition-transform duration-300"></i>
                     </div>
                     @endif
@@ -29,7 +29,7 @@
                 
                 <div class="p-6 flex flex-col flex-grow">
                     <div class="flex items-center gap-2 mb-4">
-                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">
+                        <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">
                             PENTING
                         </span>
                         <span class="text-slate-400 text-xs flex items-center gap-1">
@@ -38,7 +38,7 @@
                         </span>
                     </div>
                     
-                    <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-red-500 transition-colors line-clamp-2">
+                    <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-blue-500 transition-colors line-clamp-2">
                         <a href="{{ route('announcements.public.show', $announcement) }}">{{ $announcement->title }}</a>
                     </h3>
                     
@@ -49,7 +49,7 @@
                     <div class="pt-4 border-t border-slate-200/60 mt-auto">
                         <a href="{{ route('announcements.public.show', $announcement) }}" class="flex items-center text-slate-800 font-bold text-sm group/btn">
                             Baca Selengkapnya
-                            <div class="ml-2 w-8 h-8 rounded-full bg-slate-200 group-hover/btn:bg-red-500 group-hover/btn:text-white flex items-center justify-center transition-all duration-300">
+                            <div class="ml-2 w-8 h-8 rounded-full bg-slate-200 group-hover/btn:bg-blue-500 group-hover/btn:text-white flex items-center justify-center transition-all duration-300">
                                 <i class="fas fa-chevron-right text-[10px]"></i>
                             </div>
                         </a>

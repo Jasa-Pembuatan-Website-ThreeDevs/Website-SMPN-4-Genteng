@@ -2,7 +2,7 @@
     <div class="container">
         <div class="section-title animate-on-scroll">
             <span class="text-blue-600 font-bold tracking-wider uppercase text-sm mb-2 block">Informasi Terkini</span>
-            <h2 class="text-4xl font-bold mb-4">Berita & Kegiatan</h2>
+            <h2 class="text-4xl font-bold mb-4 py-2">Berita & Kegiatan</h2>
             <div class="w-24 h-1 bg-blue-600 mx-auto mb-6 rounded-full"></div>
             <p class="text-gray-600 max-w-2xl mx-auto">Pantau terus kegiatan terbaru, prestasi membanggakan, dan perkembangan terkini dari lingkungan SMPN 4 Genteng.</p>
         </div>
