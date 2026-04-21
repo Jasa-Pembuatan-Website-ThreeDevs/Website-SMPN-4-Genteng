@@ -80,7 +80,7 @@
             </div>
 
             <div class="footer-credits">
-                <p class="footer-credit-text">Created by RPL SMKS Muhammadiyah 1 Genteng</p>
+                <p class="footer-credit-text">Created by PPLG SMEMSA</p>
             </div>
         </div>
     </footer>
