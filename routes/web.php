@@ -32,9 +32,7 @@ Route::get('/visi-misi', function() {
     return view('pages.visimisi');
 });
 
-Route::get('/kepala-sekolah', function() {
-    return view('pages.kepala-sekolah');
-});
+Route::get('/kepala-sekolah', [App\Http\Controllers\KepalaSekolahController::class, 'publicShow']);
 
 Route::get('/uks', function () {
     $teamMembers = \App\Models\TeamMember::where('category', 'UKS')->orderBy('order')->get();
@@ -78,6 +76,7 @@ Route::middleware(['auth', 'administrator'])
         Route::resource('/ekstrakurikulers', EkstrakurikulerController::class);
         Route::resource('/announcements', AnnouncementController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
+        Route::resource('/kepala-sekolah', \App\Http\Controllers\KepalaSekolahController::class);
     });
 
 Route::middleware(['auth', 'teacher'])
@@ -96,6 +95,7 @@ Route::middleware(['auth', 'officer'])
         Route::resource('/posts', PostController::class);
         Route::resource('/spmb-batches', PpdbBatchController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
+        Route::resource('/kepala-sekolah', \App\Http\Controllers\KepalaSekolahController::class);
     });
 
 Route::resource('achievements', AchievementController::class);

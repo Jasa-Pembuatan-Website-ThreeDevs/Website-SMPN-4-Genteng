@@ -268,7 +268,7 @@
         <section class="page-header">
             <div class="container">
                 <h1>Kepala Sekolah</h1>
-                <p>Profil dan kepemimpinan Dr. Sukaryanto, S.Pd. sebagai Kepala SMPN 4 Genteng</p>
+                <p>Profil dan kepemimpinan {{ $kepalaSekolah->name ?? 'Dr. Sukaryanto, S.Pd.' }} sebagai Kepala SMPN 4 Genteng</p>
                 
                 <div class="breadcrumb">
                     <a href="/">Beranda</a>
@@ -285,54 +285,68 @@
                     <!-- Headmaster Profile -->
                     <div class="headmaster-profile animate-on-scroll">
                         <div class="headmaster-photo">
-                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Kepala Sekolah SMPN 4 Genteng">
+                            @if(isset($kepalaSekolah) && $kepalaSekolah->image)
+                                <img src="{{ asset('storage/' . $kepalaSekolah->image) }}" alt="Kepala Sekolah SMPN 4 Genteng">
+                            @else
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80" alt="Kepala Sekolah SMPN 4 Genteng">
+                            @endif
                         </div>
                         
-                        <h2 class="headmaster-name">Dr. Sukaryanto, S.Pd.</h2>
-                        <p class="headmaster-position">Kepala Sekolah SMPN 4 Genteng</p>
+                        <h2 class="headmaster-name">{{ $kepalaSekolah->name ?? 'Dr. Sukaryanto, S.Pd.' }}</h2>
+                        <p class="headmaster-position">{{ $kepalaSekolah->position ?? 'Kepala Sekolah SMPN 4 Genteng' }}</p>
                         
-                        <p style="color: var(--gray); margin-bottom: 20px;">Memimpin SMPN 4 Genteng sejak tahun 2018 dengan dedikasi tinggi untuk memajukan pendidikan di Kabupaten Banyuwangi.</p>
+                        <p style="color: var(--gray); margin-bottom: 20px;">
+                            {{ $kepalaSekolah->bio_short ?? 'Memimpin SMPN 4 Genteng sejak tahun 2018 dengan dedikasi tinggi untuk memajukan pendidikan di Kabupaten Banyuwangi.' }}
+                        </p>
                         
                         <div class="headmaster-details">
+                            @if(isset($kepalaSekolah->education) || !isset($kepalaSekolah))
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-graduation-cap"></i>
                                 </div>
                                 <div>
                                     <h4>Pendidikan</h4>
-                                    <p>S3 Pendidikan Universitas Negeri Malang</p>
+                                    <p>{{ $kepalaSekolah->education ?? 'S3 Pendidikan Universitas Negeri Malang' }}</p>
                                 </div>
                             </div>
+                            @endif
                             
+                            @if(isset($kepalaSekolah->certification) || !isset($kepalaSekolah))
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-award"></i>
                                 </div>
                                 <div>
                                     <h4>Sertifikasi</h4>
-                                    <p>Guru Berprestasi Nasional 2019</p>
+                                    <p>{{ $kepalaSekolah->certification ?? 'Guru Berprestasi Nasional 2019' }}</p>
                                 </div>
                             </div>
+                            @endif
                             
+                            @if(isset($kepalaSekolah->period) || !isset($kepalaSekolah))
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                                 <div>
                                     <h4>Masa Jabatan</h4>
-                                    <p>2018 - Sekarang (6 Tahun)</p>
+                                    <p>{{ $kepalaSekolah->period ?? '2018 - Sekarang' }}</p>
                                 </div>
                             </div>
+                            @endif
                             
+                            @if(isset($kepalaSekolah->email) || !isset($kepalaSekolah))
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div>
                                     <h4>Email</h4>
-                                    <p>kepsek@smpn4genteng.sch.id</p>
+                                    <p>{{ $kepalaSekolah->email ?? 'kepsek@smpn4genteng.sch.id' }}</p>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
                     
@@ -340,15 +354,24 @@
                     <div class="headmaster-bio animate-on-scroll">
                         <h2>Biografi & Kepemimpinan</h2>
                         
-                        <p>Dr. Sukaryanto, M.Pd. adalah seorang pendidik yang telah mendedikasikan hidupnya untuk dunia pendidikan selama lebih dari 25 tahun. Beliau memulai karir sebagai guru Matematika di SMPN 1 Genteng sebelum akhirnya dipercaya untuk memimpin SMPN 4 Genteng sejak tahun 2018.</p>
+                        @if(isset($kepalaSekolah->biography))
+                            <div class="prose max-w-none">
+                                {!! nl2br(e($kepalaSekolah->biography)) !!}
+                            </div>
+                        @else
+                            <p>Dr. Sukaryanto, M.Pd. adalah seorang pendidik yang telah mendedikasikan hidupnya untuk dunia pendidikan selama lebih dari 25 tahun. Beliau memulai karir sebagai guru Matematika di SMPN 1 Genteng sebelum akhirnya dipercaya untuk memimpin SMPN 4 Genteng sejak tahun 2018.</p>
+                            
+                            <p>Dengan latar belakang pendidikan S3 dari Universitas Negeri Malang, Dr. Suryadi membawa pendekatan inovatif dalam memimpin SMPN 4 Genteng. Visinya untuk mengintegrasikan teknologi dalam pembelajaran telah membawa transformasi signifikan dalam proses belajar mengajar di sekolah.</p>
+                        @endif
                         
-                        <p>Dengan latar belakang pendidikan S3 dari Universitas Negeri Malang, Dr. Suryadi membawa pendekatan inovatif dalam memimpin SMPN 4 Genteng. Visinya untuk mengintegrasikan teknologi dalam pembelajaran telah membawa transformasi signifikan dalam proses belajar mengajar di sekolah.</p>
-                        
+                        @if(isset($kepalaSekolah->quote) || !isset($kepalaSekolah))
                         <div class="headmaster-quote">
                             <i class="fas fa-quote-left"></i>
-                            "Pendidikan bukan hanya tentang transfer pengetahuan, tetapi tentang membentuk karakter, mengasah keterampilan, dan menyiapkan generasi muda untuk menghadapi tantangan masa depan dengan percaya diri."
+                            {{ $kepalaSekolah->quote ?? 'Pendidikan bukan hanya tentang transfer pengetahuan, tetapi tentang membentuk karakter, mengasah keterampilan, dan menyiapkan generasi muda untuk menghadapi tantangan masa depan dengan percaya diri.' }}
                         </div>
-                        
+                        @endif
+
+                        @if(!isset($kepalaSekolah))
                         <p>Di bawah kepemimpinannya, SMPN 4 Genteng telah meraih berbagai prestasi baik di tingkat kabupaten, provinsi, maupun nasional. Beliau juga aktif dalam berbagai organisasi pendidikan dan sering menjadi pembicara dalam seminar dan workshop pengembangan pendidikan.</p>
                         
                         <h3 style="margin-top: 40px; margin-bottom: 20px;">Pencapaian Kepemimpinan</h3>
@@ -391,6 +414,7 @@
                         <p>Dr. Sukaryanto percaya bahwa setiap siswa memiliki potensi unik yang perlu dikembangkan. Pendekatan pendidikannya berfokus pada pengembangan holistik yang mencakup aspek kognitif, afektif, dan psikomotorik. Beliau menekankan pentingnya pendidikan karakter yang seimbang dengan penguasaan akademik dan teknologi.</p>
                         
                         <p>Visi besarnya adalah menjadikan SMPN 4 Genteng sebagai sekolah rujukan di Kabupaten Banyuwangi yang menghasilkan lulusan yang tidak hanya pintar secara akademik tetapi juga berkarakter kuat, kreatif, dan mampu berkontribusi positif bagi masyarakat.</p>
+                        @endif
                     </div>
                 </div>
             </div>
