@@ -122,7 +122,7 @@ class KepalaSekolahController extends Controller
     public function publicShow()
     {
         $kepalaSekolah = KepalaSekolah::where('is_active', true)->first();
-        
+
         // If none active, get the latest one
         if (!$kepalaSekolah) {
             $kepalaSekolah = KepalaSekolah::latest()->first();

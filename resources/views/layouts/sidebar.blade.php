@@ -57,6 +57,10 @@
                         <i class="fas fa-user-tie w-5 text-purple-400/80"></i>
                         <span class="ms-3">Kepala Sekolah</span>
                     </x-sidebar-link>
+                    <x-sidebar-link :href="route('admin.teacher.index')" :active="request()->routeIs('admin.teacher.*')">
+                        <i class="fas fa-user-tie w-5 text-yellow-400/80"></i>
+                        <span class="ms-3">Guru/Karyawan</span>
+                    </x-sidebar-link>
                 @elseif(auth()->user()->role == 'teacher')
                     <x-sidebar-link :href="route('teacher.facilities.index')" :active="request()->routeIs('teacher.facilities.*')">
                         <i class="fas fa-building-columns w-5 text-amber-400/80"></i>
@@ -74,6 +78,10 @@
                     <x-sidebar-link :href="route('officer.kepala-sekolah.index')" :active="request()->routeIs('officer.kepala-sekolah.*')">
                         <i class="fas fa-user-tie w-5 text-purple-400/80"></i>
                         <span class="ms-3">Kepala Sekolah</span>
+                    </x-sidebar-link>
+                    <x-sidebar-link :href="route('officer.teacher.index')" :active="request()->routeIs('officer.kepala-sekolah.*')">
+                        <i class="fas fa-user-tie w-5 text-yellow-400/80"></i>
+                        <span class="ms-3">Guru/Karyawan</span>
                     </x-sidebar-link>
                 @endif
             </div>

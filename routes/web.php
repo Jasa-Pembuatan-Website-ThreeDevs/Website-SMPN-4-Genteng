@@ -77,6 +77,7 @@ Route::middleware(['auth', 'administrator'])
         Route::resource('/announcements', AnnouncementController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
         Route::resource('/kepala-sekolah', \App\Http\Controllers\KepalaSekolahController::class);
+        Route::resource('/teacher', \App\Http\Controllers\TeacherController::class);
     });
 
 Route::middleware(['auth', 'teacher'])
