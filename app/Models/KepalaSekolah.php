@@ -11,6 +11,7 @@ class KepalaSekolah extends Model
 
     protected $fillable = [
         'name',
+        'major',
         'position',
         'image',
         'bio_short',

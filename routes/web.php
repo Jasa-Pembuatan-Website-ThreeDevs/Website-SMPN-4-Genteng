@@ -87,6 +87,7 @@ Route::middleware(['auth', 'teacher'])
         Route::resource('/facilities', FacilityController::class);
         Route::resource('/achievements', AchievementController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
+        Route::resource('/teacher', \App\Http\Controllers\TeacherController::class);
     });
 
 Route::middleware(['auth', 'officer'])
@@ -97,6 +98,7 @@ Route::middleware(['auth', 'officer'])
         Route::resource('/spmb-batches', PpdbBatchController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
         Route::resource('/kepala-sekolah', \App\Http\Controllers\KepalaSekolahController::class);
+        Route::resource('/teacher', \App\Http\Controllers\TeacherController::class);
     });
 
 Route::resource('achievements', AchievementController::class);
@@ -106,6 +108,8 @@ Route::get('/fasilitas', [FacilityController::class, 'publicIndex'])->name('faci
 
 Route::get('/pengumuman', [AnnouncementController::class, 'publicIndex'])->name('announcements.public.index');
 Route::get('/pengumuman/{announcement}', [AnnouncementController::class, 'publicShow'])->name('announcements.public.show');
+
+Route::get('/guru', [App\Http\Controllers\TeacherController::class, 'publicIndex'])->name('teachers.index');
 
 Route::get('/berita', [PostController::class, 'publicIndex'])->name('posts.public.index');
 Route::get('/berita/{post:slug}', [PostController::class, 'show'])->name('posts.public.show');

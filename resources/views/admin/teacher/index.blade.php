@@ -30,9 +30,11 @@
                         <tr class="bg-slate-50 border-b">
                             <th class="px-6 py-3">Foto</th>
                             <th class="px-6 py-3">Nama</th>
+                            <th class="px-6 py-3">NIP</th>
                             <th class="px-6 py-3">Email</th>
                             <th class="px-6 py-3">No HP</th>
                             <th class="px-6 py-3">Mata Pelajaran</th>
+                            <th class="px-6 py-3">Deskripsi</th>
                             <th class="px-6 py-3 text-right">Aksi</th>
                         </tr>
                     </thead>
@@ -55,6 +57,10 @@
                                 </td>
 
                                 <td class="px-6 py-3">
+                                    {{ $teacher->nip ?? '-' }}
+                                </td>
+
+                                <td class="px-6 py-3">
                                     {{ $teacher->email ?? '-' }}
                                 </td>
 
@@ -64,6 +70,10 @@
 
                                 <td class="px-6 py-3">
                                     {{ $teacher->subject_specialization }}
+                                </td>
+
+                                <td class="px-6 py-3">
+                                    <span class="text-xs text-slate-500 line-clamp-1">{{ $teacher->description ?? '-' }}</span>
                                 </td>
 
                                 <td class="px-6 py-3 text-right">

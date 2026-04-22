@@ -28,6 +28,7 @@
                 <thead>
                     <tr class="bg-slate-50/50 border-b border-slate-200">
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Nama</th>
+                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Jurusan</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Masa Jabatan</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Status</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600 text-right">Aksi</th>
@@ -45,6 +46,9 @@
                             </div>
                             @endif
                             <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-700 transition-colors">{{ $ks->name }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-sm text-slate-600">{{ $ks->major ?? '-' }}</span>
                         </td>
                         <td class="px-6 py-4">
                             <span class="text-sm text-slate-600">{{ $ks->period }}</span>

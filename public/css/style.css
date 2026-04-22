@@ -238,7 +238,6 @@ img {
   width: 60px;
   height: 60px;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
 }
 
 .logo-text h1 {
@@ -2081,4 +2080,105 @@ img {
 #ppdb-hero-section .bg-white\/10 {
   background-color: rgba(255, 255, 255, 0.1);
   /* Re-apply the translucent white */
+}
+
+/* Floating WhatsApp Button */
+.floating-wa {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.floating-wa:hover {
+    transform: scale(1.1);
+    background: #128c7e;
+    color: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .floating-wa {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+}
+
+/* Footer Map */
+.footer-map {
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+/* Enhanced Footer Map */
+.footer-map-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+}
+
+.footer-map-container:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.footer-map-container iframe {
+    display: block;
+    border-radius: 10px;
+    filter: grayscale(0.2) contrast(1.1);
+    transition: all 0.3s ease;
+}
+
+.footer-map-container:hover iframe {
+    filter: grayscale(0);
+}
+
+.map-overlay-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    color: var(--white);
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.map-overlay-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+/* Ensure footer grid is balanced on large screens */
+@media (min-width: 1200px) {
+    .footer-top {
+        grid-template-columns: 1.5fr 0.8fr 1.2fr 1.5fr;
+    }
 }

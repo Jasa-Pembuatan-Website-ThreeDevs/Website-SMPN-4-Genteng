@@ -295,6 +295,10 @@
                         <h2 class="headmaster-name">{{ $kepalaSekolah->name ?? 'Dr. Sukaryanto, S.Pd.' }}</h2>
                         <p class="headmaster-position">{{ $kepalaSekolah->position ?? 'Kepala Sekolah SMPN 4 Genteng' }}</p>
                         
+                        @if(isset($kepalaSekolah->major))
+                        <p class="text-sm font-medium text-blue-600 mb-4">Jurusan: {{ $kepalaSekolah->major }}</p>
+                        @endif
+                        
                         <p style="color: var(--gray); margin-bottom: 20px;">
                             {{ $kepalaSekolah->bio_short ?? 'Memimpin SMPN 4 Genteng sejak tahun 2018 dengan dedikasi tinggi untuk memajukan pendidikan di Kabupaten Banyuwangi.' }}
                         </p>

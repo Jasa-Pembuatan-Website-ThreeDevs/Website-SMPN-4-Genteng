@@ -17,21 +17,37 @@
             @method('PUT')
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap</label>
-                    <input type="text" name="full_name" value="{{ old('full_name', $teacher->full_name) }}"
-                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('full_name') border-red-500 @enderror"
-                        required>
-                    @error('full_name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap & Gelar</label>
+                        <input type="text" name="full_name" value="{{ old('full_name', $teacher->full_name) }}"
+                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('full_name') border-red-500 @enderror"
+                            required>
+                        @error('full_name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
 
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Mata Pelajaran</label>
-                    <input type="text" name="subject_specialization" value="{{ old('subject_specialization', $teacher->subject_specialization) }}"
-                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('subject_specialization') border-red-500 @enderror"
-                        required>
-                    @error('subject_specialization') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">NIP</label>
+                        <input type="text" name="nip" value="{{ old('nip', $teacher->nip) }}"
+                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('nip') border-red-500 @enderror"
+                            placeholder="Contoh: 19800101 200501 1 001">
+                        @error('nip') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Mata Pelajaran (Mapel)</label>
+                        <input type="text" name="subject_specialization" value="{{ old('subject_specialization', $teacher->subject_specialization) }}"
+                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('subject_specialization') border-red-500 @enderror"
+                            required>
+                        @error('subject_specialization') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                    </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi Guru</label>
+                <textarea name="description" rows="4"
+                    class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('description') border-red-500 @enderror"
+                    placeholder="Contoh: Deskripsi singkat tentang profil guru...">{{ old('description', $teacher->description) }}</textarea>
+                @error('description') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div>
