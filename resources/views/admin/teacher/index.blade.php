@@ -88,7 +88,7 @@
                                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                         </div>
-                                        <p class="text-slate-500 font-medium">Belum ada data kepala sekolah.</p>
+                                        <p class="text-slate-500 font-medium">Belum ada data guru atau karyawan.</p>
                                     </div>
                                 </td>
                             </tr>
