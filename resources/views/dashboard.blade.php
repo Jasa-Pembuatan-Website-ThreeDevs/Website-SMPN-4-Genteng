@@ -13,7 +13,7 @@
 
 <div class="py-10 bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-[80vh]">
     <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <!-- Statistik Utama -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             <!-- Total Berita -->
@@ -39,7 +39,7 @@
                     <span class="text-xs font-bold text-emerald-500 bg-emerald-50 px-2 py-1 rounded-lg uppercase">Tenaga Pendidik</span>
                 </div>
                 <div>
-                    <div class="text-3xl font-black text-slate-800">{{ \App\Models\User::where('role','teacher')->count() }}</div>
+                    <div class="text-3xl font-black text-slate-800">{{ \App\Models\Teacher::all()->count() }}</div>
                     <div class="text-xs text-slate-400 mt-1 font-medium">Guru aktif saat ini</div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Kolom Kiri: Aktivitas Terkini -->
             <div class="lg:col-span-2 space-y-8">
-                
+
                 <!-- Tabel Pendaftar SPMB Terbaru -->
                 <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
                     <div class="p-6 border-b border-slate-50 flex justify-between items-center">
@@ -192,7 +192,7 @@
 
             <!-- Kolom Kanan: Status Sistem & Kontrol Cepat -->
             <div class="space-y-8">
-                
+
                 <!-- Card Status SPMB -->
                 <div class="bg-slate-900 rounded-3xl shadow-xl p-6 text-white relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 w-24 h-24 bg-blue-600 rounded-full opacity-20 blur-2xl"></div>
@@ -204,7 +204,7 @@
                         <div class="relative z-10">
                             <div class="text-2xl font-black text-blue-400 mb-1">{{ $activeBatch->name }}</div>
                             <div class="text-xs text-slate-400 mb-6">Berakhir: {{ $activeBatch->end_date ? $activeBatch->end_date->format('d M Y') : '-' }}</div>
-                            
+
                             <div class="space-y-3">
                                 <div class="flex justify-between text-xs mb-1">
                                     <span class="text-slate-400">Progress Waktu</span>

@@ -6,13 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="@yield('title', 'Website Sekolah SMP NEGERI 4 GENTENG')">
-    <meta property="og:description" content="@yield('description', 'Website resmi sekolah')">
-    <meta property="og:image" content="@yield('image', asset('images/default.jpg'))">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:type" content="website">
-
     <title>{{ ucfirst(Auth::user()->role) }} - SMPN 4 Genteng</title>
 
     <link rel="preconnect" href="https://fonts.bunny.net">

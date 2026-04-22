@@ -4,6 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SMP Negeri 4 Genteng - Sekolah Unggul & Berprestasi">
+    <meta property="og:description"
+        content="Website resmi SMP Negeri 4 Genteng. Informasi sekolah, guru, fasilitas, dan prestasi terbaru.">
+    <meta property="og:image" content="{{ asset('smpn4genteng.webp') }}">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:type" content="website">
+
     <title>SMPN 4 Genteng | Sekolah Berprestasi & Berkarakter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
