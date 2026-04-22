@@ -23,6 +23,14 @@
                 </div>
 
                 <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jurusan (Opsional)</label>
+                    <input type="text" name="major" value="{{ old('major') }}" 
+                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('major') border-red-500 @enderror" 
+                        placeholder="Contoh: Pendidikan Matematika">
+                    @error('major') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+
+                <div>
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Jabatan</label>
                     <input type="text" name="position" value="{{ old('position', 'Kepala Sekolah SMPN 4 Genteng') }}" 
                         class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('position') border-red-500 @enderror" 

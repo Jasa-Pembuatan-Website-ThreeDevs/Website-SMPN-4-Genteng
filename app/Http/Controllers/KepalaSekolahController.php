@@ -32,6 +32,7 @@ class KepalaSekolahController extends Controller
     {
         $data = $request->validate([
             'name'          => 'required|string|max:255',
+            'major'         => 'nullable|string|max:255',
             'position'      => 'required|string|max:255',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'bio_short'     => 'nullable|string',
@@ -76,6 +77,7 @@ class KepalaSekolahController extends Controller
     {
         $data = $request->validate([
             'name'          => 'required|string|max:255',
+            'major'         => 'nullable|string|max:255',
             'position'      => 'required|string|max:255',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'bio_short'     => 'nullable|string',

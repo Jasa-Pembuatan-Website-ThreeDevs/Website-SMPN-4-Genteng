@@ -26,6 +26,7 @@
           <ul class="dropdown">
             <li><a href="/kepala-sekolah" class="dropdown-item">Kepala Sekolah</a></li>
             <li><a href="/visi-misi" class="dropdown-item">Visi & Misi</a></li>
+            <li><a href="{{ route('teachers.index') }}" class="dropdown-item">Guru & Staf</a></li>
             <li><a href="/#facilities" class="dropdown-item">Fasilitas</a></li>
             <li><a href="/#contact" class="dropdown-item">Kontak Kami</a></li>
           </ul>

@@ -17,6 +17,12 @@ class TeacherController extends Controller
         return view('admin.teacher.index', compact('teachers'));
     }
 
+    public function publicIndex()
+    {
+        $teachers = Teacher::orderBy('full_name')->get();
+        return view('pages.teachers', compact('teachers'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -33,9 +39,11 @@ class TeacherController extends Controller
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'full_name' => 'required|string|max:255',
+            'nip' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255|unique:teachers,email',
             'phone_number' => 'nullable|string|max:20',
             'subject_specialization' => 'required|string|max:100',
+            'description' => 'nullable|string',
         ]);
 
         if ($request->hasFile('image')) {
@@ -78,9 +86,11 @@ class TeacherController extends Controller
         $validated = $request->validate([
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'full_name' => 'required|string|max:255',
+            'nip' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255|unique:teachers,email,' . $teacher->id,
             'phone_number' => 'nullable|string|max:20',
             'subject_specialization' => 'required|string|max:100',
+            'description' => 'nullable|string',
         ]);
 
         if ($request->hasFile('image')) {

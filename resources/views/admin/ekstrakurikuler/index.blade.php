@@ -1,96 +1,76 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-700">Manajemen Ekstrakurikuler</h1>
-        @if(auth()->user()->role == 'administrator')
-        <a href="{{ route('admin.ekstrakurikulers.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center gap-2 shadow">
-            <i class="fas fa-plus-circle"></i>
+<div class="max-w-6xl mx-auto p-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+        <div>
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Manajemen Ekstrakurikuler</h2>
+            <p class="text-slate-500 text-sm">Kelola kegiatan ekstrakurikuler sekolah.</p>
+        </div>
+        <a href="{{ route('admin.ekstrakurikulers.create') }}" class="inline-flex items-center justify-center w-fit p-2 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm hover:shadow-blue-200">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             Tambah Ekstrakurikuler
         </a>
-        @endif
     </div>
 
     @if(session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-            <strong class="font-bold">Sukses!</strong>
-            <span class="block sm:inline">{{ session('success') }}</span>
-        </div>
+    <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg text-sm">
+        {{ session('success') }}
+    </div>
     @endif
 
-    <div class="bg-white shadow-md rounded-lg overflow-hidden">
-        <table class="min-w-full leading-normal">
-            <thead>
-                <tr>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Nama Ekstrakurikuler
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Deskripsi
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Pembina
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Jumlah Siswa
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Gambar
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Aksi
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($ekstrakurikuler as $ekskul)
-                    <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">{{ $ekskul->name }}</p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 line-clamp-2">{{ $ekskul->description }}</p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">{{ $ekskul->teacher ? $ekskul->teacher->name : 'N/A' }}</p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <p class="text-gray-900 whitespace-no-wrap">{{ $ekskul->student_count }} Siswa</p>
-                        </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            @if ($ekskul->image)
-                                <img src="{{ Storage::url($ekskul->image) }}" alt="{{ $ekskul->name }}" class="h-10 w-10 object-cover rounded">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-slate-50/50 border-b border-slate-200">
+                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Nama Ekskul</th>
+                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Pembina</th>
+                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Jumlah Siswa</th>
+                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600 text-right">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    @forelse($ekstrakurikulers as $ekskul)
+                    <tr class="group hover:bg-blue-50/40 transition-colors duration-150">
+                        <td class="px-6 py-4 flex items-center">
+                            @if($ekskul->image)
+                            <img src="{{ asset('storage/' . $ekskul->image) }}" class="w-10 h-10 rounded-lg object-cover mr-3 border border-slate-200">
                             @else
-                                <span class="text-gray-400">Tidak ada gambar</span>
+                            <div class="w-10 h-10 rounded-lg bg-slate-200 flex items-center justify-center mr-3">
+                                <i class="fas fa-users text-slate-400"></i>
+                            </div>
                             @endif
+                            <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-700 transition-colors">{{ $ekskul->name }}</span>
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <div class="flex items-center">
-                                <a href="{{ route('admin.ekstrakurikulers.edit', $ekskul) }}" class="text-indigo-600 hover:text-indigo-900 mr-4 flex items-center gap-1">
-                                    <i class="fas fa-edit"></i>
-                                    Edit
-                                </a>
-                                <form action="{{ route('admin.ekstrakurikulers.destroy', $ekskul) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus ekstrakurikuler ini?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-900 flex items-center gap-1">
-                                        <i class="fas fa-trash-alt"></i>
+                        <td class="px-6 py-4">
+                            <span class="text-sm text-slate-600">{{ $ekskul->teacher->name ?? '-' }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-sm text-slate-600">{{ $ekskul->student_count }} Siswa</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end items-center space-x-4">
+                                <a href="{{ route('admin.ekstrakurikulers.edit', $ekskul->id) }}" class="text-sm font-medium text-slate-400 hover:text-blue-600 transition-colors">Edit</a>
+                                <form action="{{ route('admin.ekstrakurikulers.destroy', $ekskul->id) }}" method="POST" onsubmit="return confirm('Hapus ekstrakurikuler ini?')">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="text-sm font-medium text-slate-400 hover:text-red-600 transition-colors">
                                         Hapus
                                     </button>
                                 </form>
                             </div>
                         </td>
                     </tr>
-                @empty
+                    @empty
                     <tr>
-                        <td colspan="6" class="text-center py-10">
-                            <p class="text-gray-500">Belum ada data ekstrakurikuler.</p>
+                        <td colspan="4" class="px-6 py-12 text-center text-slate-500">
+                            Belum ada data ekstrakurikuler.
                         </td>
                     </tr>
-                @endforelse
-            </tbody>
-        </table>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection
