@@ -66,7 +66,7 @@
     @include('components.footer')
 
     <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 transform translate-y-20 opacity-0 z-50 hover:bg-blue-700 hover:scale-110 focus:outline-none">
+    <button id="scrollToTopBtn" class="fixed bottom-28 right-10 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 transform translate-y-20 opacity-0 z-50 hover:bg-blue-700 hover:scale-110 focus:outline-none">
         <i class="fas fa-chevron-up"></i>
     </button>
 

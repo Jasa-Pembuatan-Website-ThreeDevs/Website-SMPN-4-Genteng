@@ -41,10 +41,10 @@
                     <tbody class="divide-y">
                         @forelse($teachers as $teacher)
                             <tr class="hover:bg-slate-50 transition">
-                                <td class="px-6 py-3">
+                                <td class="px-3 py-3 flex items-center justify-center">
                                     @if ($teacher->image)
                                         <img src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->full_name }}"
-                                            class="w-10 h-10 rounded-full object-cover"/>
+                                            class="aspect-square h-10 rounded-full object-cover"/>
                                     @else
                                         <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center">
                                             <i class="fas fa-user text-slate-400"></i>
