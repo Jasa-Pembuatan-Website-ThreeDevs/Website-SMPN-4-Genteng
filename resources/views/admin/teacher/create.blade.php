@@ -85,28 +85,6 @@
                     @enderror
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
-                        <input type="email" name="email" value="{{ old('email') }}"
-                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('email') border-red-500 @enderror"
-                            placeholder="Contoh: guru@sekolah.sch.id">
-                        @error('email')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Nomor HP</label>
-                        <input type="text" name="phone_number" value="{{ old('phone_number') }}"
-                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('phone_number') border-red-500 @enderror"
-                            placeholder="Contoh: 08123456789">
-                        @error('phone_number')
-                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
                 <div class="flex gap-5 justify-end items-center pt-6 border-t border-slate-200">
                     <a href="{{ route($routePrefix . '.teacher.index') }}"
                         class="text-slate-500 font-medium hover:text-slate-700">Batal</a>

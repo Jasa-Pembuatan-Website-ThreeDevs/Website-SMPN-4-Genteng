@@ -231,25 +231,6 @@
                                             "{{ $teacher->description }}"
                                         </p>
                                     @endif
-                                    
-                                    <div class="teacher-contact">
-                                        @if($teacher->email)
-                                            <a href="mailto:{{ $teacher->email }}" class="contact-icon" title="Email">
-                                                <i class="fas fa-envelope"></i>
-                                            </a>
-                                        @endif
-                                        @if($teacher->phone_number)
-                                            @php
-                                                $whatsapp = preg_replace('/[^0-9]/', '', $teacher->phone_number);
-                                                if (str_starts_with($whatsapp, '0')) {
-                                                    $whatsapp = '62' . substr($whatsapp, 1);
-                                                }
-                                            @endphp
-                                            <a href="https://wa.me/{{ $whatsapp }}" target="_blank" class="contact-icon" title="WhatsApp">
-                                                <i class="fab fa-whatsapp"></i>
-                                            </a>
-                                        @endif
-                                    </div>
                                 </div>
                             </div>
                         @endforeach

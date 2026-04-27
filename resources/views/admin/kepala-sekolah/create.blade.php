@@ -13,7 +13,7 @@
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
+                <div class="md:col-span-2">
                     <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap & Gelar</label>
                     <input type="text" name="name" value="{{ old('name') }}" 
                         class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('name') border-red-500 @enderror" 
@@ -23,7 +23,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jurusan (Opsional)</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jurusan</label>
                     <input type="text" name="major" value="{{ old('major') }}" 
                         class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('major') border-red-500 @enderror" 
                         placeholder="Contoh: Pendidikan Matematika">
@@ -66,54 +66,57 @@
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi Singkat (Samping Foto)</label>
-                <textarea name="bio_short" rows="3" 
-                    class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
-                    placeholder="Contoh: Memimpin SMPN 4 Genteng sejak tahun 2018...">{{ old('bio_short') }}</textarea>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Pendidikan Terakhir</label>
-                    <input type="text" name="education" value="{{ old('education') }}" 
-                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
-                        placeholder="Contoh: S3 Pendidikan Universitas Negeri Malang">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Sertifikasi/Prestasi</label>
-                    <input type="text" name="certification" value="{{ old('certification') }}" 
-                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
-                        placeholder="Contoh: Guru Berprestasi Nasional 2019">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Masa Jabatan</label>
-                    <input type="text" name="period" value="{{ old('period') }}" 
-                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
-                        placeholder="Contoh: 2018 - Sekarang">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}" 
-                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
-                        placeholder="Contoh: kepsek@smpn4genteng.sch.id">
-                </div>
-            </div>
-
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Biografi Lengkap</label>
-                <textarea name="biography" rows="6" 
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Biografi</label>
+                <textarea name="biography" rows="8" 
                     class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
                     placeholder="Tulis biografi lengkap di sini...">{{ old('biography') }}</textarea>
             </div>
 
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Quote / Kata Mutiara</label>
-                <textarea name="quote" rows="3" 
-                    class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
-                    placeholder="Contoh: Pendidikan bukan hanya tentang transfer pengetahuan...">{{ old('quote') }}</textarea>
+            <div class="pt-4">
+                <button type="button" onclick="document.getElementById('extra-fields').classList.toggle('hidden')" class="text-blue-600 font-medium text-sm flex items-center gap-2">
+                    <i class="fas fa-plus-circle"></i> Tampilkan Informasi Tambahan (Opsional)
+                </button>
+            </div>
+
+            <div id="extra-fields" class="hidden space-y-6 bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Deskripsi Singkat</label>
+                    <textarea name="bio_short" rows="2" 
+                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition" 
+                        placeholder="Deskripsi singkat">{{ old('bio_short') }}</textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Pendidikan Terakhir</label>
+                        <input type="text" name="education" value="{{ old('education') }}" 
+                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Sertifikasi/Prestasi</label>
+                        <input type="text" name="certification" value="{{ old('certification') }}" 
+                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Masa Jabatan</label>
+                        <input type="text" name="period" value="{{ old('period') }}" 
+                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                        <input type="email" name="email" value="{{ old('email') }}" 
+                            class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Quote</label>
+                    <textarea name="quote" rows="2" 
+                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition">{{ old('quote') }}</textarea>
+                </div>
             </div>
 
             <div>
@@ -121,7 +124,6 @@
                     <input type="checkbox" name="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }} class="w-5 h-5">
                     <span class="text-slate-700 font-semibold">Aktifkan profil ini</span>
                 </label>
-                <p class="text-xs text-slate-500 mt-1">Jika diaktifkan, profil lain akan otomatis dinonaktifkan.</p>
             </div>
 
             <div class="flex gap-5 justify-end items-center pt-6 border-t border-slate-200">

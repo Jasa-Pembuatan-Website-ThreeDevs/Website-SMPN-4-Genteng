@@ -12,13 +12,6 @@ class Ekstrakurikuler extends Model
     protected $fillable = [
         'name',
         'description',
-        'student_count',
-        'teacher_id',
         'image',
     ];
-
-    public function teacher()
-    {
-        return $this->belongsTo(User::class, 'teacher_id');
-    }
 }

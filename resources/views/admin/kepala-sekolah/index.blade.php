@@ -27,9 +27,10 @@
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-slate-50/50 border-b border-slate-200">
+                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Foto</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Nama</th>
-                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Jurusan</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Masa Jabatan</th>
+                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Pendidikan</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Status</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600 text-right">Aksi</th>
                     </tr>
@@ -37,21 +38,26 @@
                 <tbody class="divide-y divide-slate-100">
                     @forelse($kepalaSekolahs as $ks)
                     <tr class="group hover:bg-blue-50/40 transition-colors duration-150">
-                        <td class="px-6 py-4 flex items-center">
+                        <td class="px-6 py-4">
                             @if($ks->image)
-                            <img src="{{ asset('storage/' . $ks->image) }}" class="w-10 h-10 rounded-full object-cover mr-3 border border-slate-200">
+                            <img src="{{ asset('storage/' . $ks->image) }}" class="w-12 h-12 rounded-lg object-cover border border-slate-200 shadow-sm">
                             @else
-                            <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center mr-3">
+                            <div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center border border-slate-200">
                                 <i class="fas fa-user text-slate-400"></i>
                             </div>
                             @endif
-                            <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-700 transition-colors">{{ $ks->name }}</span>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="text-sm text-slate-600">{{ $ks->major ?? '-' }}</span>
+                            <div class="flex flex-col">
+                                <span class="text-sm font-semibold text-slate-700 group-hover:text-blue-700 transition-colors">{{ $ks->name }}</span>
+                                <span class="text-xs text-slate-500">{{ $ks->position }}</span>
+                            </div>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="text-sm text-slate-600">{{ $ks->period }}</span>
+                            <span class="text-sm text-slate-600">{{ $ks->period ?? '-' }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-sm text-slate-600">{{ $ks->education ?? '-' }}</span>
                         </td>
                         <td class="px-6 py-4">
                             @if($ks->is_active)
@@ -78,7 +84,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="px-6 py-12 text-center">
+                        <td colspan="6" class="px-6 py-12 text-center">
                             <div class="flex flex-col items-center">
                                 <div class="p-3 bg-slate-100 rounded-full mb-3">
                                     <svg class="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>

@@ -76,20 +76,6 @@
                 @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
-                <input type="email" name="email" value="{{ old('email', $teacher->email) }}"
-                    class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('email') border-red-500 @enderror">
-                @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Nomor HP</label>
-                <input type="text" name="phone_number" value="{{ old('phone_number', $teacher->phone_number) }}"
-                    class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('phone_number') border-red-500 @enderror">
-                @error('phone_number') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
-
             <div class="flex gap-5 justify-end items-center pt-6 border-t border-slate-200">
                 <a href="{{ route($routePrefix . '.teacher.index') }}" class="text-slate-500 font-medium hover:text-slate-700">Batal</a>
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold transition shadow-lg shadow-blue-100">

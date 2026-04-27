@@ -15,7 +15,7 @@ class EkstrakurikulerController extends Controller
      */
     public function index()
     {
-        $ekstrakurikuler = Ekstrakurikuler::with('teacher')->latest()->get();
+        $ekstrakurikuler = Ekstrakurikuler::latest()->get();
         return view('admin.ekstrakurikuler.index', compact('ekstrakurikuler'));
     }
 
@@ -24,8 +24,7 @@ class EkstrakurikulerController extends Controller
      */
     public function create()
     {
-        $teachers = User::where('role', 'teacher')->get(); // Assuming 'teacher' role exists
-        return view('admin.ekstrakurikuler.create', compact('teachers'));
+        return view('admin.ekstrakurikuler.create');
     }
 
     /**
@@ -36,8 +35,6 @@ class EkstrakurikulerController extends Controller
         $request->validate([
             'name'          => 'required|string|max:255',
             'description'   => 'nullable|string',
-            'student_count' => 'nullable|integer|min:0',
-            'teacher_id'    => 'nullable|exists:users,id',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -49,8 +46,6 @@ class EkstrakurikulerController extends Controller
         Ekstrakurikuler::create([
             'name'          => $request->name,
             'description'   => $request->description,
-            'student_count' => $request->student_count ?? 0,
-            'teacher_id'    => $request->teacher_id,
             'image'         => $imagePath,
         ]);
 
@@ -63,8 +58,7 @@ class EkstrakurikulerController extends Controller
      */
     public function edit(Ekstrakurikuler $ekstrakurikuler)
     {
-        $teachers = User::where('role', 'teacher')->get();
-        return view('admin.ekstrakurikuler.edit', compact('ekstrakurikuler', 'teachers'));
+        return view('admin.ekstrakurikuler.edit', compact('ekstrakurikuler'));
     }
 
     /**
@@ -75,8 +69,6 @@ class EkstrakurikulerController extends Controller
         $request->validate([
             'name'          => 'required|string|max:255',
             'description'   => 'nullable|string',
-            'student_count' => 'nullable|integer|min:0',
-            'teacher_id'    => 'nullable|exists:users,id',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -84,22 +76,14 @@ class EkstrakurikulerController extends Controller
         if ($request->hasFile('image')) {
             // Delete old image if exists
             if ($ekstrakurikuler->image) {
-                Storage::disk('public')->delete($ekstrakurikuler->image);
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($ekstrakurikuler->image);
             }
             $imagePath = $request->file('image')->store('ekstrakurikuler_images', 'public');
-        } elseif ($request->input('remove_image')) {
-            // Remove image if checkbox is checked
-            if ($ekstrakurikuler->image) {
-                Storage::disk('public')->delete($ekstrakurikuler->image);
-            }
-            $imagePath = null;
         }
 
         $ekstrakurikuler->update([
             'name'          => $request->name,
             'description'   => $request->description,
-            'student_count' => $request->student_count ?? 0,
-            'teacher_id'    => $request->teacher_id,
             'image'         => $imagePath,
         ]);
 
@@ -113,11 +97,11 @@ class EkstrakurikulerController extends Controller
     public function destroy(Ekstrakurikuler $ekstrakurikuler)
     {
         if ($ekstrakurikuler->image) {
-            Storage::disk('public')->delete($ekstrakurikuler->image);
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($ekstrakurikuler->image);
         }
         $ekstrakurikuler->delete();
 
-        return redirect()->route('admin.ekstrakurikuler.index')
+        return redirect()->route('admin.ekstrakurikulers.index')
             ->with('success', 'Ekstrakurikuler berhasil dihapus.');
     }
 

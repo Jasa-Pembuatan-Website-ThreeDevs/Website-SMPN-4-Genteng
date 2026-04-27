@@ -40,8 +40,6 @@ class TeacherController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'full_name' => 'required|string|max:255',
             'nip' => 'nullable|string|max:50',
-            'email' => 'nullable|email|max:255|unique:teachers,email',
-            'phone_number' => 'nullable|string|max:20',
             'subject_specialization' => 'required|string|max:100',
             'description' => 'nullable|string',
         ]);
@@ -87,8 +85,6 @@ class TeacherController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'full_name' => 'required|string|max:255',
             'nip' => 'nullable|string|max:50',
-            'email' => 'nullable|email|max:255|unique:teachers,email,' . $teacher->id,
-            'phone_number' => 'nullable|string|max:20',
             'subject_specialization' => 'required|string|max:100',
             'description' => 'nullable|string',
         ]);

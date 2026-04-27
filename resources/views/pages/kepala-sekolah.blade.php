@@ -268,7 +268,7 @@
         <section class="page-header">
             <div class="container">
                 <h1>Kepala Sekolah</h1>
-                <p>Profil dan kepemimpinan {{ $kepalaSekolah->name ?? 'Dr. Sukaryanto, S.Pd.' }} sebagai Kepala SMPN 4 Genteng</p>
+                <p>Profil dan kepemimpinan {{ $kepalaSekolah->name ?? 'Kepala Sekolah' }} di SMPN 4 Genteng</p>
                 
                 <div class="breadcrumb">
                     <a href="/">Beranda</a>
@@ -295,59 +295,105 @@
                         <h2 class="headmaster-name">{{ $kepalaSekolah->name ?? 'Dr. Sukaryanto, S.Pd.' }}</h2>
                         <p class="headmaster-position">{{ $kepalaSekolah->position ?? 'Kepala Sekolah SMPN 4 Genteng' }}</p>
                         
-                        @if(isset($kepalaSekolah->major))
+                        @if(isset($kepalaSekolah) && $kepalaSekolah->major)
                         <p class="text-sm font-medium text-blue-600 mb-4">Jurusan: {{ $kepalaSekolah->major }}</p>
                         @endif
                         
+                        @if(isset($kepalaSekolah) && $kepalaSekolah->bio_short)
                         <p style="color: var(--gray); margin-bottom: 20px;">
-                            {{ $kepalaSekolah->bio_short ?? 'Memimpin SMPN 4 Genteng sejak tahun 2018 dengan dedikasi tinggi untuk memajukan pendidikan di Kabupaten Banyuwangi.' }}
+                            {{ $kepalaSekolah->bio_short }}
                         </p>
+                        @elseif(!isset($kepalaSekolah))
+                        <p style="color: var(--gray); margin-bottom: 20px;">
+                            Memimpin SMPN 4 Genteng sejak tahun 2018 dengan dedikasi tinggi untuk memajukan pendidikan di Kabupaten Banyuwangi.
+                        </p>
+                        @endif
                         
                         <div class="headmaster-details">
-                            @if(isset($kepalaSekolah->education) || !isset($kepalaSekolah))
+                            @if(isset($kepalaSekolah) && $kepalaSekolah->education)
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-graduation-cap"></i>
                                 </div>
                                 <div>
                                     <h4>Pendidikan</h4>
-                                    <p>{{ $kepalaSekolah->education ?? 'S3 Pendidikan Universitas Negeri Malang' }}</p>
+                                    <p>{{ $kepalaSekolah->education }}</p>
+                                </div>
+                            </div>
+                            @elseif(!isset($kepalaSekolah))
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4>Pendidikan</h4>
+                                    <p>S3 Pendidikan Universitas Negeri Malang</p>
                                 </div>
                             </div>
                             @endif
                             
-                            @if(isset($kepalaSekolah->certification) || !isset($kepalaSekolah))
+                            @if(isset($kepalaSekolah) && $kepalaSekolah->certification)
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-award"></i>
                                 </div>
                                 <div>
                                     <h4>Sertifikasi</h4>
-                                    <p>{{ $kepalaSekolah->certification ?? 'Guru Berprestasi Nasional 2019' }}</p>
+                                    <p>{{ $kepalaSekolah->certification }}</p>
+                                </div>
+                            </div>
+                            @elseif(!isset($kepalaSekolah))
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div>
+                                    <h4>Sertifikasi</h4>
+                                    <p>Guru Berprestasi Nasional 2019</p>
                                 </div>
                             </div>
                             @endif
                             
-                            @if(isset($kepalaSekolah->period) || !isset($kepalaSekolah))
+                            @if(isset($kepalaSekolah) && $kepalaSekolah->period)
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-calendar-alt"></i>
                                 </div>
                                 <div>
                                     <h4>Masa Jabatan</h4>
-                                    <p>{{ $kepalaSekolah->period ?? '2018 - Sekarang' }}</p>
+                                    <p>{{ $kepalaSekolah->period }}</p>
+                                </div>
+                            </div>
+                            @elseif(!isset($kepalaSekolah))
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Masa Jabatan</h4>
+                                    <p>2018 - Sekarang</p>
                                 </div>
                             </div>
                             @endif
                             
-                            @if(isset($kepalaSekolah->email) || !isset($kepalaSekolah))
+                            @if(isset($kepalaSekolah) && $kepalaSekolah->email)
                             <div class="detail-item">
                                 <div class="detail-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div>
                                     <h4>Email</h4>
-                                    <p>{{ $kepalaSekolah->email ?? 'kepsek@smpn4genteng.sch.id' }}</p>
+                                    <p>{{ $kepalaSekolah->email }}</p>
+                                </div>
+                            </div>
+                            @elseif(!isset($kepalaSekolah))
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>kepsek@smpn4genteng.sch.id</p>
                                 </div>
                             </div>
                             @endif
@@ -358,20 +404,25 @@
                     <div class="headmaster-bio animate-on-scroll">
                         <h2>Biografi & Kepemimpinan</h2>
                         
-                        @if(isset($kepalaSekolah->biography))
-                            <div class="prose max-w-none">
+                        @if(isset($kepalaSekolah) && $kepalaSekolah->biography)
+                            <div class="prose max-w-none text-gray-600 leading-relaxed">
                                 {!! nl2br(e($kepalaSekolah->biography)) !!}
                             </div>
-                        @else
+                        @elseif(!isset($kepalaSekolah))
                             <p>Dr. Sukaryanto, M.Pd. adalah seorang pendidik yang telah mendedikasikan hidupnya untuk dunia pendidikan selama lebih dari 25 tahun. Beliau memulai karir sebagai guru Matematika di SMPN 1 Genteng sebelum akhirnya dipercaya untuk memimpin SMPN 4 Genteng sejak tahun 2018.</p>
                             
                             <p>Dengan latar belakang pendidikan S3 dari Universitas Negeri Malang, Dr. Suryadi membawa pendekatan inovatif dalam memimpin SMPN 4 Genteng. Visinya untuk mengintegrasikan teknologi dalam pembelajaran telah membawa transformasi signifikan dalam proses belajar mengajar di sekolah.</p>
                         @endif
                         
-                        @if(isset($kepalaSekolah->quote) || !isset($kepalaSekolah))
+                        @if(isset($kepalaSekolah) && $kepalaSekolah->quote)
                         <div class="headmaster-quote">
                             <i class="fas fa-quote-left"></i>
-                            {{ $kepalaSekolah->quote ?? 'Pendidikan bukan hanya tentang transfer pengetahuan, tetapi tentang membentuk karakter, mengasah keterampilan, dan menyiapkan generasi muda untuk menghadapi tantangan masa depan dengan percaya diri.' }}
+                            {{ $kepalaSekolah->quote }}
+                        </div>
+                        @elseif(!isset($kepalaSekolah))
+                        <div class="headmaster-quote">
+                            <i class="fas fa-quote-left"></i>
+                            Pendidikan bukan hanya tentang transfer pengetahuan, tetapi tentang membentuk karakter, mengasah keterampilan, dan menyiapkan generasi muda untuk menghadapi tantangan masa depan dengan percaya diri.
                         </div>
                         @endif
 

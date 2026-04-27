@@ -18,7 +18,6 @@ class KepalaSekolah extends Model
         'education',
         'certification',
         'period',
-        'email',
         'biography',
         'quote',
         'is_active',

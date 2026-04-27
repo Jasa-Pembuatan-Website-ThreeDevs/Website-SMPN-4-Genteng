@@ -21,6 +21,16 @@
 
     <main class="main-content pt-40" style="padding-top:  100px;">
         <div id="ppdb" class="bg-gray-50 pb-20">
+            <div class="container mx-auto px-4">
+                @if(session('error'))
+                    <div class="max-w-4xl mx-auto mb-6 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-sm" role="alert">
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-circle mr-3"></i>
+                            <p class="font-medium">{{ session('error') }}</p>
+                        </div>
+                    </div>
+                @endif
+            </div>
             @if($activeBatch)
                 <div class="relative bg-white overflow-hidden shadow-sm">
                     <div class="absolute inset-0 z-0">

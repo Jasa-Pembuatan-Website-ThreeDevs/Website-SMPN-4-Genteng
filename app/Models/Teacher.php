@@ -10,8 +10,6 @@ class Teacher extends Model
         'image',
         'full_name',
         'nip',
-        'email',
-        'phone_number',
         'subject_specialization',
         'description',
     ];

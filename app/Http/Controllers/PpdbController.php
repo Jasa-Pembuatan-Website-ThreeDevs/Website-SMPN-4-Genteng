@@ -12,24 +12,20 @@ class PpdbController extends Controller
 {
 public function create()
 {
-    $today = Carbon::today();
-
-    // Prioritas 1: Yang ditandai is_active = true secara manual
-    $activeBatch = PpdbBatch::where('is_active', true)->first();
-
-    // Prioritas 2: Jika tidak ada yang is_active, cari berdasarkan rentang tanggal
-    if (!$activeBatch) {
-        $activeBatch = PpdbBatch::whereDate('start_date', '<=', $today)
-            ->whereDate('end_date', '>=', $today)
-            ->first();
-    }
-
+    $activeBatch = PpdbBatch::current();
     return view('pages.ppdb', compact('activeBatch'));
 }
 public function store(Request $request)
 {
+    // Pastikan ada gelombang yang aktif
+    $activeBatch = PpdbBatch::current();
+
+    if (!$activeBatch) {
+        return redirect()->route('spmb.register')->with('error', 'Mohon maaf, pendaftaran sudah ditutup atau belum dibuka.');
+    }
+
     $validated = $request->validate([
-        'batch_id' => 'nullable|exists:ppdb_batches,id',
+        'batch_id' => 'required|exists:ppdb_batches,id',
         'name' => 'required|string|max:255',
         'nisn' => 'required|digits:10',
         'birth_place' => 'required|string|max:255',
@@ -46,6 +42,12 @@ public function store(Request $request)
         'whatsapp.min' => 'Nomor WhatsApp minimal 10 digit.',
         'whatsapp.max' => 'Nomor WhatsApp maksimal 15 digit.',
     ]);
+
+    // Tambahan validasi: pastikan batch_id yang dikirim adalah batch yang memang sedang aktif
+    if ($validated['batch_id'] != $activeBatch->id) {
+        return redirect()->route('spmb.register')->with('error', 'Gelombang pendaftaran tidak valid atau telah berakhir.');
+    }
+
     $photoPath = null;
     $kkPath = null;
 

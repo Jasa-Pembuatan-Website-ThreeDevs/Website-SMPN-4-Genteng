@@ -58,13 +58,25 @@
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
                             @if ($batch->is_active)
-                                <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                    <span class="relative">Aktif</span>
-                                </span>
+                                @if ($batch->isInRange())
+                                    <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Aktif (Buka)</span>
+                                    </span>
+                                @elseif ($batch->isExpired())
+                                    <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Aktif (Tutup/Expired)</span>
+                                    </span>
+                                @else
+                                    <span class="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
+                                        <span aria-hidden class="absolute inset-0 bg-yellow-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Aktif (Menunggu)</span>
+                                    </span>
+                                @endif
                             @else
-                                <span class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                    <span aria-hidden class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                <span class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
+                                    <span aria-hidden class="absolute inset-0 bg-gray-200 opacity-50 rounded-full"></span>
                                     <span class="relative">Tidak Aktif</span>
                                 </span>
                             @endif

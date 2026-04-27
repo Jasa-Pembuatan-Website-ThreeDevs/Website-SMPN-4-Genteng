@@ -1,43 +1,55 @@
 @php
     $ekstrakurikuler = $ekstrakurikuler ?? [];
 @endphp
-<section class="section section-light main-content-section" id="extracurricular">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
-                <h2>Ekstrakurikuler</h2>
-                <p>Berbagai kegiatan ekstrakurikuler untuk mengembangkan bakat dan minat siswa di luar pembelajaran akademik</p>
-            </div>
-            <div class="extracurricular-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                @forelse($ekstrakurikuler as $ekskul)
-                <div class="extracurricular-card animate-on-scroll" style="background: #fff; border-radius: 1.25rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); padding: 2rem; display: flex; flex-direction: column; align-items: center;">
-                    <div class="extracurricular-icon" style="width: 100px; height: 100px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; border-radius: 1.2rem; background: linear-gradient(135deg, #e0e7ef 60%, #dbeafe 100%); box-shadow: 0 4px 24px 0 rgba(37,99,235,0.10); overflow: hidden; position: relative; transition: box-shadow 0.3s;">
-                        @if(filter_var($ekskul->image, FILTER_VALIDATE_URL))
-                            <img src="{{ $ekskul->image }}" alt="Logo {{ $ekskul->name }}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 1rem; box-shadow: 0 2px 12px 0 rgba(37,99,235,0.13); border: 3px solid #fff; transition: transform 0.3s; background: #fff;">
-                        @else
-                            <img src="{{ asset('storage/' . $ekskul->image) }}" alt="Logo {{ $ekskul->name }}" style="width: 90px; height: 90px; object-fit: cover; border-radius: 1rem; box-shadow: 0 2px 12px 0 rgba(37,99,235,0.13); border: 3px solid #fff; transition: transform 0.3s; background: #fff;">
-                        @endif
-                    </div>
-                    <h3 style="font-size: 1.25rem; font-weight: 700; color: #2563eb; margin-bottom: 0.5rem;">{{ $ekskul->name }}</h3>
-                    <p style="color: #334155; text-align: center; min-height: 48px;">{{ $ekskul->description }}</p>
-                    @if($ekskul->teacher && $ekskul->teacher->name)
-                    <div style="margin-top: 18px; display: flex; align-items: center; gap: 0.75rem;">
-                        <div style="width: 48px; height: 48px; border-radius: 50%; overflow: hidden; border: 2px solid #2563eb; background: #e0e7ef; display: flex; align-items: center; justify-content: center;">
-                            @if($ekskul->teacher->photo)
-                                <img src="{{ asset('storage/' . $ekskul->teacher->photo) }}" alt="Foto {{ $ekskul->teacher->name }}" style="width: 100%; height: 100%; object-fit: cover;">
-                            @else
-                                <span style="font-size: 1.5rem; color: #2563eb; font-weight: bold;">{{ mb_substr($ekskul->teacher->name, 0, 1) }}</span>
-                            @endif
-                        </div>
-                        <span style="font-size: 1rem; color: #2563eb; font-weight: 600;">{{ $ekskul->teacher->name }}</span>
-                    </div>
-                    @endif
-                    <div style="margin-top: 20px;">
-                        <span style="background: rgba(37, 99, 235, 0.1); color: #2563eb; padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">{{ $ekskul->student_count }} Siswa</span>
-                    </div>
-                </div>
-                @empty
-                    <p class="text-center text-gray-500" style="grid-column: 1/-1;">Belum ada data ekstrakurikuler.</p>
-                @endforelse
-            </div>
+<section class="section bg-slate-50" id="extracurricular">
+    <div class="container mx-auto px-4">
+        <div class="section-title text-center mb-12 animate-on-scroll">
+            <span class="text-purple-600 font-bold tracking-wider uppercase text-sm mb-2 block">Kegiatan Siswa</span>
+            <h2 class="text-4xl font-bold mb-4 py-2">Ekstrakurikuler</h2>
+            <div class="w-24 h-1 bg-purple-600 mx-auto mb-6 rounded-full"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto">Berbagai kegiatan ekstrakurikuler untuk mengembangkan bakat dan minat siswa di luar pembelajaran akademik.</p>
         </div>
-    </section>
+
+        @if(count($ekstrakurikuler) > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                @foreach($ekstrakurikuler as $ekskul)
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100 animate-on-scroll">
+                        <div class="relative overflow-hidden h-56">
+                            @if($ekskul->image)
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                                     src="{{ asset('storage/' . $ekskul->image) }}" alt="{{ $ekskul->name }}" loading="lazy">
+                            @else
+                                <div class="w-full h-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white">
+                                    <i class="fas fa-users text-5xl opacity-30"></i>
+                                </div>
+                            @endif
+                            <div class="absolute top-4 left-4">
+                                <span class="bg-white/90 backdrop-blur-sm text-purple-600 px-3 py-1 rounded-full text-xs font-bold shadow-sm uppercase">
+                                    Ekskul
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-purple-600 transition-colors line-clamp-2 leading-snug">
+                                {{ $ekskul->name }}
+                            </h3>
+                            
+                            <p class="text-gray-500 text-sm line-clamp-3 leading-relaxed flex-grow">
+                                {{ $ekskul->description }}
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="flex flex-col items-center justify-center py-20 bg-white rounded-3xl shadow-inner mt-10 border-2 border-dashed border-gray-100 animate-on-scroll">
+                <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-users text-3xl text-gray-300"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-700">Belum Ada Data</h3>
+                <p class="text-gray-400 mt-2 text-center max-w-md">Saat ini belum ada data ekstrakurikuler yang tersedia.</p>
+            </div>
+        @endif
+    </div>
+</section>

@@ -44,6 +44,20 @@
                 </div>
             </div>
 
+            <!-- Total Ekstrakurikuler -->
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-shadow">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-purple-50 text-purple-600 rounded-2xl p-3">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <span class="text-xs font-bold text-purple-500 bg-purple-50 px-2 py-1 rounded-lg uppercase">Ekstrakurikuler</span>
+                </div>
+                <div>
+                    <div class="text-3xl font-black text-slate-800">{{ \App\Models\Ekstrakurikuler::count() }}</div>
+                    <div class="text-xs text-slate-400 mt-1 font-medium">Kegiatan pengembangan diri</div>
+                </div>
+            </div>
+
             <!-- Prestasi Sekolah -->
             <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-center justify-between mb-4">
@@ -269,6 +283,12 @@
                                 <i class="fas fa-address-book"></i>
                             </div>
                             <span class="text-[10px] font-bold text-slate-600 uppercase">Data SPMB</span>
+                        </a>
+                        <a href="{{ route('admin.ekstrakurikulers.index') }}" class="p-4 bg-slate-50 rounded-2xl hover:bg-purple-50 transition group flex flex-col items-center text-center">
+                            <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-600 group-hover:text-purple-600 transition mb-2">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span class="text-[10px] font-bold text-slate-600 uppercase">Ekskul</span>
                         </a>
                         <a href="/" target="_blank" class="p-4 bg-slate-50 rounded-2xl hover:bg-amber-50 transition group flex flex-col items-center text-center">
                             <div class="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center text-slate-600 group-hover:text-amber-600 transition mb-2">
