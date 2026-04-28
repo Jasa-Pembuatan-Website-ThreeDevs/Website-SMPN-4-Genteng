@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
-                    @forelse($ekstrakurikulers as $ekskul)
+                    @forelse($ekstrakurikuler as $ekskul)
                     <tr class="group hover:bg-blue-50/40 transition-colors duration-150">
                         <td class="px-6 py-4 flex items-center">
                             @if($ekskul->image)
