@@ -296,7 +296,7 @@ img {
   box-shadow: var(--shadow-lg);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
+  transform: translateY(20px);
   transition: var(--transition);
   z-index: 100;
   padding: 8px;
@@ -318,7 +318,7 @@ img {
 .nav-item:hover .dropdown {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateY(10px);
 }
 
 .button-login {
