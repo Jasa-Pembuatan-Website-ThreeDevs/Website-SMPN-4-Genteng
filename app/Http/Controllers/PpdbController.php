@@ -12,24 +12,22 @@ class PpdbController extends Controller
 {
 public function create()
 {
-    $today = Carbon::today();
-
-    // Prioritas 1: Yang ditandai is_active = true secara manual
-    $activeBatch = PpdbBatch::where('is_active', true)->first();
-
-    // Prioritas 2: Jika tidak ada yang is_active, cari berdasarkan rentang tanggal
-    if (!$activeBatch) {
-        $activeBatch = PpdbBatch::whereDate('start_date', '<=', $today)
-            ->whereDate('end_date', '>=', $today)
-            ->first();
-    }
+    $activeBatch = PpdbBatch::activeAndOpen()->first();
 
     return view('pages.ppdb', compact('activeBatch'));
 }
+
 public function store(Request $request)
 {
+    $activeBatch = PpdbBatch::activeAndOpen()->first();
+
+    if (!$activeBatch) {
+        return redirect()->back()->with('error', 'Pendaftaran sedang ditutup.');
+    }
+
     $validated = $request->validate([
         'batch_id' => 'nullable|exists:ppdb_batches,id',
+
         'name' => 'required|string|max:255',
         'nisn' => 'required|digits:10',
         'birth_place' => 'required|string|max:255',

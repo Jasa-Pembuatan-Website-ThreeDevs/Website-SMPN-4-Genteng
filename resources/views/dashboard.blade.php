@@ -199,7 +199,7 @@
                     <h3 class="font-bold text-sm text-slate-400 mb-6 flex items-center gap-2 uppercase tracking-widest">
                         Status SPMB Saat Ini
                     </h3>
-                    @php $activeBatch = \App\Models\PpdbBatch::where('is_active', true)->first(); @endphp
+                    @php $activeBatch = \App\Models\PpdbBatch::activeAndOpen()->first(); @endphp
                     @if($activeBatch)
                         <div class="relative z-10">
                             <div class="text-2xl font-black text-blue-400 mb-1">{{ $activeBatch->name }}</div>

@@ -25,7 +25,9 @@ Route::get('/', function () {
     $totalAchievements = Achievement::count();
     $ekskulCount = $ekstrakurikuler->count();
 
-    return view('welcome', compact('posts', 'facilities', 'achievements', 'ekstrakurikuler', 'announcements', 'totalAchievements', 'ekskulCount'));
+    $activeBatch = PpdbBatch::activeAndOpen()->first();
+
+    return view('welcome', compact('posts', 'facilities', 'achievements', 'ekstrakurikuler', 'announcements', 'totalAchievements', 'ekskulCount', 'activeBatch'));
 });
 
 Route::get('/visi-misi', function() {
