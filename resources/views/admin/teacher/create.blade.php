@@ -56,7 +56,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Foto Guru</label>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Foto Guru <span class="text-slate-400 font-normal">(Opsional)</span></label>
                     <div class="relative">
                         <input type="file" name="image" id="image" accept="image/*"
                             class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">

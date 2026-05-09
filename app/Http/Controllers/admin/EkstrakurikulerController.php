@@ -36,7 +36,6 @@ class EkstrakurikulerController extends Controller
         $request->validate([
             'name'          => 'required|string|max:255',
             'description'   => 'nullable|string',
-            'student_count' => 'nullable|integer|min:0',
             'teacher_id'    => 'nullable|exists:users,id',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -49,7 +48,6 @@ class EkstrakurikulerController extends Controller
         Ekstrakurikuler::create([
             'name'          => $request->name,
             'description'   => $request->description,
-            'student_count' => $request->student_count ?? 0,
             'teacher_id'    => $request->teacher_id,
             'image'         => $imagePath,
         ]);
@@ -75,7 +73,6 @@ class EkstrakurikulerController extends Controller
         $request->validate([
             'name'          => 'required|string|max:255',
             'description'   => 'nullable|string',
-            'student_count' => 'nullable|integer|min:0',
             'teacher_id'    => 'nullable|exists:users,id',
             'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -98,7 +95,6 @@ class EkstrakurikulerController extends Controller
         $ekstrakurikuler->update([
             'name'          => $request->name,
             'description'   => $request->description,
-            'student_count' => $request->student_count ?? 0,
             'teacher_id'    => $request->teacher_id,
             'image'         => $imagePath,
         ]);

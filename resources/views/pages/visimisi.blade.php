@@ -231,14 +231,14 @@
             <div class="container vision-mission-container">
                 <div class="section-title animate-on-scroll">
                     <h2>Visi Kami</h2>
-                    <p>Menjadi sekolah unggulan yang melahirkan generasi cerdas, berkarakter mulia, berwawasan global, dan berjiwa kepemimpinan.</p>
+                    <p>{{ $vision->description ?? 'Menjadi sekolah unggulan yang melahirkan generasi cerdas, berkarakter mulia, berwawasan global, dan berjiwa kepemimpinan.' }}</p>
                 </div>
                 
                 <div class="vision-card animate-on-scroll">
                     <div class="vision-icon">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h2>"Terwujudnya Peserta Didik yang Berprestasi, Berakhlak Mulia, Terampil, dan Peduli Lingkungan."</h2>
+                    <h2>"{{ $vision->quote ?? 'Terwujudnya Peserta Didik yang Berprestasi, Berakhlak Mulia, Terampil, dan Peduli Lingkungan.' }}"</h2>
                     <p class="highlight">Visi ini mencerminkan komitmen SMPN 4 Genteng untuk mengembangkan potensi akademik dan non-akademik siswa secara seimbang.</p>
                 </div>
                 
@@ -248,37 +248,32 @@
                 </div>
                 
                 <div class="mission-list">
-                    <div class="mission-item animate-on-scroll">
-                        <div class="mission-number">1</div>
-                        <div class="mission-content">
-                            <h3>Meningkatkan Kualitas Pembelajaran</h3>
-                            <p>Menyelenggarakan proses pembelajaran yang inovatif, kreatif, efektif, dan berbasis teknologi untuk mengoptimalkan potensi akademik siswa.</p>
+                    @forelse($missions as $mission)
+                        <div class="mission-item animate-on-scroll">
+                            <div class="mission-number">{{ $loop->iteration }}</div>
+                            <div class="mission-content">
+                                <h3>{{ $mission->title }}</h3>
+                                <p>{{ $mission->content }}</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="mission-item animate-on-scroll">
-                        <div class="mission-number">2</div>
-                        <div class="mission-content">
-                            <h3>Membentuk Karakter Unggul</h3>
-                            <p>Membangun lingkungan sekolah yang religius, berbudaya, dan menjunjung tinggi nilai-nilai Pancasila untuk membentuk siswa berakhlak mulia.</p>
+                    @empty
+                        <!-- Default Mission if database is empty -->
+                        <div class="mission-item animate-on-scroll">
+                            <div class="mission-number">1</div>
+                            <div class="mission-content">
+                                <h3>Meningkatkan Kualitas Pembelajaran</h3>
+                                <p>Menyelenggarakan proses pembelajaran yang inovatif, kreatif, efektif, dan berbasis teknologi untuk mengoptimalkan potensi akademik siswa.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="mission-item animate-on-scroll">
-                        <div class="mission-number">3</div>
-                        <div class="mission-content">
-                            <h3>Mengembangkan Potensi Non-Akademik</h3>
-                            <p>Menyediakan beragam kegiatan ekstrakurikuler dan pembinaan bakat untuk mengembangkan keterampilan dan minat siswa.</p>
+                        
+                        <div class="mission-item animate-on-scroll">
+                            <div class="mission-number">2</div>
+                            <div class="mission-content">
+                                <h3>Membentuk Karakter Unggul</h3>
+                                <p>Membangun lingkungan sekolah yang religius, berbudaya, dan menjunjung tinggi nilai-nilai Pancasila untuk membentuk siswa berakhlak mulia.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="mission-item animate-on-scroll">
-                        <div class="mission-number">4</div>
-                        <div class="mission-content">
-                            <h3>Meningkatkan Kepedulian Lingkungan</h3>
-                            <p>Menerapkan program Adiwiyata untuk menumbuhkan kesadaran dan kepedulian siswa terhadap kelestarian lingkungan.</p>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </section>

@@ -105,6 +105,12 @@ class TeacherController extends Controller
             $path = $file->storeAs('teachers', $filename, 'public');
 
             $validated['image'] = $path;
+        } elseif ($request->remove_image == '1') {
+            // Hapus foto jika user klik hapus dan tidak upload baru
+            if ($teacher->image) {
+                Storage::disk('public')->delete($teacher->image);
+            }
+            $validated['image'] = null;
         }
 
         $teacher->update($validated);

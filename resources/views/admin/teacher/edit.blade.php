@@ -51,7 +51,8 @@
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-2">Foto Guru</label>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Foto Guru <span class="text-slate-400 font-normal">(Opsional)</span></label>
+                <input type="hidden" name="remove_image" id="remove_image" value="0">
                 <div class="relative">
                     <input type="file" name="image" id="image" accept="image/*"
                         class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
@@ -66,10 +67,10 @@
 
                 <div id="imagePreview" class="{{ $teacher->image ? '' : 'hidden' }} mt-4">
                     <p class="text-sm font-medium text-slate-700 mb-2">Preview Foto:</p>
-                    <div class="bg-slate-100 rounded-xl p-4">
-                        <img id="previewImg" src="{{ $teacher->image ? asset('storage/' . $teacher->image) : '' }}" alt="Preview" class="max-h-64 mx-auto rounded">
-                        <button type="button" id="removeImage" class="mt-3 text-red-600 hover:text-red-700 text-sm font-medium">
-                            <i class="fas fa-trash-alt mr-1"></i> Hapus Foto
+                    <div class="bg-slate-100 rounded-xl p-4 text-center">
+                        <img id="previewImg" src="{{ $teacher->image ? asset('storage/' . $teacher->image) : '' }}" alt="Preview" class="max-h-64 mx-auto rounded shadow-sm">
+                        <button type="button" id="removeImage" class="mt-3 inline-flex items-center text-red-600 hover:text-red-700 text-sm font-semibold transition">
+                            <i class="fas fa-trash-alt mr-2"></i> Hapus Foto
                         </button>
                     </div>
                 </div>
@@ -105,6 +106,7 @@
     const imagePreview = document.getElementById('imagePreview');
     const previewImg = document.getElementById('previewImg');
     const removeImageBtn = document.getElementById('removeImage');
+    const removeImageInput = document.getElementById('remove_image');
 
     imageInput.addEventListener('change', function() {
         if (this.files && this.files[0]) {
@@ -112,6 +114,7 @@
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
                 imagePreview.classList.remove('hidden');
+                removeImageInput.value = '0'; // Reset remove flag if new file is selected
             };
             reader.readAsDataURL(this.files[0]);
         }
@@ -120,11 +123,9 @@
     removeImageBtn.addEventListener('click', function(e) {
         e.preventDefault();
         imageInput.value = '';
-        @if($teacher->image)
-            previewImg.src = "{{ asset('storage/' . $teacher->image) }}";
-        @else
-            imagePreview.classList.add('hidden');
-        @endif
+        previewImg.src = '';
+        imagePreview.classList.add('hidden');
+        removeImageInput.value = '1'; // Set flag to remove image in backend
     });
 </script>
 @endsection

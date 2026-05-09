@@ -44,4 +44,12 @@ class PpdbBatch extends Model
                $this->start_date->startOfDay() <= $today && 
                $this->end_date->endOfDay() >= $today;
     }
+
+    /**
+     * Delete batches that have expired (end_date is before today).
+     */
+    public static function cleanupExpired()
+    {
+        return self::whereDate('end_date', '<', now()->startOfDay())->delete();
+    }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Console\Scheduling\Schedule;
+use App\Models\PpdbBatch;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,6 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
             'officer' => \App\Http\Middleware\OfficerMiddleware::class,
             'staff' => \App\Http\Middleware\StaffMiddleware::class,
         ]);
+    })
+    ->withSchedule(function (Schedule $schedule) {
+        $schedule->call(function () {
+            PpdbBatch::cleanupExpired();
+        })->daily();
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

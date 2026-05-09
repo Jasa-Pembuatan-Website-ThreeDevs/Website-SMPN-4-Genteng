@@ -25,25 +25,15 @@
                 @error('description') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Jumlah Siswa (Estimasi)</label>
-                    <input type="number" name="student_count" value="{{ old('student_count', 0) }}" 
-                        class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('student_count') border-red-500 @enderror" 
-                        min="0">
-                    @error('student_count') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-2">Pembina (Opsional)</label>
-                    <select name="teacher_id" class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('teacher_id') border-red-500 @enderror">
-                        <option value="">-- Pilih Pembina --</option>
-                        @foreach($teachers as $teacher)
-                            <option value="{{ $teacher->id }}" {{ old('teacher_id') == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('teacher_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Pembina (Opsional)</label>
+                <select name="teacher_id" class="w-full border-slate-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 border p-3 transition @error('teacher_id') border-red-500 @enderror">
+                    <option value="">-- Pilih Pembina --</option>
+                    @foreach($teachers as $teacher)
+                        <option value="{{ $teacher->id }}" {{ old('teacher_id') == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                    @endforeach
+                </select>
+                @error('teacher_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div>

@@ -12,7 +12,6 @@ class Ekstrakurikuler extends Model
     protected $fillable = [
         'name',
         'description',
-        'student_count',
         'teacher_id',
         'image',
     ];

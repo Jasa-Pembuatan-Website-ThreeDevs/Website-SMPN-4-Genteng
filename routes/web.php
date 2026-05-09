@@ -31,7 +31,9 @@ Route::get('/', function () {
 });
 
 Route::get('/visi-misi', function() {
-    return view('pages.visimisi');
+    $vision = \App\Models\Vision::first();
+    $missions = \App\Models\Mission::orderBy('order')->get();
+    return view('pages.visimisi', compact('vision', 'missions'));
 });
 
 Route::get('/kepala-sekolah', [App\Http\Controllers\KepalaSekolahController::class, 'publicShow']);
@@ -80,6 +82,13 @@ Route::middleware(['auth', 'administrator'])
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
         Route::resource('/kepala-sekolah', \App\Http\Controllers\KepalaSekolahController::class);
         Route::resource('/teacher', \App\Http\Controllers\TeacherController::class);
+
+        // Visi Misi
+        Route::get('/visi-misi', [\App\Http\Controllers\admin\VisiMisiController::class, 'index'])->name('visi-misi.index');
+        Route::post('/visi-misi/vision', [\App\Http\Controllers\admin\VisiMisiController::class, 'updateVision'])->name('visi-misi.vision.update');
+        Route::post('/visi-misi/mission', [\App\Http\Controllers\admin\VisiMisiController::class, 'storeMission'])->name('visi-misi.mission.store');
+        Route::put('/visi-misi/mission/{mission}', [\App\Http\Controllers\admin\VisiMisiController::class, 'updateMission'])->name('visi-misi.mission.update');
+        Route::delete('/visi-misi/mission/{mission}', [\App\Http\Controllers\admin\VisiMisiController::class, 'destroyMission'])->name('visi-misi.mission.destroy');
     });
 
 Route::middleware(['auth', 'teacher'])
@@ -90,6 +99,13 @@ Route::middleware(['auth', 'teacher'])
         Route::resource('/achievements', AchievementController::class);
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
         Route::resource('/teacher', \App\Http\Controllers\TeacherController::class);
+
+        // Visi Misi
+        Route::get('/visi-misi', [\App\Http\Controllers\admin\VisiMisiController::class, 'index'])->name('visi-misi.index');
+        Route::post('/visi-misi/vision', [\App\Http\Controllers\admin\VisiMisiController::class, 'updateVision'])->name('visi-misi.vision.update');
+        Route::post('/visi-misi/mission', [\App\Http\Controllers\admin\VisiMisiController::class, 'storeMission'])->name('visi-misi.mission.store');
+        Route::put('/visi-misi/mission/{mission}', [\App\Http\Controllers\admin\VisiMisiController::class, 'updateMission'])->name('visi-misi.mission.update');
+        Route::delete('/visi-misi/mission/{mission}', [\App\Http\Controllers\admin\VisiMisiController::class, 'destroyMission'])->name('visi-misi.mission.destroy');
     });
 
 Route::middleware(['auth', 'officer'])
@@ -101,6 +117,13 @@ Route::middleware(['auth', 'officer'])
         Route::resource('/team-members', \App\Http\Controllers\TeamMemberController::class);
         Route::resource('/kepala-sekolah', \App\Http\Controllers\KepalaSekolahController::class);
         Route::resource('/teacher', \App\Http\Controllers\TeacherController::class);
+
+        // Visi Misi
+        Route::get('/visi-misi', [\App\Http\Controllers\admin\VisiMisiController::class, 'index'])->name('visi-misi.index');
+        Route::post('/visi-misi/vision', [\App\Http\Controllers\admin\VisiMisiController::class, 'updateVision'])->name('visi-misi.vision.update');
+        Route::post('/visi-misi/mission', [\App\Http\Controllers\admin\VisiMisiController::class, 'storeMission'])->name('visi-misi.mission.store');
+        Route::put('/visi-misi/mission/{mission}', [\App\Http\Controllers\admin\VisiMisiController::class, 'updateMission'])->name('visi-misi.mission.update');
+        Route::delete('/visi-misi/mission/{mission}', [\App\Http\Controllers\admin\VisiMisiController::class, 'destroyMission'])->name('visi-misi.mission.destroy');
     });
 
 Route::resource('achievements', AchievementController::class);

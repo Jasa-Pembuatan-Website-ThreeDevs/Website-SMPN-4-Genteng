@@ -17,16 +17,16 @@
     <nav class="nav" id="mainNav">
       <ul class="nav-list">
         <li class="nav-item">
-          <a href="/#" class="nav-link active">Beranda</a>
+          <a href="/#" class="nav-link {{ Request::is('/') && !Request::getQueryString() ? 'active' : '' }}">Beranda</a>
         </li>
         <li class="nav-item has-dropdown">
-          <a href="/#about" class="nav-link">
+          <a href="#" class="nav-link {{ Request::is('kepala-sekolah', 'visi-misi', 'guru') || Request::routeIs('teachers.index') ? 'active' : '' }}">
             Tentang <i class="fas fa-chevron-down"></i>
           </a>
           <ul class="dropdown">
-            <li><a href="/kepala-sekolah" class="dropdown-item">Kepala Sekolah</a></li>
-            <li><a href="/visi-misi" class="dropdown-item">Visi & Misi</a></li>
-            <li><a href="{{ route('teachers.index') }}" class="dropdown-item">Guru & Staf</a></li>
+            <li><a href="/kepala-sekolah" class="dropdown-item {{ Request::is('kepala-sekolah') ? 'active' : '' }}">Kepala Sekolah</a></li>
+            <li><a href="/visi-misi" class="dropdown-item {{ Request::is('visi-misi') ? 'active' : '' }}">Visi & Misi</a></li>
+            <li><a href="{{ route('teachers.index') }}" class="dropdown-item {{ Request::routeIs('teachers.index') ? 'active' : '' }}">Guru & Staf</a></li>
             <li><a href="/#facilities" class="dropdown-item">Fasilitas</a></li>
             <li><a href="/#contact" class="dropdown-item">Kontak Kami</a></li>
           </ul>
@@ -41,13 +41,13 @@
           <a href="/#achievements" class="nav-link">Prestasi</a>
         </li>
         <li class="nav-item">
-          <a href="/spmb" class="nav-link">SPMB</a>
+          <a href="/spmb" class="nav-link {{ Request::is('spmb*') ? 'active' : '' }}">SPMB</a>
         </li>
         <li class="nav-item">
-          <a href="/uks" class="nav-link">UKS</a>
+          <a href="/uks" class="nav-link {{ Request::is('uks') ? 'active' : '' }}">UKS</a>
         </li>
         <li class="nav-item">
-          <a href="/bk" class="nav-link">BK</a>
+          <a href="/bk" class="nav-link {{ Request::is('bk') ? 'active' : '' }}">BK</a>
         </li>
       </ul>
     </nav>

@@ -61,6 +61,10 @@
                         <i class="fas fa-user-tie w-5 text-yellow-400/80"></i>
                         <span class="ms-3">Guru/Karyawan</span>
                     </x-sidebar-link>
+                    <x-sidebar-link :href="route('admin.visi-misi.index')" :active="request()->routeIs('admin.visi-misi.*')">
+                        <i class="fas fa-lightbulb w-5 text-indigo-400/80"></i>
+                        <span class="ms-3">Visi & Misi</span>
+                    </x-sidebar-link>
                 @elseif(auth()->user()->role == 'teacher')
                     <x-sidebar-link :href="route('teacher.facilities.index')" :active="request()->routeIs('teacher.facilities.*')">
                         <i class="fas fa-building-columns w-5 text-amber-400/80"></i>
@@ -74,6 +78,10 @@
                         <i class="fas fa-user-tie w-5 text-yellow-400/80"></i>
                         <span class="ms-3">Guru/Karyawan</span>
                     </x-sidebar-link>
+                    <x-sidebar-link :href="route('teacher.visi-misi.index')" :active="request()->routeIs('teacher.visi-misi.*')">
+                        <i class="fas fa-lightbulb w-5 text-indigo-400/80"></i>
+                        <span class="ms-3">Visi & Misi</span>
+                    </x-sidebar-link>
                 @elseif(auth()->user()->role == 'officer')
                     <x-sidebar-link :href="route('officer.posts.index')" :active="request()->routeIs('officer.posts.*')">
                         <i class="fas fa-newspaper w-5 text-blue-400/80"></i>
@@ -86,6 +94,10 @@
                     <x-sidebar-link :href="route('officer.teacher.index')" :active="request()->routeIs('officer.teacher.*')">
                         <i class="fas fa-user-tie w-5 text-yellow-400/80"></i>
                         <span class="ms-3">Guru/Karyawan</span>
+                    </x-sidebar-link>
+                    <x-sidebar-link :href="route('officer.visi-misi.index')" :active="request()->routeIs('officer.visi-misi.*')">
+                        <i class="fas fa-lightbulb w-5 text-indigo-400/80"></i>
+                        <span class="ms-3">Visi & Misi</span>
                     </x-sidebar-link>
                 @endif
             </div>

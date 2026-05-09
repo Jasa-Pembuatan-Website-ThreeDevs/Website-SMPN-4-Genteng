@@ -13,6 +13,9 @@ class PpdbBatchController extends Controller
      */
     public function index()
     {
+        // Otomatis hapus gelombang yang sudah berakhir
+        PpdbBatch::cleanupExpired();
+
         // Mengambil data urut dari yang paling baru dibuat
         $batches = PpdbBatch::latest()->get();
         return view('admin.ppdb-batches.index', compact('batches'));

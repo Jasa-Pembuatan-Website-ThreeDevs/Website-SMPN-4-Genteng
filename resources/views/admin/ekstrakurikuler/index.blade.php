@@ -26,7 +26,6 @@
                     <tr class="bg-slate-50/50 border-b border-slate-200">
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Nama Ekskul</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Pembina</th>
-                        <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">Jumlah Siswa</th>
                         <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600 text-right">Aksi</th>
                     </tr>
                 </thead>
@@ -45,9 +44,6 @@
                         </td>
                         <td class="px-6 py-4">
                             <span class="text-sm text-slate-600">{{ $ekskul->teacher->name ?? '-' }}</span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="text-sm text-slate-600">{{ $ekskul->student_count }} Siswa</span>
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex justify-end items-center space-x-4">

@@ -216,7 +216,9 @@
                                     @if($teacher->image)
                                         <img src="{{ asset('storage/' . $teacher->image) }}" alt="{{ $teacher->full_name }}" class="teacher-image">
                                     @else
-                                        <img src="https://ui-avatars.com/api/?name={{ urlencode($teacher->full_name) }}&background=2563eb&color=fff&size=512" alt="{{ $teacher->full_name }}" class="teacher-image">
+                                        <div class="w-full h-full flex items-center justify-center bg-blue-50 text-blue-600 font-black text-6xl">
+                                            {{ mb_substr($teacher->full_name, 0, 1) }}
+                                        </div>
                                     @endif
                                 </div>
                                 <div class="teacher-info">
